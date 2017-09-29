@@ -240,6 +240,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-BuyUnion.dll
+BuyUnion/bin/BuyUnion.*
 Site.css
 Site.min.css
