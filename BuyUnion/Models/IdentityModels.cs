@@ -52,6 +52,8 @@ namespace BuyUnion.Models
         {
         }
 
+        public DbSet<Models.Shop> Shops { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
