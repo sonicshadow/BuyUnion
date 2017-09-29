@@ -290,6 +290,10 @@
     <Compile Include="Migrations\201709290922588_AddShop.Designer.cs">
       <DependentUpon>201709290922588_AddShop.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709290932352_AddRoleUser.cs" />
+    <Compile Include="Migrations\201709290932352_AddRoleUser.Designer.cs">
+      <DependentUpon>201709290932352_AddRoleUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -298,6 +302,7 @@
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\OrderLog.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\RoleGroup.cs" />
     <Compile Include="Models\Shop.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -411,6 +416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709290922588_AddShop.resx">
       <DependentUpon>201709290922588_AddShop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709290932352_AddRoleUser.resx">
+      <DependentUpon>201709290932352_AddRoleUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

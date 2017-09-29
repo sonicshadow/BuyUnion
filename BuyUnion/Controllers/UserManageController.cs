@@ -15,12 +15,19 @@ namespace BuyUnion.Controllers
         {
             //var users =
             //    from u in db.Users
-            //    from s in db.
-            //    db.Users
-            //    .Where(s => s.UserType == type)
-            //    .OrderByDescending(s => s.RegisterDateTime)
-            //    .ToPagedList(page)
-            //    .Select(s=>);
+            //    from g in db.r
+            //   .Where(s => s.UserType == type)
+                
+            //    .Select(s => new UserViewModels
+            //    {
+            //        Id = s.Id,
+            //        UserName = s.UserName,
+            //        RegisterDateTime = s.RegisterDateTime,
+            //        UserType = s.UserType
+            //    })
+            //    .ToList();
+
+
             return View();
         }
     }

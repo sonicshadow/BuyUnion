@@ -10,6 +10,6 @@ namespace BuyUnion.Models
     [NotMapped]
     public class UserViewModels : ApplicationUser
     {
-        public string ShopName { get; set; }
+        public string RoleName { get; set; }
     }
 }
