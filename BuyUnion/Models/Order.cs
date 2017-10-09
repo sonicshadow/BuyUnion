@@ -19,6 +19,14 @@ namespace BuyUnion.Models
         [Display(Name = "送货地址")]
         public string Address { get; set; }
 
+        [Display(Name = "买家")]
+        public string UserID { get; set; }
+
+        [Display(Name = "代理")]
+        public string ProxyID { get; set; }
+
+        [Display(Name = "子代理")]
+        public string ChildProxyID { get; set; }
 
         [Display(Name = "状态")]
         public Enums.OrderState State { get; set; }
@@ -38,5 +46,15 @@ namespace BuyUnion.Models
 
         [Display(Name = "更新时间")]
         public DateTime UpdateDateTime { get; set; }
+
+        [Display(Name = "支付类别")]
+        public Enums.PayType PayType { get; set; }
+
+        [Display(Name = "支付流水号")]
+        public string PayCode { get; set; }
+
+
+        [Display(Name = "明细")]
+        public List<OrderDetail> Details { get; set; }
     }
 }
