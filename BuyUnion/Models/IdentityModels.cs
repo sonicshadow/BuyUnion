@@ -56,6 +56,10 @@ namespace BuyUnion.Models
 
         public virtual DbSet<RoleGroup> RoleGroups { get; set; }
 
+        public virtual DbSet<Product> Products { get; set; }
+
+        
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

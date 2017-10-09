@@ -24,6 +24,9 @@ namespace BuyUnion.Models
         [Display(Name = "库存")]
         public int Stock { get; set; }
 
+        [Display(Name = "销量")]
+        public int Sales { get; set; }
+
         [Display(Name = "图片")]
         public string Image { get; set; }
 
@@ -34,6 +37,9 @@ namespace BuyUnion.Models
         public string Remark { get; set; }
 
         [Display(Name = "快递模版")]
-        public int? ExpressModelID { get; set; }
+        public int? ExpressTemplateID { get; set; }
+
+        [Display(Name = "重量")]
+        public int Weight { get; set; }
     }
 }

@@ -294,6 +294,10 @@
     <Compile Include="Migrations\201709290932352_AddRoleUser.Designer.cs">
       <DependentUpon>201709290932352_AddRoleUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710090639486_AddProduct.cs" />
+    <Compile Include="Migrations\201710090639486_AddProduct.Designer.cs">
+      <DependentUpon>201710090639486_AddProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -400,12 +404,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutBackground.cshtml" />
+    <Content Include="Views\UserManage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Scripts\View\" />
-    <Folder Include="Views\UserManage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -420,6 +424,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709290932352_AddRoleUser.resx">
       <DependentUpon>201709290932352_AddRoleUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710090639486_AddProduct.resx">
+      <DependentUpon>201710090639486_AddProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
