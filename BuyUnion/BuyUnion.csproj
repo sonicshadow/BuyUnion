@@ -306,9 +306,12 @@
     <Compile Include="Migrations\201710090746022_ExpressTemplate.Designer.cs">
       <DependentUpon>201710090746022_ExpressTemplate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710090831140_DeleteShop.cs" />
+    <Compile Include="Migrations\201710090831140_DeleteShop.Designer.cs">
+      <DependentUpon>201710090831140_DeleteShop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ExpressTemplate.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
@@ -316,7 +319,6 @@
     <Compile Include="Models\OrderLog.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\RoleGroup.cs" />
-    <Compile Include="Models\Shop.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -442,6 +444,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710090746022_ExpressTemplate.resx">
       <DependentUpon>201710090746022_ExpressTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710090831140_DeleteShop.resx">
+      <DependentUpon>201710090831140_DeleteShop.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

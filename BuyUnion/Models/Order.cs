@@ -12,9 +12,7 @@ namespace BuyUnion.Models
 
         [Display(Name = "订单号")]
         public string Code { get; set; }
-
-        [Display(Name = "商家")]
-        public int ShopID { get; set; }
+        
 
         [Display(Name = "送货地址")]
         public string Address { get; set; }
