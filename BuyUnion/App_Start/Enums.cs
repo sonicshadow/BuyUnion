@@ -161,4 +161,23 @@ namespace BuyUnion.Enums
         [Display(Name = "微信支付")]
         WeChat
     }
+
+
+    public enum AmountLogType
+    {
+        [Display(Name = "收入")]
+        Income,
+        [Display(Name = "提现")]
+        Withdraw
+    }
+
+    public enum WithdrawState
+    {
+        [Display(Name = "待审核")]
+        NoCheck,
+        [Display(Name = "通过")]
+        Pass,
+        [Display(Name = "不通过")]
+        NoPass
+    }
 }

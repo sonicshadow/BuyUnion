@@ -316,6 +316,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AmountLog.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
@@ -325,6 +326,7 @@
     <Compile Include="Models\ProductProxy.cs" />
     <Compile Include="Models\RoleGroup.cs" />
     <Compile Include="Models\UserViewModels.cs" />
+    <Compile Include="Models\WithdrawLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
