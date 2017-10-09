@@ -302,8 +302,13 @@
     <Compile Include="Migrations\201710090714582_AddOrder.Designer.cs">
       <DependentUpon>201710090714582_AddOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710090746022_ExpressTemplate.cs" />
+    <Compile Include="Migrations\201710090746022_ExpressTemplate.Designer.cs">
+      <DependentUpon>201710090746022_ExpressTemplate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ExpressTemplate.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
@@ -434,6 +439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710090714582_AddOrder.resx">
       <DependentUpon>201710090714582_AddOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710090746022_ExpressTemplate.resx">
+      <DependentUpon>201710090746022_ExpressTemplate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

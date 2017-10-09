@@ -64,6 +64,8 @@ namespace BuyUnion.Models
 
         public virtual DbSet<OrderLog> OrderLogs { get; set; }
 
+        public virtual DbSet<ExpressTemplate> ExpressTemplates { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
