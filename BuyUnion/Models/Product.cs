@@ -9,7 +9,7 @@ namespace BuyUnion.Models
     public class Product
     {
         public int ID { get; set; }
-        
+
 
         [Display(Name = "商品名")]
         public string Name { get; set; }
@@ -34,9 +34,12 @@ namespace BuyUnion.Models
 
         [Display(Name = "商品详情")]
         public string Remark { get; set; }
-        
+
 
         [Display(Name = "重量")]
         public int Weight { get; set; }
+
+        [Display(Name = "佣金")]
+        public decimal Commission { get; set; }
     }
 }

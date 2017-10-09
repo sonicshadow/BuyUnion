@@ -63,6 +63,7 @@ namespace BuyUnion.Models
 
         public virtual DbSet<OrderLog> OrderLogs { get; set; }
         
+        public virtual DbSet<ProductProxy> ProductProxys { get; set; }
 
         public static ApplicationDbContext Create()
         {
