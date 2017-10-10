@@ -28,7 +28,11 @@ namespace BuyUnion
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
-
+            bundles.Add(new StyleBundle("~/bundles/datetimepicker/css").Include(
+                     "~/Scripts/datetimepicker/css/bootstrap-datetimepicker.css"));
+            bundles.Add(new ScriptBundle("~/bundles/datetimepicker/js").Include(
+                     "~/Scripts/datetimepicker/js/bootstrap-datetimepicker.js",
+                     "~/Scripts/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/comm").Include(
                       "~/Scripts/Comm/canvas-to-blob.min.js",
