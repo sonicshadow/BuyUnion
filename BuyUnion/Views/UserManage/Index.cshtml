@@ -1,8 +1,73 @@
-﻿
+﻿@model IEnumerable<BuyUnion.Models.UserViewModels>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "用户管理";
     Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+    var paged = (PagedList.IPagedList<BuyUnion.Models.UserViewModels>)Model;
+    string strType = "所有类型";
+    BuyUnion.Enums.UserType? type = null;
+    if (!string.IsNullOrWhiteSpace(Request["type"]))
+    {
+        type = (BuyUnion.Enums.UserType)Enum.Parse(typeof(BuyUnion.Enums.UserType), Request["type"], false);
+        strType = type.GetDisplayName();
+    }
 }
 
-<h2>Index</h2>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("添加用户", "Create", new { type = BuyUnion.Enums.UserType.Normal })</li>
+                <li>@Html.ActionLink("添加管理员", "Create", new { type = BuyUnion.Enums.UserType.System })</li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        @strType<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("所有类型", "Index")</li>
+                        @foreach (BuyUnion.Enums.UserType item in Enum.GetValues(typeof(BuyUnion.Enums.UserType)))
+                        {
+                            <li>
+                                @Html.ActionLink(item.GetDisplayName(), "Index", new { type = item })
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegisterDateTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.HiddenFor(modelItem => item.Id)
+                @item.UserType.GetDisplayName()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegisterDateTime)
+            </td>
+            <td>@Html.ActionLink("编辑", "Edit", new { id = item.Id })</td>
+        </tr>
+    }
+</table>
+
+@Html.PageList(paged, Url.PageUrl())

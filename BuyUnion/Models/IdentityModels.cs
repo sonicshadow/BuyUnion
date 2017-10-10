@@ -19,7 +19,7 @@ namespace BuyUnion.Models
             return userIdentity;
         }
 
-
+        [Display(Name = "用户类型")]
         public Enums.UserType UserType { get; set; }
 
         [Display(Name = "注册时间")]
@@ -27,6 +27,7 @@ namespace BuyUnion.Models
 
         public DateTime LastLoginDateTime { get; set; }
 
+        [Display(Name = "权限分组")]
         public int? RoleGroupID { get; set; }
     }
 

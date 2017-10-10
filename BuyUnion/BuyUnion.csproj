@@ -258,6 +258,7 @@
   <ItemGroup>
     <Compile Include="App_Start\ActionFilterAttributes.cs" />
     <Compile Include="App_Start\Api.cs" />
+    <Compile Include="App_Start\Bll\Roles.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\Comm.cs" />
     <Compile Include="App_Start\Enums.cs" />
@@ -278,6 +279,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RoleManageController.cs" />
     <Compile Include="Controllers\UserManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -676,6 +678,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\View\roleGroup.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -713,11 +716,18 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutBackground.cshtml" />
     <Content Include="Views\UserManage\Index.cshtml" />
+    <Content Include="Views\RoleManage\Create.cshtml" />
+    <Content Include="Views\RoleManage\Delete.cshtml" />
+    <Content Include="Views\RoleManage\Edit.cshtml" />
+    <Content Include="Views\RoleManage\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SelectRoleListViewModel.cshtml" />
+    <Content Include="Views\UserManage\Create.cshtml" />
+    <Content Include="Views\UserManage\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
-    <Folder Include="Scripts\View\" />
+    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
