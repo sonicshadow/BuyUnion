@@ -15,12 +15,15 @@ namespace BuyUnion.Models
         public string Name { get; set; }
 
         [Display(Name = "单价")]
+        [Range(0.01, int.MaxValue, ErrorMessage = "{0}必须大于0")]
         public decimal Price { get; set; }
 
         [Display(Name = "原价")]
+        [Range(0.01, int.MaxValue, ErrorMessage = "{0}必须大于0")]
         public decimal OriginalPrice { get; set; }
 
         [Display(Name = "库存")]
+        [Range(0, int.MaxValue, ErrorMessage = "{0}不能小于0")]
         public int Stock { get; set; }
 
         [Display(Name = "销量")]
@@ -39,7 +42,8 @@ namespace BuyUnion.Models
         [Display(Name = "重量")]
         public int Weight { get; set; }
 
-        [Display(Name = "佣金")]
+        [Display(Name = "佣金比")]
+        [Range(0.00001, 0.99999, ErrorMessage = "{0}在0到1之间")]
         public decimal Commission { get; set; }
     }
 }

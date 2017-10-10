@@ -258,7 +258,6 @@
   <ItemGroup>
     <Compile Include="App_Start\ActionFilterAttributes.cs" />
     <Compile Include="App_Start\Api.cs" />
-    <Compile Include="App_Start\Bll\Roles.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\Comm.cs" />
     <Compile Include="App_Start\Enums.cs" />
@@ -279,7 +278,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\RoleManageController.cs" />
+    <Compile Include="Controllers\ProductManageController.cs" />
     <Compile Include="Controllers\UserManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -323,13 +322,16 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmountLog.cs" />
+    <Compile Include="Models\FileUpload.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ImageResizer.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\OrderLog.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductProxy.cs" />
+    <Compile Include="Models\ProductViewModels.cs" />
     <Compile Include="Models\RoleGroup.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Models\WithdrawLog.cs" />
@@ -678,7 +680,15 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\View\roleGroup.js" />
+    <Content Include="Scripts\Swiper\css\swiper.css" />
+    <Content Include="Scripts\Swiper\css\swiper.min.css" />
+    <Content Include="Scripts\Swiper\js\swiper.jquery.js" />
+    <Content Include="Scripts\Swiper\js\swiper.jquery.min.js" />
+    <Content Include="Scripts\Swiper\js\swiper.jquery.umd.js" />
+    <Content Include="Scripts\Swiper\js\swiper.jquery.umd.min.js" />
+    <Content Include="Scripts\Swiper\js\swiper.js" />
+    <Content Include="Scripts\Swiper\js\swiper.min.js" />
+    <Content Include="Scripts\View\ProductManageCreate.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -716,18 +726,17 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutBackground.cshtml" />
     <Content Include="Views\UserManage\Index.cshtml" />
-    <Content Include="Views\RoleManage\Create.cshtml" />
-    <Content Include="Views\RoleManage\Delete.cshtml" />
-    <Content Include="Views\RoleManage\Edit.cshtml" />
-    <Content Include="Views\RoleManage\Index.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\SelectRoleListViewModel.cshtml" />
-    <Content Include="Views\UserManage\Create.cshtml" />
-    <Content Include="Views\UserManage\Edit.cshtml" />
+    <Content Include="Views\ProductManage\Index.cshtml" />
+    <Content Include="Views\ProductManage\Create.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FileUpload.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ImageResizer.cshtml" />
+    <Content Include="Scripts\Swiper\js\maps\swiper.jquery.min.js.map" />
+    <Content Include="Scripts\Swiper\js\maps\swiper.jquery.umd.min.js.map" />
+    <Content Include="Scripts\Swiper\js\maps\swiper.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
-    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
