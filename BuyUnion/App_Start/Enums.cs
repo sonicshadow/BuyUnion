@@ -118,7 +118,7 @@ namespace BuyUnion.Enums
     /// </summary>
     public enum UserType
     {
-        [Display(Name = "系统")]
+        [Display(Name = "管理员")]
         System = 0,
         [Display(Name = "商家")]
         Shop = 1,

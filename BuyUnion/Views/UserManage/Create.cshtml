@@ -1,0 +1,58 @@
+﻿@model BuyUnion.Models.UserMangeCreateUserViewModel
+
+@{
+    ViewBag.Title = $"添加{Model.UserType.GetDisplayName()}";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("用户管理", "Index")</li>
+    <li class="active">@ViewBag.Title</li>
+</ol>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => Model.UserType)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @if (Model.UserType == BuyUnion.Enums.UserType.System)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.RoleGroupID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.RoleGroupID, (SelectList)ViewBag.SelRole, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RoleGroupID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="添加" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -258,6 +258,7 @@
   <ItemGroup>
     <Compile Include="App_Start\ActionFilterAttributes.cs" />
     <Compile Include="App_Start\Api.cs" />
+    <Compile Include="App_Start\Bll\Roles.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\Comm.cs" />
     <Compile Include="App_Start\Enums.cs" />
@@ -279,6 +280,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductManageController.cs" />
+    <Compile Include="Controllers\RoleManageController.cs" />
     <Compile Include="Controllers\UploaderController.cs" />
     <Compile Include="Controllers\UserManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -694,6 +696,7 @@
     <Content Include="Scripts\Swiper\js\swiper.js" />
     <Content Include="Scripts\Swiper\js\swiper.min.js" />
     <Content Include="Scripts\Views\productManageCreate.js" />
+    <Content Include="Scripts\View\roleGroup.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -738,10 +741,18 @@
     <Content Include="Scripts\Swiper\js\maps\swiper.jquery.min.js.map" />
     <Content Include="Scripts\Swiper\js\maps\swiper.jquery.umd.min.js.map" />
     <Content Include="Scripts\Swiper\js\maps\swiper.min.js.map" />
+    <Content Include="Views\UserManage\Create.cshtml" />
+    <Content Include="Views\UserManage\Edit.cshtml" />
+    <Content Include="Views\RoleManage\Create.cshtml" />
+    <Content Include="Views\RoleManage\Delete.cshtml" />
+    <Content Include="Views\RoleManage\Edit.cshtml" />
+    <Content Include="Views\RoleManage\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SelectRoleListViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
+    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
