@@ -65,8 +65,7 @@ namespace BuyUnion
                 js = js.Select(s => s.Contains("~") ? s : $"~/Scripts/Views/{s}").ToArray();
                 bundles.Add(new ScriptBundle($"~/bundles/{name}").Include(js));
             };
-
-            addViewScripts("ProductManageCreate", new string[] { "ProductManageCreate.js" });
+            
             addViewScripts("roleGroup", new string[] { "roleGroup.js" });
             addViewScripts("ProductManageCreate", new string[] { "productManageCreate.js" });
 

@@ -52,6 +52,7 @@ namespace BuyUnion.Controllers
                     Price = model.Price,
                     Remark = model.Remark,
                     Stock = model.Stock,
+                    CreateDateTime = DateTime.Now
                 };
                 db.Products.Add(product);
                 db.SaveChanges();
