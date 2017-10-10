@@ -51,7 +51,7 @@ namespace BuyUnion.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
 
         public virtual DbSet<RoleGroup> RoleGroups { get; set; }
 
@@ -62,8 +62,10 @@ namespace BuyUnion.Models
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
 
         public virtual DbSet<OrderLog> OrderLogs { get; set; }
-        
+
         public virtual DbSet<ProductProxy> ProductProxys { get; set; }
+
+        public virtual DbSet<WithdrawLog> WithdrawLogs { get; set; }
 
         public static ApplicationDbContext Create()
         {

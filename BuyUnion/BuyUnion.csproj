@@ -314,6 +314,10 @@
     <Compile Include="Migrations\201710090842297_ProductProxy.Designer.cs">
       <DependentUpon>201710090842297_ProductProxy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710100109392_AddWithdrawLog.cs" />
+    <Compile Include="Migrations\201710100109392_AddWithdrawLog.Designer.cs">
+      <DependentUpon>201710100109392_AddWithdrawLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmountLog.cs" />
@@ -457,6 +461,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710090842297_ProductProxy.resx">
       <DependentUpon>201710090842297_ProductProxy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710100109392_AddWithdrawLog.resx">
+      <DependentUpon>201710100109392_AddWithdrawLog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

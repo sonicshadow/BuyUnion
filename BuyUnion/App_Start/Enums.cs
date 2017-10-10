@@ -180,4 +180,6 @@ namespace BuyUnion.Enums
         [Display(Name = "不通过")]
         NoPass
     }
+
+    
 }
