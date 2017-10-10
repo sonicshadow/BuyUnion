@@ -38,10 +38,10 @@
     <div class="fluid">
         <div id="sidebar" class="sidebar">
             <ul class="nav nav-sidebar">
-                <li class="@hidSidebar(SysRole.UserManageRead)">
+                <li class="">
                     <a href="@Url.Action("Index", "UserManage")" title="用户管理">用户管理</a>
                 </li>
-                <li class="@hidSidebar(SysRole.UserManageRead)">
+                <li class="">
                     <a href="@Url.Action("Index", "ProductManage")" title="商品管理">商品管理</a>
                 </li>
             </ul>
@@ -55,7 +55,6 @@
     </div>
     <div class="mask hidden"></div>
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryui/js");
     @Scripts.Render("~/bundles/comm")
     @Scripts.Render("~/bundles/datetimepicker/js")
     @Scripts.Render("~/bundles/bootstrap")

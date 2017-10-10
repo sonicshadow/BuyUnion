@@ -36,6 +36,7 @@ namespace BuyUnion.Models
         public string DetailsImage { get; set; }
 
         [Display(Name = "商品详情")]
+        [DataType(DataType.MultilineText)]
         public string Remark { get; set; }
 
 
@@ -45,5 +46,8 @@ namespace BuyUnion.Models
         [Display(Name = "佣金比")]
         [Range(0.00001, 0.99999, ErrorMessage = "{0}在0到1之间")]
         public decimal Commission { get; set; }
+
+        [Display(Name = "创建时间")]
+        public DateTime CreateDateTime { get; set; }
     }
 }

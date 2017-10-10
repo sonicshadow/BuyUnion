@@ -243,3 +243,5 @@ ModelManifest.xml
 BuyUnion/bin/BuyUnion.*
 Site.css
 Site.min.css
+/BuyUnion/Upload
+/BuyUnion/imagecache

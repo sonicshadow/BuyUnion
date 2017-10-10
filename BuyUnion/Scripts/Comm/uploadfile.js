@@ -63,7 +63,7 @@ var uploader = function (target, option) {
         $file.val("");
     }
 
-    
+
 
     this.close = function () {
         _close();
@@ -78,7 +78,7 @@ var uploader = function (target, option) {
 
     //打开Modal
     $btnModal.click(function () {
-        if (getFileListItems().length < max) {
+        if (max <= 0 || getFileListItems().length < max) {
             _show();
         }
         else {

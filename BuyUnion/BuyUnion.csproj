@@ -279,6 +279,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductManageController.cs" />
+    <Compile Include="Controllers\UploaderController.cs" />
     <Compile Include="Controllers\UserManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -318,6 +319,10 @@
     <Compile Include="Migrations\201710100109392_AddWithdrawLog.cs" />
     <Compile Include="Migrations\201710100109392_AddWithdrawLog.Designer.cs">
       <DependentUpon>201710100109392_AddWithdrawLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710100825222_ProductAddCreateDateTime.cs" />
+    <Compile Include="Migrations\201710100825222_ProductAddCreateDateTime.Designer.cs">
+      <DependentUpon>201710100825222_ProductAddCreateDateTime.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -688,7 +693,7 @@
     <Content Include="Scripts\Swiper\js\swiper.jquery.umd.min.js" />
     <Content Include="Scripts\Swiper\js\swiper.js" />
     <Content Include="Scripts\Swiper\js\swiper.min.js" />
-    <Content Include="Scripts\View\ProductManageCreate.js" />
+    <Content Include="Scripts\Views\productManageCreate.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -769,6 +774,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710100109392_AddWithdrawLog.resx">
       <DependentUpon>201710100109392_AddWithdrawLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710100825222_ProductAddCreateDateTime.resx">
+      <DependentUpon>201710100825222_ProductAddCreateDateTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
