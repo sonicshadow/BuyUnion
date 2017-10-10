@@ -258,6 +258,7 @@
   <ItemGroup>
     <Compile Include="App_Start\ActionFilterAttributes.cs" />
     <Compile Include="App_Start\Api.cs" />
+    <Compile Include="App_Start\Bll\Roles.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\Comm.cs" />
     <Compile Include="App_Start\Enums.cs" />
