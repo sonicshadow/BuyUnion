@@ -48,6 +48,7 @@ namespace BuyUnion.Models
         public decimal Commission { get; set; }
 
         [Display(Name = "创建时间")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime CreateDateTime { get; set; }
     }
 }
