@@ -278,6 +278,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductManageController.cs" />
     <Compile Include="Controllers\UserManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -321,6 +322,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmountLog.cs" />
+    <Compile Include="Models\FileUpload.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
@@ -328,6 +330,7 @@
     <Compile Include="Models\OrderLog.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductProxy.cs" />
+    <Compile Include="Models\ProductViewModels.cs" />
     <Compile Include="Models\RoleGroup.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Models\WithdrawLog.cs" />
@@ -713,6 +716,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutBackground.cshtml" />
     <Content Include="Views\UserManage\Index.cshtml" />
+    <Content Include="Views\ProductManage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
