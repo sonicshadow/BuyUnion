@@ -751,6 +751,7 @@
     <Content Include="Views\RoleManage\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SelectRoleListViewModel.cshtml" />
     <Content Include="Views\ProductManage\Edit.cshtml" />
+    <Content Include="Views\ProductManage\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

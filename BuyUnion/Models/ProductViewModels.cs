@@ -10,6 +10,27 @@ namespace BuyUnion.Models
     [NotMapped]
     public class ProductCreateEditViewModel : Product
     {
+        public ProductCreateEditViewModel()
+        {
+        }
+
+        public ProductCreateEditViewModel(Product product)
+        {
+
+            Commission = product.Commission;
+            CreateDateTime = product.CreateDateTime;
+            ID = product.ID;
+            Name = product.Name;
+            OriginalPrice = product.OriginalPrice;
+            Price = product.Price;
+            Remark = product.Remark;
+            Stock = product.Stock;
+            Sales = product.Sales;
+            Weight = product.Weight;
+            Image.Images = new string[] { product.Image };
+            DetailsImage.Images = product.DetailsImage.SplitToArray<string>(',').ToArray();
+        }
+
         [Required]
         [Display(Name = "商品名")]
         public new string Name { get; set; }

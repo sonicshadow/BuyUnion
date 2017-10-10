@@ -66,26 +66,14 @@ namespace BuyUnion.Controllers
         {
             Sidebar();
             var product = db.Products.FirstOrDefault(s => s.ID == id);
-            var model = new ProductCreateEditViewModel
-            {
-                Commission = product.Commission,
-                CreateDateTime = product.CreateDateTime,
-                ID = product.ID,
-                Name = product.Name,
-                OriginalPrice = product.OriginalPrice,
-                Price = product.Price,
-                Remark = product.Remark,
-                Stock = product.Stock,
-            };
-            model.Image.Images = new string[] { product.Image };
-            model.DetailsImage.Images = product.DetailsImage.SplitToArray<string>(',').ToArray();
-            return View(model);
+
+            return View(new ProductCreateEditViewModel(product));
         }
 
         [HttpPost]
         public ActionResult Edit(ProductCreateEditViewModel model)
         {
-            
+
             if (model.Image.Images.Length == 0)
             {
                 ModelState.AddModelError("Image", "主图片必须上传");
@@ -105,6 +93,13 @@ namespace BuyUnion.Controllers
             }
             Sidebar();
             return View(model);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var product = db.Products.FirstOrDefault(s => s.ID == id);
+
+            return View(new ProductCreateEditViewModel(product));
         }
 
         protected override void Dispose(bool disposing)
