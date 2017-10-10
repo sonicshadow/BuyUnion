@@ -14,10 +14,10 @@ namespace BuyUnion.Models
         [Display(Name = "商品名")]
         public new string Name { get; set; }
 
-        [Display(Name = "主图片")]
+        [Display(Name = "主图")]
         public new FileUpload Image { get; set; } = new FileUpload { Max = 1, Type = FileType.Image, Name = "Image" };
 
-        [Display(Name = "次图片")]
+        [Display(Name = "内页轮播图")]
         public new FileUpload DetailsImage { get; set; } = new FileUpload { Max = 10, Type = FileType.Image, Name = "Image" };
 
         [AllowHtml]
