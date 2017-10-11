@@ -45,7 +45,7 @@ namespace BuyUnion.Controllers
                 var product = new Product
                 {
                     Commission = model.Commission,
-                    DetailsImage = string.Join(",", model.Image.Images),
+                    DetailsImage = string.Join(",", model.DetailsImage.Images),
                     Image = model.Image.Images[0],
                     Name = model.Name,
                     OriginalPrice = model.OriginalPrice,
@@ -60,6 +60,79 @@ namespace BuyUnion.Controllers
             }
             Sidebar();
             return View(model);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Sidebar();
+            var product = db.Products.FirstOrDefault(s => s.ID == id);
+
+            return View(new ProductCreateEditViewModel(product));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ProductCreateEditViewModel model)
+        {
+            Sidebar();
+            if (model.Image.Images.Length == 0)
+            {
+                ModelState.AddModelError("Image", "主图片必须上传");
+            }
+            if (ModelState.IsValid)
+            {
+                var product = db.Products.FirstOrDefault(s => s.ID == model.ID);
+                product.Commission = model.Commission;
+                product.DetailsImage = string.Join(",", model.DetailsImage.Images);
+                product.Image = string.Join(",", model.Image.Images);
+                product.Name = model.Name;
+                product.OriginalPrice = model.OriginalPrice;
+                product.Price = model.Price;
+                product.Remark = model.Remark;
+                product.Stock = model.Stock;
+                db.SaveChanges();
+            }
+            Sidebar();
+            return View(model);
+        }
+
+        public ActionResult Details(int id)
+        {
+            Sidebar();
+            var product = db.Products.FirstOrDefault(s => s.ID == id);
+
+            return View(new ProductCreateEditViewModel(product));
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var product = db.Products.FirstOrDefault(s => s.ID == id);
+
+            return View(new ProductCreateEditViewModel(product));
+
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult DeleteConfrim(int id)
+        {
+            var product = db.Products.FirstOrDefault(s => s.ID == id);
+            if (db.ProductProxys.Any(s => s.ProductID == id))
+            {
+                ModelState.AddModelError("", "该商品已有关联代理");
+            }
+            if (db.OrderDetails.Any(s => s.ProductID == id))
+            {
+                ModelState.AddModelError("", "该商品产生订单");
+            }
+            if (ModelState.IsValid)
+            {
+                db.Products.Remove(product);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            Sidebar();
+            return View(new ProductCreateEditViewModel(product));
+
         }
 
         protected override void Dispose(bool disposing)

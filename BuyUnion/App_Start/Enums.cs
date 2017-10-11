@@ -181,5 +181,11 @@ namespace BuyUnion.Enums
         NoPass
     }
 
-    
+    public enum ProductState
+    {
+        [Display(Name = "下架")]
+        Off,
+        [Display(Name = "上架")]
+        On,
+    }
 }

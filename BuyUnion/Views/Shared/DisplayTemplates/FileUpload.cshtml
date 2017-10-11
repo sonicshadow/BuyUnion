@@ -1,0 +1,49 @@
+﻿@model BuyUnion.Models.FileUpload
+<div id="myModal_@Model.Name" class="uploader" data-max="@Model.Max">
+    <div>
+        <ul id="uploader_ul_@Model.Name">
+            @foreach (var item in Model.Images)
+            {
+                var imgsrc = Url.ResizeImage(item, h: 70, w: 120);
+                var fileType = Path.GetExtension(item);
+                if (fileType != ".bmp" && fileType != ".tif" && fileType != ".png" && fileType != ".jpge" && fileType != ".jpg" && fileType != ".gif")
+                {
+                    imgsrc = Url.ContentFull("/Content/Images/filetype/file.png");
+                    if (fileType == ".doc" || fileType == ".docx" || fileType == ".txt" || fileType == ".wps")
+                    {
+                        imgsrc = Url.ContentFull("/Content/Images/filetype/doc.png");
+                    }
+                    if (fileType == ".mp3")
+                    {
+                        imgsrc = Url.ContentFull("/Content/Images/filetype/mp3.png");
+                    }
+                    if (fileType == ".mp4")
+                    {
+                        imgsrc = Url.ContentFull("/Content/Images/filetype/mp4.png");
+                    }
+                    if (fileType == ".ppt")
+                    {
+                        imgsrc = Url.ContentFull("/Content/Images/filetype/ppt.png");
+                    }
+                    if (fileType == ".xls" || fileType == ".xlsx")
+                    {
+                        imgsrc = Url.ContentFull("/Content/Images/filetype/xls.png");
+                    }
+                    if (fileType == ".zip")
+                    {
+                        imgsrc = Url.ContentFull("/Content/Images/filetype/zip.png");
+                    }
+                }
+                <li>
+                    <img title="@Path.GetFileName(item)" src="@imgsrc" />
+                    <span class="glyphicon glyphicon-remove" data-img="@item"></span>
+                </li>
+
+                @*<li>
+                        <img src="@Url.ResizeImage(item,h:70,w:120)" />
+                        <span class="glyphicon glyphicon-remove" data-img="@item"></span>
+                    </li>*@
+            }
+        </ul>
+    </div>
+</div>

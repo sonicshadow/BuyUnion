@@ -280,7 +280,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductManageController.cs" />
-    <Compile Include="Controllers\ProductProxyController.cs" />
     <Compile Include="Controllers\RoleManageController.cs" />
     <Compile Include="Controllers\UploaderController.cs" />
     <Compile Include="Controllers\UserManageController.cs" />
@@ -327,6 +326,10 @@
     <Compile Include="Migrations\201710100825222_ProductAddCreateDateTime.Designer.cs">
       <DependentUpon>201710100825222_ProductAddCreateDateTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710110144054_ProductAddState.cs" />
+    <Compile Include="Migrations\201710110144054_ProductAddState.Designer.cs">
+      <DependentUpon>201710110144054_ProductAddState.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmountLog.cs" />
@@ -351,6 +354,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\404\avatar.png" />
+    <Content Include="Content\Images\404\default.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
@@ -749,12 +754,13 @@
     <Content Include="Views\RoleManage\Edit.cshtml" />
     <Content Include="Views\RoleManage\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SelectRoleListViewModel.cshtml" />
+    <Content Include="Views\ProductManage\Edit.cshtml" />
+    <Content Include="Views\ProductManage\Details.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\FileUpload.cshtml" />
+    <Content Include="Views\ProductManage\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\" />
-    <Folder Include="Views\ProductProxy\" />
-    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -790,6 +796,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710100825222_ProductAddCreateDateTime.resx">
       <DependentUpon>201710100825222_ProductAddCreateDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710110144054_ProductAddState.resx">
+      <DependentUpon>201710110144054_ProductAddState.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

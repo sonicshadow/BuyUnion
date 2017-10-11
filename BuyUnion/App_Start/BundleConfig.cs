@@ -67,7 +67,7 @@ namespace BuyUnion
             };
             
             addViewScripts("roleGroup", new string[] { "roleGroup.js" });
-            addViewScripts("ProductManageCreate", new string[] { "productManageCreate.js" });
+            addViewScripts("productManageCreate", new string[] { "productManageCreate.js" });
 
         }
     }
