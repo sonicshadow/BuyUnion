@@ -61,5 +61,8 @@ namespace BuyUnion.Models
 
         [Display(Name = "收货人")]
         public string Consignee { get; set; }
+
+        [Display(Name = "类型")]
+        public Enums.OrderType Type { get; set; }
     }
 }

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Provinces>
+  <Province ID="1" ProvinceName="北京">北京</Province>
+  <Province ID="2" ProvinceName="天津">天津</Province>
+  <Province ID="3" ProvinceName="河北">河北</Province>
+  <Province ID="4" ProvinceName="山西">山西</Province>
+  <Province ID="5" ProvinceName="内蒙古">内蒙古</Province>
+  <Province ID="6" ProvinceName="辽宁">辽宁</Province>
+  <Province ID="7" ProvinceName="吉林">吉林</Province>
+  <Province ID="8" ProvinceName="黑龙江">黑龙江</Province>
+  <Province ID="9" ProvinceName="上海">上海</Province>
+  <Province ID="10" ProvinceName="江苏">江苏</Province>
+  <Province ID="11" ProvinceName="浙江">浙江</Province>
+  <Province ID="12" ProvinceName="安徽">安徽</Province>
+  <Province ID="13" ProvinceName="福建">福建</Province>
+  <Province ID="14" ProvinceName="江西">江西</Province>
+  <Province ID="15" ProvinceName="山东">山东</Province>
+  <Province ID="16" ProvinceName="河南">河南</Province>
+  <Province ID="17" ProvinceName="湖北">湖北</Province>
+  <Province ID="18" ProvinceName="湖南">湖南</Province>
+  <Province ID="19" ProvinceName="广东">广东</Province>
+  <Province ID="20" ProvinceName="广西">广西</Province>
+  <Province ID="21" ProvinceName="海南">海南</Province>
+  <Province ID="22" ProvinceName="重庆">重庆</Province>
+  <Province ID="23" ProvinceName="四川">四川</Province>
+  <Province ID="24" ProvinceName="贵州">贵州</Province>
+  <Province ID="25" ProvinceName="云南">云南</Province>
+  <Province ID="26" ProvinceName="西藏">西藏</Province>
+  <Province ID="27" ProvinceName="陕西">陕西</Province>
+  <Province ID="28" ProvinceName="甘肃">甘肃</Province>
+  <Province ID="29" ProvinceName="青海">青海</Province>
+  <Province ID="30" ProvinceName="宁夏">宁夏</Province>
+  <Province ID="31" ProvinceName="新疆">新疆</Province>
+  <Province ID="32" ProvinceName="香港">香港</Province>
+  <Province ID="33" ProvinceName="澳门">澳门</Province>
+  <Province ID="34" ProvinceName="台湾">台湾</Province>
+</Provinces>

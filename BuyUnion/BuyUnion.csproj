@@ -257,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\ActionFilterAttributes.cs" />
+    <Compile Include="App_Start\AddressList.cs" />
     <Compile Include="App_Start\Api.cs" />
     <Compile Include="App_Start\Bll\Roles.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -281,6 +282,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\SysRole.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddressSelectorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -340,6 +342,10 @@
     <Compile Include="Migrations\201710110702469_OrderAddPhoneNumberAndConsignee.Designer.cs">
       <DependentUpon>201710110702469_OrderAddPhoneNumberAndConsignee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710110917429_OrderAddType.cs" />
+    <Compile Include="Migrations\201710110917429_OrderAddType.Designer.cs">
+      <DependentUpon>201710110917429_OrderAddType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmountLog.cs" />
@@ -361,6 +367,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Cities.xml" />
+    <Content Include="App_Data\Districts.xml" />
+    <Content Include="App_Data\Provinces.xml" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -390,11 +399,11 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\Less\base.less" />
-    <Content Include="Content\Less\bootstrapEx.less" />
-    <Content Include="Content\Less\imageResizeUploader.less" />
-    <Content Include="Content\Less\layoutBackground.less" />
-    <Content Include="Content\Less\uploader.less" />
+    <Content Include="Content\less\base.less" />
+    <Content Include="Content\less\bootstrapEx.less" />
+    <Content Include="Content\less\imageResizeUploader.less" />
+    <Content Include="Content\less\layoutBackground.less" />
+    <Content Include="Content\less\uploader.less" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
@@ -687,6 +696,8 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Content\less\addressSelector.less" />
+    <Content Include="Content\less\views\orderSubmit.less" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\datetimepicker\css\bootstrap-datetimepicker.css" />
     <Content Include="Scripts\datetimepicker\js\bootstrap-datetimepicker.js" />
@@ -770,10 +781,10 @@
     <Content Include="Views\ProductManage\Details.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\FileUpload.cshtml" />
     <Content Include="Views\ProductManage\Delete.cshtml" />
+    <Content Include="Views\Order\Submit.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\Order\" />
     <Folder Include="Views\ProductProxy\" />
   </ItemGroup>
   <ItemGroup>
@@ -816,6 +827,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710110702469_OrderAddPhoneNumberAndConsignee.resx">
       <DependentUpon>201710110702469_OrderAddPhoneNumberAndConsignee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710110917429_OrderAddType.resx">
+      <DependentUpon>201710110917429_OrderAddType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

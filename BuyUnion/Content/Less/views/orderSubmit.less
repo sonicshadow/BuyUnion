@@ -1,0 +1,32 @@
+﻿@import "../base";
+
+.orderSubmit {
+    padding: 5rem*@resize;
+
+    .orderSubmit-selectType {
+        .clean-ul();
+        .clearfix();
+
+        li {
+            float: left;
+            margin-right: 10rem*@resize;
+            border: @border;
+            padding: 0rem*@resize 3rem*@resize;
+            .active {
+                border-color: @bg-danger;
+            }
+        }
+    }
+
+    input {
+        border: @border;
+    }
+
+    .consigneeInfo {
+        margin-left: 20rem*@resize;
+
+        td {
+            padding: 3rem*@resize;
+        }
+    }
+}

@@ -1,0 +1,60 @@
+﻿@model BuyUnion.Models.SubmitOrderViewModel
+@{
+    ViewBag.Title = "提交订单";
+}
+@using (Html.BeginForm())
+{
+    <div class="orderSubmit">
+        <input type="radio" name="@Model." value="" />
+        <div>
+            <b>收货人信息</b>
+        </div>
+        <table class="consigneeInfo">
+            <tr>
+                <td>收货人：</td>
+                <td>@Html.EditorFor(model => model.Consignee)</td>
+            </tr>
+            <tr>
+                <td>联系电话：</td>
+                <td>@Html.EditorFor(model => model.PhoneNumber)</td>
+            </tr>
+            <tr>
+                <td>所在地区：</td>
+                <td>
+                    <select id="Province" disabled>
+                        <option selected value="广东">广东</option>
+                    </select>
+                    <select id="City">
+                        <option selected>选择</option>
+                        @foreach (var item in BuyUnion.Address.AddressList.Provinces.FirstOrDefault(s => s.Name == "广东").Citys)
+                        {
+                            <option value="@item.Name">@item.Name</option>
+                        }
+                    </select>
+                    <select id="District" name="District">
+                        <option selected>选择</option>
+                    </select>
+
+                </td>
+            </tr>
+            <tr>
+                <td>详细地址</td>
+                <td>
+                    @Html.EditorFor(model => model.Address)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <p class="text-danger">
+                        该商品由于不适合长途运输，所以只支持广东省。
+                    </p>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+}
+
+@section Scripts{
+
+}

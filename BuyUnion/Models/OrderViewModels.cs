@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace BuyUnion.Models
 {
     [NotMapped]
-    public class SubmitOrderViewModel : IDistrict
+    public class SubmitOrderViewModel : Order, IDistrict
     {
         public string City { get; set; }
 
@@ -14,11 +14,13 @@ namespace BuyUnion.Models
 
         public string Province { get; set; }
 
-        public string Address { get; set; }
+        public new List<OrderDetailViewModel> Details { get; set; }
+    }
 
-        public string Consignee { get; set; }
-
-        public string PhoneNumber { get; set; }
+    [NotMapped]
+    public class OrderDetailViewModel : OrderDetail
+    {
+        public string Image { get; set; }
 
     }
 }

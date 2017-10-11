@@ -188,4 +188,12 @@ namespace BuyUnion.Enums
         [Display(Name = "上架")]
         On,
     }
+
+    public enum OrderType
+    {
+        [Display(Name = "快递")]
+        Express,
+        [Display(Name = "自提")]
+        Offine
+    }
 }

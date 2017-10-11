@@ -1,0 +1,160 @@
+﻿@import "base";
+
+.addressSelector {
+
+    @media screen and (min-width:@screen-sm) {
+        position: relative;
+        float: left;
+        white-space: nowrap;
+        height: 34px;
+        margin: 0 5px 0 0;
+
+        .addressSelector-selected {
+            padding: 6px 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            background-color: #fff;
+            z-index: @z-index-bottom++4;
+
+            &.active {
+                border-bottom-color: #fff;
+                white-space: nowrap;
+                position: absolute;
+            }
+        }
+
+        .addressSelector-content {
+            border: 1px solid #ccc;
+            position: absolute;
+            top: 32px;
+            z-index: @z-index-bottom++3;
+            background-color: #fff;
+            width: 500px;
+            padding: 20px;
+
+            .addressSelector-head {
+                .clearfix();
+                border-bottom: 1px solid @color-bg-orange03;
+
+                a {
+                    .clean-a();
+                    float: left;
+                    padding: 5px 10px;
+                    margin-right: 10px;
+                    border: 1px solid #ccc;
+                    border-bottom: none;
+                    position: relative;
+                    top: 1px;
+                    background-color: #fff;
+                    white-space: nowrap;
+
+                    &.active {
+                        border-color: @color-bg-orange03;
+                        border-bottom: 1px solid #fff;
+                    }
+                }
+            }
+
+            .addressSelector-address {
+                ul {
+                    .clean-ul();
+                    .clearfix();
+                    padding: 5px 0 0 5px;
+                    background-color: #fff;
+                    z-index: @z-index-bottom++2;
+
+                    li {
+                        float: left;
+                        margin: 0 10px 10px 0;
+                        padding: 3px;
+                        cursor: pointer;
+                        line-height: normal;
+
+                        &:hover, &.active {
+                            background-color: @color-bg-orange03;
+                            color: @font-color-5;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width:@screen-sm) {
+        position: absolute;
+        top: 100px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: @z-index-top+10;
+        background-color: @font-color-5;
+        margin: 0 5px 0 0;
+
+        .addressSelector-selected {
+            padding: 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            background-color: #fff;
+
+            &.active {
+                border-bottom-color: #fff;
+                white-space: nowrap;
+                z-index: @z-index-bottom++2;
+                position: absolute;
+            }
+        }
+
+        .addressSelector-content {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+
+            .addressSelector-head {
+                height: 30px;
+
+                a {
+                    .clean-a();
+                    float: left;
+                    padding: 5px 10px;
+                    position: relative;
+                    background-color: #fff;
+                    width: calc(100%/3);
+                    text-align: center;
+                    border-right: 1px solid #eee;
+                    white-space: nowrap;
+
+                    &.active {
+                        border-bottom: 3px solid @color-bg-orange03;
+                        padding: 5px 10px 4px 10px;
+                    }
+                }
+            }
+
+            .addressSelector-address {
+                ul {
+                    .clean-ul();
+                    .clearfix();
+                    padding: 10px 10px 0 10px;
+                    border-top: 1px solid @color-bg-orange03;
+                    z-index: @z-index-bottom++1;
+                    background-color: #fff;
+
+                    li {
+                        margin: 0 10px 10px 0;
+                        padding: 3px;
+                        float: left;
+                        cursor: pointer;
+                        line-height: normal;
+                        border-bottom-color: #fff;
+
+                        &:hover, &.active {
+                            color: @color-main;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
