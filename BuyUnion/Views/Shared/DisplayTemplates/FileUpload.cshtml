@@ -5,7 +5,7 @@
             @foreach (var item in Model.Images)
             {
                 var imgsrc = Url.ResizeImage(item, h: 70, w: 120);
-                var fileType = Path.GetExtension(item);
+                var fileType = Path.GetExtension(item).ToLower();
                 if (fileType != ".bmp" && fileType != ".tif" && fileType != ".png" && fileType != ".jpge" && fileType != ".jpg" && fileType != ".gif")
                 {
                     imgsrc = Url.ContentFull("/Content/Images/filetype/file.png");
@@ -36,7 +36,6 @@
                 }
                 <li>
                     <img title="@Path.GetFileName(item)" src="@imgsrc" />
-                    <span class="glyphicon glyphicon-remove" data-img="@item"></span>
                 </li>
 
                 @*<li>

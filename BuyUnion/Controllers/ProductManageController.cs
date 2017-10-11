@@ -7,6 +7,7 @@ using BuyUnion.Models;
 
 namespace BuyUnion.Controllers
 {
+    [Authorize]
     public class ProductManageController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -16,6 +17,7 @@ namespace BuyUnion.Controllers
             ViewBag.Sidebar = "商品管理";
         }
 
+        [Authorize(Roles = SysRole.ProductManageRead)]
         // GET: ProductManage
         public ActionResult Index(int? page = 1)
         {
@@ -25,6 +27,7 @@ namespace BuyUnion.Controllers
             return View(models);
         }
 
+        [Authorize(Roles = SysRole.ProductManageCreate)]
         public ActionResult Create()
         {
             Sidebar();
@@ -34,6 +37,7 @@ namespace BuyUnion.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = SysRole.ProductManageCreate)]
         public ActionResult Create(ProductCreateEditViewModel model)
         {
             if (model.Image.Images.Length == 0)
@@ -62,6 +66,7 @@ namespace BuyUnion.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = SysRole.ProductManageEdit)]
         public ActionResult Edit(int id)
         {
             Sidebar();
@@ -71,6 +76,7 @@ namespace BuyUnion.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = SysRole.ProductManageEdit)]
         public ActionResult Edit(ProductCreateEditViewModel model)
         {
             Sidebar();
@@ -95,6 +101,7 @@ namespace BuyUnion.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = SysRole.ProductManageRead)]
         public ActionResult Details(int id)
         {
             Sidebar();
@@ -103,6 +110,7 @@ namespace BuyUnion.Controllers
             return View(new ProductCreateEditViewModel(product));
         }
 
+        [Authorize(Roles = SysRole.RoleManageDelete)]
         public ActionResult Delete(int id)
         {
             var product = db.Products.FirstOrDefault(s => s.ID == id);
@@ -113,6 +121,7 @@ namespace BuyUnion.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
+        [Authorize(Roles = SysRole.RoleManageDelete)]
         public ActionResult DeleteConfrim(int id)
         {
             var product = db.Products.FirstOrDefault(s => s.ID == id);
@@ -138,6 +147,14 @@ namespace BuyUnion.Controllers
         [HttpPost]
         public ActionResult ChangeState(int id, Enums.ProductState state)
         {
+            if (state == Enums.ProductState.On && !User.IsInRole(SysRole.ProductManageOn))
+            {
+                return Json(Comm.ToJsonResult("NoFound", "没有上架权限"));
+            }
+            if (state == Enums.ProductState.Off && !User.IsInRole(SysRole.ProductManageOff))
+            {
+                return Json(Comm.ToJsonResult("NoFound", "没有下架权限"));
+            }
             var product = db.Products.FirstOrDefault(s => s.ID == id);
             if (product == null)
             {

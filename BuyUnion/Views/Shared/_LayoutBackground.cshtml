@@ -38,13 +38,13 @@
     <div class="fluid">
         <div id="sidebar" class="sidebar">
             <ul class="nav nav-sidebar">
-                <li class="">
+                <li class="@hidSidebar(SysRole.UserManageRead)">
                     <a href="@Url.Action("Index", "UserManage")" title="用户管理">用户管理</a>
                 </li>
                 <li class="@hidSidebar(SysRole.RoleManageRead)">
                     <a href="@Url.Action("Index", "RoleManage")" title="权限管理">权限管理</a>
                 </li>
-                <li class="">
+                <li class="@hidSidebar(SysRole.ProductManageRead)">
                     <a href="@Url.Action("Index", "ProductManage")" title="商品管理">商品管理</a>
                 </li>
             </ul>

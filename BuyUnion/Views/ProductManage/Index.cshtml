@@ -8,7 +8,10 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="@Url.Action("Create")">新增</a></li>
+                @if (User.IsInRole(SysRole.ProductManageCreate))
+                {
+                    <li><a href="@Url.Action("Create")">新增</a></li>
+                }
             </ul>
         </div>
     </div>
@@ -50,7 +53,7 @@
     {
         <tr>
             <td>
-              @Html.TableImg(item.Image)
+                @Html.TableImg(item.Image)
 
             </td>
             <td>
@@ -78,14 +81,23 @@
                 @Html.DisplayFor(modelItem => item.CreateDateTime)
             </td>
             <td>
-                @Html.ActionLink("编辑", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("查看", "Details", new { id = item.ID }) |
-                @Html.ActionLink("删除", "Delete", new { id = item.ID }) |
-                @if (item.State == BuyUnion.Enums.ProductState.On)
+                @Html.ActionLink("查看", "Details", new { id = item.ID })
+                @if (User.IsInRole(SysRole.ProductManageEdit))
                 {
-                    <a href="#" data-id="@item.ID" data-state="@(BuyUnion.Enums.ProductState.Off)">下架</a>
+                   @Html.Raw("|") @Html.ActionLink("编辑", "Edit", new { id = item.ID }) 
                 }
-                else
+
+               
+                @if (User.IsInRole(SysRole.ProductManageDelete))
+                {
+                    @Html.Raw("|") @Html.ActionLink("删除", "Delete", new { id = item.ID })
+                }
+
+                @if (item.State == BuyUnion.Enums.ProductState.On && User.IsInRole(SysRole.ProductManageOn))
+                {
+                    @Html.Raw("|") <a href="#" data-id="@item.ID" data-state="@(BuyUnion.Enums.ProductState.Off)">下架</a>
+                }
+                else if (User.IsInRole(SysRole.ProductManageOff))
                 {
                     <a href="#" data-id="@item.ID" data-state="@(BuyUnion.Enums.ProductState.On)">上架</a>
                 }

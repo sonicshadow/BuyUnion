@@ -98,8 +98,14 @@ namespace BuyUnion.Bll
             addSystemRole(SysRole.RoleManageEdit, "权限管理", "权限管理编辑");
             addSystemRole(SysRole.RoleManageDelete, "权限管理", "权限管理删除");
 
+            addSystemRole(SysRole.ProductManageRead, "商品管理", "商品管理查看");
+            addSystemRole(SysRole.ProductManageCreate, "商品管理", "商品管理添加");
+            addSystemRole(SysRole.ProductManageEdit, "商品管理", "商品管理编辑");
+            addSystemRole(SysRole.ProductManageDelete, "商品管理", "商品管理删除");
+            addSystemRole(SysRole.ProductManageOn, "商品管理", "商品管理上架");
+            addSystemRole(SysRole.ProductManageOff, "商品管理", "商品管理下架");
             #endregion
-            
+
             foreach (var item in roles)
             {
                 if (_appRoleManager.FindByName(item.Name) == null)
