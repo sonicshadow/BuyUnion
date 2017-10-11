@@ -51,7 +51,7 @@ namespace BuyUnion.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime CreateDateTime { get; set; }
 
-        //[Display(Name = "状态")]
-        //public Enums.ProductState State { get; set; }
+        [Display(Name = "状态")]
+        public Enums.ProductState State { get; set; }
     }
 }
