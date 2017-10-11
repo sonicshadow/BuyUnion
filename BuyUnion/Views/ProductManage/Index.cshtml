@@ -29,6 +29,9 @@
                 @Html.DisplayNameFor(model => model.OriginalPrice)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Stock)
             </th>
             <th>
@@ -37,14 +40,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.Commission)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDateTime)
+            </th>
             <th></th>
         </tr>
     </thead>
     @foreach (var item in Model)
     {
         <tr>
-            <td class="table-img">
-                @Html.TableImg(item.Image)
+            <td>
+              @Html.TableImg(item.Image)
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -56,6 +63,9 @@
                 @Html.DisplayFor(modelItem => item.OriginalPrice)
             </td>
             <td>
+                @item.State.GetDisplayName()
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Stock)
             </td>
             <td>
@@ -65,12 +75,25 @@
                 @Html.DisplayFor(modelItem => item.Commission)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.CreateDateTime)
+            </td>
+            <td>
                 @Html.ActionLink("编辑", "Edit", new { id = item.ID }) |
                 @Html.ActionLink("查看", "Details", new { id = item.ID }) |
                 @Html.ActionLink("删除", "Delete", new { id = item.ID }) |
-                <a href="#"></a>
+                @if (item.State == BuyUnion.Enums.ProductState.On)
+                {
+                    <a href="#" data-id="@item.ID" data-state="@(BuyUnion.Enums.ProductState.Off)">下架</a>
+                }
+                else
+                {
+                    <a href="#" data-id="@item.ID" data-state="@(BuyUnion.Enums.ProductState.On)">上架</a>
+                }
             </td>
         </tr>
     }
 
 </table>
+@section Scripts{
+    @Scripts.Render("~/Bundles/productManageIndex")
+}

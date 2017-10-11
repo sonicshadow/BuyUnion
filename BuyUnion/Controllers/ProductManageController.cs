@@ -135,6 +135,19 @@ namespace BuyUnion.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult ChangeState(int id, Enums.ProductState state)
+        {
+            var product = db.Products.FirstOrDefault(s => s.ID == id);
+            if (product == null)
+            {
+                return Json(Comm.ToJsonResult("NoFound", "商品不存在"));
+            }
+            product.State = state;
+            db.SaveChanges();
+            return Json(Comm.ToJsonResult("Success", $"{state.GetDisplayName()}成功"));
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -702,6 +702,7 @@
     <Content Include="Scripts\Swiper\js\swiper.js" />
     <Content Include="Scripts\Swiper\js\swiper.min.js" />
     <Content Include="Scripts\Views\productManageCreate.js" />
+    <Content Include="Scripts\Views\productManageIndex.js" />
     <Content Include="Scripts\Views\roleGroup.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />

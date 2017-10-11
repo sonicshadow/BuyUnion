@@ -280,10 +280,11 @@ var uploader = function (target, option) {
 
         return demo;
     }
+    
     //判断文件类型
     var fileType = function (url, filename) {
         var previewSrc = url;
-        var fileType = filename.substr(filename.lastIndexOf(".") + 1);
+        var fileType = filename.substr(filename.lastIndexOf(".") + 1).toLowerCase();
         if (fileType != "bmp" && fileType != "tif" && fileType != "png" && fileType != "jpge" && fileType != "jpg" && fileType != "gif") {
             previewSrc = "/Content/Images/filetype/file.png"
             if (fileType == "doc" || fileType == "docx" || fileType == "txt" || fileType == "wps") {
