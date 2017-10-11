@@ -73,7 +73,7 @@ namespace BuyUnion.Controllers
         [HttpPost]
         public ActionResult Edit(ProductCreateEditViewModel model)
         {
-
+            Sidebar();
             if (model.Image.Images.Length == 0)
             {
                 ModelState.AddModelError("Image", "主图片必须上传");
@@ -97,9 +97,42 @@ namespace BuyUnion.Controllers
 
         public ActionResult Details(int id)
         {
+            Sidebar();
             var product = db.Products.FirstOrDefault(s => s.ID == id);
 
             return View(new ProductCreateEditViewModel(product));
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var product = db.Products.FirstOrDefault(s => s.ID == id);
+
+            return View(new ProductCreateEditViewModel(product));
+
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult DeleteConfrim(int id)
+        {
+            var product = db.Products.FirstOrDefault(s => s.ID == id);
+            if (db.ProductProxys.Any(s => s.ProductID == id))
+            {
+                ModelState.AddModelError("", "该商品已有关联代理");
+            }
+            if (db.OrderDetails.Any(s => s.ProductID == id))
+            {
+                ModelState.AddModelError("", "该商品产生订单");
+            }
+            if (ModelState.IsValid)
+            {
+                db.Products.Remove(product);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            Sidebar();
+            return View(new ProductCreateEditViewModel(product));
+
         }
 
         protected override void Dispose(bool disposing)

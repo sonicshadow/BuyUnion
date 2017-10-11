@@ -1,16 +1,18 @@
 ﻿@model BuyUnion.Models.ProductCreateEditViewModel
 
 @{
-    ViewBag.Title = "查看产品";
+    ViewBag.Title = "删除产品";
     Layout = "~/Views/Shared/_LayoutBackground.cshtml";
     var fileUpload = new BuyUnion.Models.FileUpload();
     fileUpload.UseByCkEdit();
 }
 
+@Html.AntiForgeryToken()
+
 <div class="form-horizontal">
     <ol class="breadcrumb">
         <li><a href="@Url.Action("Index")">商品管理</a></li>
-        <li class="active">查看</li>
+        <li class="active">删除</li>
     </ol>
     <div class="form-group">
         @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -74,7 +76,18 @@
             @Html.EditorFor(model => model.Remark)
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-md-10 col-md-offset-2">
+            @using (Html.BeginForm())
+            {
+                <input id="btnDelete" type="submit" class="btn btn-danger" value="删除" />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ID)
+            }
+        </div>
+    </div>
 </div>
+
 @Html.EditorFor(model => fileUpload)
 @section Scripts{
     @Scripts.Render("~/Bundles/jqueryval")
@@ -82,5 +95,8 @@
     <script>
         CKEDITOR.replace('Remark');
         CKEDITOR.config.readOnly = true;
+        $("#btnDelete").click(function (e) {
+            return confirm("确认要删除该商品");
+        });
     </script>
 }

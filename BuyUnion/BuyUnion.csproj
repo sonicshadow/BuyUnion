@@ -753,6 +753,7 @@
     <Content Include="Views\ProductManage\Edit.cshtml" />
     <Content Include="Views\ProductManage\Details.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\FileUpload.cshtml" />
+    <Content Include="Views\ProductManage\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
