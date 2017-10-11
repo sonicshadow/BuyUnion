@@ -271,6 +271,10 @@
     <Compile Include="App_Start\Extensions\StringExtensions.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\Interface\IDistrict.cs" />
+    <Compile Include="App_Start\Interface\IErrorReusult.cs" />
+    <Compile Include="App_Start\Interface\IGprs.cs" />
+    <Compile Include="App_Start\Interface\ISms.cs" />
     <Compile Include="App_Start\Log.cs" />
     <Compile Include="App_Start\QrCode.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -279,6 +283,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductManageController.cs" />
     <Compile Include="Controllers\ProductProxyController.cs" />
     <Compile Include="Controllers\RoleManageController.cs" />
@@ -331,6 +336,10 @@
     <Compile Include="Migrations\201710110144054_ProductAddState.Designer.cs">
       <DependentUpon>201710110144054_ProductAddState.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710110702469_OrderAddPhoneNumberAndConsignee.cs" />
+    <Compile Include="Migrations\201710110702469_OrderAddPhoneNumberAndConsignee.Designer.cs">
+      <DependentUpon>201710110702469_OrderAddPhoneNumberAndConsignee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmountLog.cs" />
@@ -341,6 +350,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\OrderLog.cs" />
+    <Compile Include="Models\OrderViewModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductProxy.cs" />
     <Compile Include="Models\ProductViewModels.cs" />
@@ -763,6 +773,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Order\" />
     <Folder Include="Views\ProductProxy\" />
   </ItemGroup>
   <ItemGroup>
@@ -802,6 +813,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710110144054_ProductAddState.resx">
       <DependentUpon>201710110144054_ProductAddState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710110702469_OrderAddPhoneNumberAndConsignee.resx">
+      <DependentUpon>201710110702469_OrderAddPhoneNumberAndConsignee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

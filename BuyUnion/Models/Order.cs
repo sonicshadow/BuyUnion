@@ -12,7 +12,7 @@ namespace BuyUnion.Models
 
         [Display(Name = "订单号")]
         public string Code { get; set; }
-        
+
 
         [Display(Name = "送货地址")]
         public string Address { get; set; }
@@ -54,5 +54,12 @@ namespace BuyUnion.Models
 
         [Display(Name = "明细")]
         public List<OrderDetail> Details { get; set; }
+
+
+        [Display(Name = "联系电话")]
+        public string PhoneNumber { get; set; }
+
+        [Display(Name = "收货人")]
+        public string Consignee { get; set; }
     }
 }
