@@ -280,6 +280,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductManageController.cs" />
+    <Compile Include="Controllers\ProductProxyController.cs" />
     <Compile Include="Controllers\RoleManageController.cs" />
     <Compile Include="Controllers\UploaderController.cs" />
     <Compile Include="Controllers\UserManageController.cs" />
@@ -752,6 +753,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
+    <Folder Include="Views\ProductProxy\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
