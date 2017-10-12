@@ -3,22 +3,34 @@
 .orderSubmit {
     padding: 5rem*@resize;
 
-    .orderSubmit-selectType {
-        .clean-ul();
-        .clearfix();
+    .orderSubmit-type {
+        display: inline-block;
+        margin-right: 5rem*@resize;
 
-        li {
-            float: left;
-            margin-right: 10rem*@resize;
-            border: @border;
-            padding: 0rem*@resize 3rem*@resize;
-            .active {
-                border-color: @bg-danger;
+        input[type=radio] {
+            display: none;
+
+            + label {
+                font-weight: normal;
+                border: @border;
+                padding: 0 3rem*@resize;
+            }
+
+            &:checked {
+                + label {
+                    @c: red;
+                    border-color: @c;
+                    color: @c;
+                }
             }
         }
     }
 
     input {
+        border: @border;
+    }
+
+    select {
         border: @border;
     }
 

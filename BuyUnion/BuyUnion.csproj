@@ -706,6 +706,8 @@
     <Content Include="Scripts\jquery-2.2.4.min.js" />
     <Content Include="Scripts\jquery-2.2.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.cookie-1.4.1.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -723,6 +725,7 @@
     <Content Include="Scripts\Swiper\js\swiper.jquery.umd.min.js" />
     <Content Include="Scripts\Swiper\js\swiper.js" />
     <Content Include="Scripts\Swiper\js\swiper.min.js" />
+    <Content Include="Scripts\Views\orderSubmit.js" />
     <Content Include="Scripts\Views\productManageCreate.js" />
     <Content Include="Scripts\Views\productManageIndex.js" />
     <Content Include="Scripts\Views\roleGroup.js" />
