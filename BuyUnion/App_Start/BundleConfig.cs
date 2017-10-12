@@ -71,6 +71,7 @@ namespace BuyUnion
             addViewScripts("productManageIndex", new string[] { "productManageIndex.js" });
             addViewScripts("orderSubmit", new string[] { "orderSubmit.js" });
             addViewScripts("homeIndex", new string[] { "homeIndex.js" });
+            addViewScripts("productDetail", new string[] { "productDetail.js" });
         }
     }
 }
