@@ -22,5 +22,7 @@ namespace BuyUnion.Models
     {
         public string Image { get; set; }
 
+        public Product Product { get; set; }
+
     }
 }

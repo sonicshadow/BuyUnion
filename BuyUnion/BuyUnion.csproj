@@ -286,6 +286,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductManageController.cs" />
     <Compile Include="Controllers\ProductProxyController.cs" />
     <Compile Include="Controllers\RoleManageController.cs" />
@@ -723,6 +724,7 @@
     <Content Include="Scripts\Swiper\js\swiper.jquery.umd.min.js" />
     <Content Include="Scripts\Swiper\js\swiper.js" />
     <Content Include="Scripts\Swiper\js\swiper.min.js" />
+    <Content Include="Scripts\Views\productDetail.js" />
     <Content Include="Scripts\Views\productManageCreate.js" />
     <Content Include="Scripts\Views\productManageIndex.js" />
     <Content Include="Scripts\Views\roleGroup.js" />
@@ -783,6 +785,7 @@
     <Content Include="Views\ProductManage\Delete.cshtml" />
     <Content Include="Views\Order\Submit.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ProductProxy\" />

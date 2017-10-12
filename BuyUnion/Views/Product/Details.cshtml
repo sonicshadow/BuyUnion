@@ -1,0 +1,59 @@
+﻿@model BuyUnion.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    var detailImage = Model.DetailsImage.SplitToArray<string>();
+}
+
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.Hidden("userId", Request["userId"])
+        <input type="hidden" value="" name="proxyID" id="proxyID"/>
+        <input type="hidden" name="childProxyID" id="childProxyID" />
+        @Html.HiddenFor(model => model.ID)
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                @foreach (var item in detailImage)
+                {
+                    <li data-target="#carousel-example-generic" class="@(detailImage.IndexOf(item) == 0 ? "active" : "")" data-slide-to="@detailImage.IndexOf(item)"></li>
+                }
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                @foreach (var item in detailImage)
+                {
+                    <div class="item @(detailImage.IndexOf(item) == 0 ? "active" : "")">
+                        <img src="@Url.ResizeImage(item)" alt="tu1">
+                    </div>
+                }
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div class="fs24">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+        <div>
+            <span>原价：￥@Model.Price 券后价：￥@Model.OriginalPrice</span>
+            <span> 销量：@Model.Sales</span>
+            <span> 库存：@Model.Stock</span>
+        </div>
+        <div>
+            @Html.Raw(Model.Remark)
+        </div>
+        <button type="submit" class="btn btn-default">立刻购买</button>
+    }
+</div>
+@section Scripts{
+    @Scripts.Render("~/Bundles/productDetail")
+}
