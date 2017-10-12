@@ -1,14 +1,27 @@
-﻿@model BuyUnion.Models.SubmitOrderViewModel
+﻿@using Newtonsoft.Json
+@using Newtonsoft.Json.Linq
+@model BuyUnion.Models.SubmitOrderViewModel
 @{
     ViewBag.Title = "提交订单";
 }
 @using (Html.BeginForm())
 {
     <div class="orderSubmit">
-        <input type="radio" name="@Model." value="" />
         <div>
-            <b>收货人信息</b>
+            配送方式：
+            <div class="orderSubmit-type">
+                <input id="typeExpress" type="radio" name="Type" value="@BuyUnion.Enums.OrderType.Express" />
+                <label for="typeExpress">快递配送</label>
+            </div>
+            <div class="orderSubmit-type">
+                <input id="typeOffine" type="radio" name="Type" value="@BuyUnion.Enums.OrderType.Offine" />
+                <label for="typeOffine">店面领取</label>
+            </div>
         </div>
+        <div>
+
+        </div>
+        @*添加编辑收货人信息*@
         <table class="consigneeInfo">
             <tr>
                 <td>收货人：</td>
@@ -20,21 +33,8 @@
             </tr>
             <tr>
                 <td>所在地区：</td>
-                <td>
-                    <select id="Province" disabled>
-                        <option selected value="广东">广东</option>
-                    </select>
-                    <select id="City">
-                        <option selected>选择</option>
-                        @foreach (var item in BuyUnion.Address.AddressList.Provinces.FirstOrDefault(s => s.Name == "广东").Citys)
-                        {
-                            <option value="@item.Name">@item.Name</option>
-                        }
-                    </select>
-                    <select id="District" name="District">
-                        <option selected>选择</option>
-                    </select>
-
+                <td id="selectedAddress">
+                    <div>选择</div>
                 </td>
             </tr>
             <tr>
@@ -51,10 +51,45 @@
                 </td>
             </tr>
         </table>
-
+        @*选择地区*@
+        <div id="districtSelector" class="hidden">
+            <ul>
+                <li id="tabProvince">广东</li>
+                <li id="tabCity">选择</li>
+                <li id="tabDistrict">选择</li>
+            </ul>
+            <ul id="lstCity">
+                @foreach (var item in BuyUnion.Address.AddressList.Provinces.FirstOrDefault(s => s.Name == "广东").Citys)
+                {
+                    <li>@item.Name</li>
+                }
+            </ul>
+            <ul id="lstDistrict"></ul>
+        </div>
+        @*商品信息*@
+        <table class="orderSubmit-orderDetail">
+            @foreach (var item in Model.Details)
+            {
+                <tr data-item="@(new { item.Count,item.Price,item.ID })">
+                    <td>
+                        <img src="@Url.ResizeImage(item.Image,120,120)"  />
+                    </td>
+                    <td>
+                        <p>@item.Name</p>
+                        <p><span>￥</span><span class=""></span> @item.Price</p>
+                        <div>
+                            <button><span class="glyphicon glyphicon-minus"></span></button>
+                            <input type="number" name="name" value="@item.Count" />
+                            <button><span class="glyphicon glyphicon-plus"></span></button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+       
     </div>
 }
 
 @section Scripts{
-
+    @Scripts.Render("~/bundles/orderSubmit")
 }
