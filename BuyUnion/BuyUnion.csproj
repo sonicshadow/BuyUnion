@@ -376,6 +376,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\404\avatar.png" />
     <Content Include="Content\Images\404\default.jpg" />
+    <Content Include="Content\Images\home\arrow_up.png" />
+    <Content Include="Content\Images\home\home_slide_img01.jpg" />
+    <Content Include="Content\Images\home\home_slide_img02.jpg" />
+    <Content Include="Content\Images\home\home_slide_img03.jpg" />
+    <Content Include="Content\Images\home\home_slide_img04.jpg" />
+    <Content Include="Content\Images\home\home_slide_img05.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
@@ -698,6 +704,7 @@
     </None>
     <Content Include="Content\less\addressSelector.less" />
     <Content Include="Content\less\views\orderSubmit.less" />
+    <Content Include="Content\less\views\homeIndexM.less" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\datetimepicker\css\bootstrap-datetimepicker.css" />
     <Content Include="Scripts\datetimepicker\js\bootstrap-datetimepicker.js" />
@@ -726,6 +733,7 @@
     <Content Include="Scripts\Swiper\js\swiper.js" />
     <Content Include="Scripts\Swiper\js\swiper.min.js" />
     <Content Include="Scripts\Views\orderSubmit.js" />
+    <Content Include="Scripts\Views\homeIndex.js" />
     <Content Include="Scripts\Views\productManageCreate.js" />
     <Content Include="Scripts\Views\productManageIndex.js" />
     <Content Include="Scripts\Views\roleGroup.js" />

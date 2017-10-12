@@ -1,0 +1,110 @@
+﻿@import "../base";
+
+.homeIndexM {
+    height: 100vh;
+
+    .homeIndexM-swiper {
+        position: relative;
+        height: 100vh;
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+
+            .swiper-wrapper {
+                .swiper-slide {
+                    overflow: hidden;
+
+                    img {
+                        height: 100vh;
+                    }
+
+                    .arrow-up {
+                        background: url("../../images/home/arrow_up.png") no-repeat center;
+                        .rectangle(62*0.7rem*@resize,34*0.7rem*@resize);
+                        background-size: contain;
+                        bottom: 70rem*@resize;
+                        .block-horizontal-mid(50%);
+                        z-index: @z-index-mid;
+                        -webkit-animation: arrow 1s infinite ease-in-out;
+                        animation: arrow 1s infinite ease-in-out;
+                    }
+
+                    @keyframes arrow {
+                        from {
+                            bottom: 70rem*@resize;
+                            opacity: 1;
+                        }
+
+                        to {
+                            bottom: 80rem*@resize;
+                            opacity: 0;
+                        }
+                    }
+
+                    @-moz-keyframes arrow /* Firefox */
+                    {
+                        from {
+                            bottom: 70rem*@resize;
+                            opacity: 1;
+                        }
+
+                        to {
+                            bottom: 80rem*@resize;
+                            opacity: 0;
+                        }
+                    }
+
+                    @-webkit-keyframes arrow /* Safari 和 Chrome */
+                    {
+                        from {
+                            bottom: 70rem*@resize;
+                            opacity: 1;
+                        }
+
+                        to {
+                            bottom: 80rem*@resize;
+                            opacity: 0;
+                        }
+                    }
+
+                    @-o-keyframes arrow /* Opera */
+                    {
+                        from {
+                            bottom: 70rem*@resize;
+                            opacity: 1;
+                        }
+
+                        to {
+                            bottom: 80rem*@resize;
+                            opacity: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .homeIndexM-navBtn {
+        text-decoration: none;
+        position: fixed;
+        width: 100%;
+        .one-line-vertical-mid(50rem*@resize);
+        text-align: center;
+        color: @font-col-white;
+        font-size: @font-size-5;
+        background: rgba(255,111,25,0.8);
+        border-top: 1rem*@resize solid @bg-color-grey02;
+        transition:0.3s all;
+        bottom: 0;
+        z-index: @z-index-bottom;
+
+        &:hover{
+            background: rgba(255,111,25,1);
+        }
+
+        &:hover, &:active, &:focus {
+            color: @font-col-white;
+        }
+    }
+}
