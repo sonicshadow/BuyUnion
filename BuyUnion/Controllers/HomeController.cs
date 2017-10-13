@@ -32,6 +32,12 @@ namespace BuyUnion.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult BackstageHome()
+        {
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -816,6 +816,7 @@
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <Content Include="Views\Order\PayOnWeiXin.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Home\BackstageHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ProductProxy\" />
