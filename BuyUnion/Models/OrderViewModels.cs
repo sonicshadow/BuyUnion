@@ -11,6 +11,12 @@ namespace BuyUnion.Models
     [NotMapped]
     public class SubmitOrderViewModel : Order, IDistrict
     {
+        public SubmitOrderViewModel()
+        {
+
+        }
+
+    
 
         public string City { get; set; }
 
@@ -26,7 +32,6 @@ namespace BuyUnion.Models
     {
         public string Image { get; set; }
 
-        public string Name { get; set; }
 
     }
 

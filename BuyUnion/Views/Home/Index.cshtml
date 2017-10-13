@@ -1,6 +1,8 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "主页";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    List<BuyUnion.Models.Product> products = new List<BuyUnion.Models.Product>();
 }
 
 @Styles.Render("~/bundles/swiper/css")
@@ -13,21 +15,29 @@
                     <img src="~/Content/Images/home/home_slide_img04.jpg"/>
                     <div class="arrow-up"></div>
                 </div>
-                <div class="swiper-slide">
-                    <img src="~/Content/Images/home/home_slide_img05.jpg" />
-                    <div class="arrow-up"></div>
-                </div>
-                <div class="swiper-slide">
-                    <img src="~/Content/Images/home/home_slide_img01.jpg" />
-                    <div class="arrow-up"></div>
-                </div>
+                @foreach (var item in products)
+                {
+                    <div class="swiper-slide">
+                        <div>
+                            <img src="@Url.ResizeImage(item.Image)" /> 
+                            <div>@item.Name</div>
+                            <div>@item.Price</div>
+                            <del>@item.OriginalPrice</del>
+                            <a href="@Url.Action("Details")">
+                                <div></div>
+                            </a>
+                        </div>
+                        <div class="arrow-up"></div>
+                    </div>
+                }
+              
                 <div class="swiper-slide">
                     <img src="~/Content/Images/home/home_slide_img02.jpg" />
                 </div>
             </div>
         </div>
     </div>
-    <a class="homeIndexM-navBtn" href="#">立即购买</a>
+   
 </div>
 
 
