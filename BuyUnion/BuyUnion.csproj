@@ -68,6 +68,9 @@
       <HintPath>..\packages\ImageResizer.Plugins.PrettyGifs.3.4.3\lib\ImageResizer.Plugins.PrettyGifs.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LitJson">
+      <HintPath>..\..\..\LitJson.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -281,6 +284,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\SysRole.cs" />
+    <Compile Include="App_Start\WeChatPay\Config.cs" />
+    <Compile Include="App_Start\WeChatPay\Data.cs" />
+    <Compile Include="App_Start\WeChatPay\Exception.cs" />
+    <Compile Include="App_Start\WeChatPay\HttpService.cs" />
+    <Compile Include="App_Start\WeChatPay\Log.cs" />
+    <Compile Include="App_Start\WeChatPay\NativePay.cs" />
+    <Compile Include="App_Start\WeChatPay\Notify.cs" />
+    <Compile Include="App_Start\WeChatPay\Pay.cs" />
+    <Compile Include="App_Start\WeChatPay\QRCodeImage.cs" />
+    <Compile Include="App_Start\WeChatPay\WxPayApi.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressSelectorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -346,6 +359,10 @@
     <Compile Include="Migrations\201710110917429_OrderAddType.cs" />
     <Compile Include="Migrations\201710110917429_OrderAddType.Designer.cs">
       <DependentUpon>201710110917429_OrderAddType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710130223534_OrderDetailAddName.cs" />
+    <Compile Include="Migrations\201710130223534_OrderDetailAddName.Designer.cs">
+      <DependentUpon>201710130223534_OrderDetailAddName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -844,6 +861,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710110917429_OrderAddType.resx">
       <DependentUpon>201710110917429_OrderAddType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710130223534_OrderDetailAddName.resx">
+      <DependentUpon>201710130223534_OrderDetailAddName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
