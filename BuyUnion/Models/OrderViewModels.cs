@@ -20,7 +20,7 @@ namespace BuyUnion.Models
     [NotMapped]
     public class OrderDetailViewModel : OrderDetail
     {
-        public string Image { get; set; }
+        //public string Image { get; set; }
 
         public Product Product { get; set; }
 

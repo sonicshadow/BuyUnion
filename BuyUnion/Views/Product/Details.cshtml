@@ -11,7 +11,7 @@
         @Html.Hidden("userId", Request["userId"])
         <input type="hidden" value="" name="proxyID" id="proxyID"/>
         <input type="hidden" name="childProxyID" id="childProxyID" />
-        @Html.HiddenFor(model => model.ID)
+        <input type="hidden" name="ids" id="ids" value="@Model.ID" />
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">

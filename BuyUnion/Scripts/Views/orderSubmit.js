@@ -26,19 +26,25 @@ var colAddress = function (option) {
     function _show() {
         $target.removeClass("hidden");
     }
+    this.show = function () {
+        _show();
+    }
 
     function _hide() {
         $target.removeClass("hidden");
+    }
+    this.hide = function () {
+        _hide();
     }
 
     function _seleced(prov, city, dist) {
         option.selected(prov, city, dist);
     }
 
-    $tabCity.children().click(function () {
+    $lstCity.children().click(function () {
         var city = $(this).text();
-        $tabCity.text(city);
-        
+        $lstCity.text(city);
+        console.log(city);
         $.ajax({
             type: "POST",
             url: comm.action("GetDistrict", "AddressSelector"),
@@ -51,10 +57,14 @@ var colAddress = function (option) {
                         var $li = $("<li>").text(n.Name);
                         $lstDist.append($li);
                     });
+                    $tabCity.removeClass("active");
 
+                    $tabDist.removeClass("hidden");
+                    $tabDist.addClass("active");
                     $lstDist.children().click(function () {
                         _hide();
-                        var dist=$(this).text();
+                        var dist = $(this).text();
+                        $lstDist.text(dist);
                         _seleced("广东", city, dist);
                     });
                 }
@@ -67,3 +77,15 @@ var colAddress = function (option) {
 
 
 var $colAddress = new colAddress();
+
+$("#selectedAddress").click(function (e) {
+    $colAddress.show();
+});
+
+$("[name=Type]").change(function (e) {
+    if ($("#typeExpress").is(":checked")) {
+        $(".consigneeInfo").removeClass("hidden");
+    } else {
+        $(".consigneeInfo").addClass("hidden");
+    }
+});

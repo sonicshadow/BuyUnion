@@ -11,6 +11,8 @@ namespace BuyUnion.Controllers
 {
     public class AddressSelectorController : Controller
     {
+        [HttpGet]
+        [AllowCrossSiteJson]
         public ActionResult GetCity(string name)
         {
             return Json(Address.AddressList.Provinces.FirstOrDefault(s => s.Name == name).Citys.Select(s => new
@@ -22,6 +24,8 @@ namespace BuyUnion.Controllers
             }), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        [AllowCrossSiteJson]
         public ActionResult GetDistrict(string name)
         {
             var d = Address.AddressList.Cities.FirstOrDefault(s => s.Name == name);
