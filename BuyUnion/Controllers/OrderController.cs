@@ -26,28 +26,95 @@ namespace BuyUnion.Controllers
         // GET: Order
         public ActionResult Submit(string code)
         {
-            //var order = db.Orders.Include(s => s.Details).FirstOrDefault(s => s.Code == code);
-            //if (order==null)
-            //{
-            //    return this.ToError("错误", "订单有误");
-            //}
-            var model = new SubmitOrderViewModel() { };
-            model.Details = new List<OrderDetailViewModel>();
-            model.Details.Add(new OrderDetailViewModel
+            var order = db.Orders.Include(s => s.Details).FirstOrDefault(s => s.Code == code);
+            if (order == null)
             {
-                Count = 1,
-                ID = 1,
-                Image = "~/Upload/201710111056228819.PNG",
-                OrderID = 1,
-                Price = 60,
-                ProductID = 2
-            });
-            if (model.State != Enums.OrderState.WaitPad)
+                return this.ToError("错误", "订单有误");
+            }
+            if (order.State != Enums.OrderState.WaitPad)
             {
                 return this.ToError("错误", "订单已提交");
             }
+            var model = new SubmitOrderViewModel()
+            {
+                ID = order.ID,
+                Address = order.Address,
+                Amount = order.Amount,
+                State = order.State,
+                Consignee = order.Consignee,
+                Type = order.Type,
+                PayType = order.PayType,
+                PaidAmount = order.PaidAmount,
+                Free = order.Free,
+                Code = order.Code,
+                PhoneNumber = order.PhoneNumber,
+            };
+            var pids = order.Details.Select(s => s.ProductID).Distinct();
+            var ps = db.Products.Where(s => pids.Contains(s.ID)).ToList();
+            model.Details = order.Details.Select(s => new OrderDetailViewModel()
+            {
+                Count = s.Count,
+                ID = s.ID,
+                Image = ps.FirstOrDefault(x => x.ID == s.ProductID).Image,
+                Name = s.Name,
+                Price = s.Price,
+                ProductID = s.ProductID
+            }).ToList();
             return View(model);
+        }
 
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult EditOrder(SubmitOrderViewModel model)
+        {
+            var order = db.Orders.Include(s => s.Details).FirstOrDefault(s => s.ID == model.ID);
+            order.Type = model.Type;
+            if (model.Type == Enums.OrderType.Express)
+            {
+                order.Address = model.Address;
+                order.PhoneNumber = model.PhoneNumber;
+                order.Consignee = model.Consignee;
+                order.Free = order.Details.Sum(s => s.Count) * 20;
+            }
+            else
+            {
+                order.Free = 0;
+            }
+            order.PaidAmount = order.Amount + order.Free;
+            order.UpdateDateTime = DateTime.Now;
+            db.SaveChanges();
+            return Json(Comm.ToJsonResult("Success", "修改成功", new
+            {
+                order.Amount,
+                order.Free
+            }));
+        }
+
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult EditDetails(int id, int count)
+        {
+            var details = db.OrderDetails.FirstOrDefault(s => s.ID == id);
+            var order = db.Orders.Include(s => s.Details)
+                .FirstOrDefault(s => s.ID == details.OrderID);
+            details.Count = count;
+            order.Amount = order.Details.Sum(s => (s.Count * s.Price));
+            if (order.Type == Enums.OrderType.Express)
+            {
+                order.Free = order.Details.Sum(s => s.Count) * 20;
+            }
+            else
+            {
+                order.Free = 0;
+            }
+            order.PaidAmount = order.Amount + order.Free;
+            order.UpdateDateTime = DateTime.Now;
+            db.SaveChanges();
+            return Json(Comm.ToJsonResult("Success", "修改成功", new
+            {
+                order.Amount,
+                order.Free
+            }));
         }
 
 

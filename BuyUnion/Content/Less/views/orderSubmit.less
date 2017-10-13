@@ -27,20 +27,41 @@
     }
 
     #districtSelector {
+        position: fixed;
+        z-index: @z-index-top;
+        left: 0;
+        bottom: 0;
+        background: #fff;
+        width: 100vw;
+        height: 50vh;
+
         ul {
             .clean-ul();
+            clear: both;
+            overflow: auto;
+            height: 100%;
 
             li {
-                //float: left;
+                padding: 10px;
             }
-        }
-        .tabUl{
-            .active{
-                border-bottom:1px red solid;
+
+            .active {
+                border-bottom: 1px red solid;
             }
         }
 
+        .tabUl {
+            height: auto;
+
+            li {
+                text-align: center;
+                width: 33%;
+                float: left;
+                padding: 10px;
+            }
+        }
     }
+
 
     input {
         border: @border;
@@ -51,7 +72,14 @@
     }
 
     .consigneeInfo {
-        margin-left: 20rem*@resize;
+        position: fixed;
+        z-index: @z-index-mid;
+        left: 0;
+        top: 0;
+        background: #fff;
+        width: 100vw;
+        height: 100vh;
+        padding-left: 20rem*@resize;
 
         td {
             padding: 3rem*@resize;
