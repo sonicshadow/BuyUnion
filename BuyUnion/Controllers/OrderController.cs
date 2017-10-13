@@ -15,10 +15,13 @@ namespace BuyUnion.Controllers
         public ActionResult Submit(string code)
         {
             //var order = db.Orders.Include(s => s.Details).FirstOrDefault(s => s.Code == code);
-            var order = new SubmitOrderViewModel();
-            order.Code = "";
-            order.Details = new List<OrderDetailViewModel>();
-            order.Details.Add(new OrderDetailViewModel
+            //if (order==null)
+            //{
+            //    return this.ToError("错误", "订单有误");
+            //}
+            var model = new SubmitOrderViewModel() { };
+            model.Details = new List<OrderDetailViewModel>();
+            model.Details.Add(new OrderDetailViewModel
             {
                 Count = 1,
                 ID = 1,
@@ -27,11 +30,12 @@ namespace BuyUnion.Controllers
                 Price = 60,
                 ProductID = 2
             });
-            if (order.State != Enums.OrderState.WaitPad)
+            if (model.State != Enums.OrderState.WaitPad)
             {
                 return this.ToError("错误", "订单已提交");
             }
-            return View();
+            return View(model);
+
         }
 
         ///// <summary>

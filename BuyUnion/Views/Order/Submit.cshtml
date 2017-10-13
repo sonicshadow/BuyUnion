@@ -71,10 +71,10 @@
             {
                 <tr data-item="@(new { item.Count,item.Price,item.ID })">
                     <td>
-                        <img src="@Url.ResizeImage(item.Product.Image,120,120)" />
+                        <img src="@Url.ResizeImage(item.Image,120,120)" />
                     </td>
                     <td>
-                        <p>@item.Product.Name</p>
+                        <p>@item.Name</p>
                         <p><span>￥</span><span class=""></span> @item.Price</p>
                         <div>
                             <button><span class="glyphicon glyphicon-minus"></span></button>
