@@ -51,6 +51,8 @@ namespace BuyUnion.Controllers
                 CreateDateTime = DateTime.Now,
                 UserID = userId,
                 ProxyID = proxyID,
+                Type= Enums.OrderType.Express,
+                PayType= Enums.PayType.WeChat,
             };
             var idList = ids.SplitToIntArray();
             var products = db.Products.Where(s => idList.Contains(s.ID));
@@ -62,10 +64,16 @@ namespace BuyUnion.Controllers
                     Count = 1,
                     Price = item.Price,
                     ProductID = item.ID,
+                    Name = item.Name,
                 });
             }
+
+            order.Amount = order.Details.Sum(s => (s.Price * s.Count));
+            order.Free = order.Details.Sum(s => (20 * s.Count));
+            order.PaidAmount = order.Amount + order.Free;
+
             db.Orders.Add(order);
-            //db.SaveChanges();
+            db.SaveChanges();
             return RedirectToAction("Submit", "Order", new { code = order.Code });
         }
     }

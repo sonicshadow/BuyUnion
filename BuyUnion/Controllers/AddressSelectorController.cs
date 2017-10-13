@@ -35,7 +35,7 @@ namespace BuyUnion.Controllers
                 s.Name,
                 s.CityID
             });
-            return Json(data, JsonRequestBehavior.AllowGet);
+            return Json(Comm.ToJsonResult("Success", "成功", data), JsonRequestBehavior.AllowGet);
         }
 
     }
