@@ -299,6 +299,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrderManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductManageController.cs" />
     <Compile Include="Controllers\ProductProxyController.cs" />
@@ -818,6 +819,9 @@
     <Content Include="Views\Order\PayOnWeiXin.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Home\BackstageHome.cshtml" />
+    <Content Include="Views\OrderManage\Details.cshtml" />
+    <Content Include="Views\OrderManage\Edit.cshtml" />
+    <Content Include="Views\OrderManage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ProductProxy\" />
