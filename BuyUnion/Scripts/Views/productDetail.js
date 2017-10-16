@@ -59,3 +59,6 @@ minus.click(function () {
     
     sumBox.val(sum);
 });
+
+//返回
+$("#btnBack").goback(comm.action("Index", "Home"));
