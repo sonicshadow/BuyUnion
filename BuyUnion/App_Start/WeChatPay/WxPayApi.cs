@@ -109,39 +109,39 @@ namespace WxPayAPI
 
       
 
-        public static WxPayData MOrderQuery(WxPayData inputObj, int timeOut = 6)
-        {
-            string url = "https://api.mch.weixin.qq.com/pay/orderquery";
-            //检测必填参数
-            if (!inputObj.IsSet("out_trade_no") && !inputObj.IsSet("transaction_id"))
-            {
-                throw new WxPayException("订单查询接口中，out_trade_no、transaction_id至少填一个！");
-            }
+        //public static WxPayData MOrderQuery(WxPayData inputObj, int timeOut = 6)
+        //{
+        //    string url = "https://api.mch.weixin.qq.com/pay/orderquery";
+        //    //检测必填参数
+        //    if (!inputObj.IsSet("out_trade_no") && !inputObj.IsSet("transaction_id"))
+        //    {
+        //        throw new WxPayException("订单查询接口中，out_trade_no、transaction_id至少填一个！");
+        //    }
 
-            inputObj.SetValue("appid", WxPayConfig.APPID_M);//公众账号ID
-            inputObj.SetValue("mch_id", WxPayConfig.MCHID_M);//商户号
-            inputObj.SetValue("nonce_str", WxPayApi.GenerateNonceStr());//随机字符串
-            inputObj.SetValue("sign", inputObj.MakeSign());//签名
+        //    inputObj.SetValue("appid", WxPayConfig.APPID_M);//公众账号ID
+        //    inputObj.SetValue("mch_id", WxPayConfig.MCHID_M);//商户号
+        //    inputObj.SetValue("nonce_str", WxPayApi.GenerateNonceStr());//随机字符串
+        //    inputObj.SetValue("sign", inputObj.MakeSign());//签名
 
-            string xml = inputObj.ToXml();
+        //    string xml = inputObj.ToXml();
 
-            var start = DateTime.Now;
+        //    var start = DateTime.Now;
 
-            //Log.Debug("WxPayApi", "OrderQuery request : " + xml);
-            string response = HttpService.Post(xml, url, false, timeOut);//调用HTTP通信接口提交数据
-            //Log.Debug("WxPayApi", "OrderQuery response : " + response);
+        //    //Log.Debug("WxPayApi", "OrderQuery request : " + xml);
+        //    string response = HttpService.Post(xml, url, false, timeOut);//调用HTTP通信接口提交数据
+        //    //Log.Debug("WxPayApi", "OrderQuery response : " + response);
 
-            var end = DateTime.Now;
-            int timeCost = (int)((end - start).TotalMilliseconds);//获得接口耗时
+        //    var end = DateTime.Now;
+        //    int timeCost = (int)((end - start).TotalMilliseconds);//获得接口耗时
 
-            //将xml格式的数据转化为对象以返回
-            WxPayData result = new WxPayData();
-            result.FromXml(response);
+        //    //将xml格式的数据转化为对象以返回
+        //    WxPayData result = new WxPayData();
+        //    result.FromXml(response);
 
-            ReportCostTime(url, timeCost, result);//测速上报
+        //    ReportCostTime(url, timeCost, result);//测速上报
 
-            return result;
-        }
+        //    return result;
+        //}
 
 
         /**

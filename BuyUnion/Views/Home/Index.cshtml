@@ -1,6 +1,8 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "主页";
-    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+
+    List<BuyUnion.Models.Product> products = ViewBag.Products;
 }
 
 @Styles.Render("~/bundles/swiper/css")
@@ -9,25 +11,42 @@
     <div class="homeIndexM-swiper">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="~/Content/Images/home/home_slide_img04.jpg"/>
+                <div class="swiper-slide swiper-img">
+                    <h4 class="demo">DEMO</h4>
+                    <img src="~/Content/Images/home/home_slide_img04.jpg" />
                     <div class="arrow-up"></div>
                 </div>
-                <div class="swiper-slide">
-                    <img src="~/Content/Images/home/home_slide_img05.jpg" />
-                    <div class="arrow-up"></div>
-                </div>
-                <div class="swiper-slide">
-                    <img src="~/Content/Images/home/home_slide_img01.jpg" />
-                    <div class="arrow-up"></div>
-                </div>
-                <div class="swiper-slide">
+                @foreach (var item in products)
+                {
+                    <div class="swiper-slide swiper-product">
+                        <div>
+                            <div class="swiper-product-img">
+                                <img src="@Url.ResizeImage(item.Image, 500, 500, mode: BuyUnion.Enums.ResizerMode.Crop)" />
+                            </div>
+                            <div class="swiper-product-price">
+                                <div>
+                                    @item.Price.ToString("C")
+                                </div>
+                                原价：<del>@item.OriginalPrice.ToString("C")</del>
+                            </div>
+
+                            <div class="swiper-product-name">@item.Name</div>
+                            <a class="btn btn-default" href="@Url.Action("Details", "Product", new { id=item.ID })">
+                                <div>马上购买</div>
+                            </a>
+                        </div>
+                        <div class="arrow-up"></div>
+                    </div>
+                }
+
+                <div class="swiper-slide swiper-img">
+                    <h4 class="demo">DEMO</h4>
                     <img src="~/Content/Images/home/home_slide_img02.jpg" />
                 </div>
             </div>
         </div>
     </div>
-    <a class="homeIndexM-navBtn" href="#">立即购买</a>
+
 </div>
 
 

@@ -11,12 +11,12 @@ namespace BuyUnion.WeChatPay
     {
         private string HOST = $"{HttpContext.Current.Request.Url.Host}";
 
-        public WechatPay() { }
-        public WechatPay(HttpRequestBase request, HttpResponseBase response)
+        public WechatPay()
         {
-            Request = request;
-            Response = response;
+            Request = HttpContext.Current.Request;
+            Response = HttpContext.Current.Response;
         }
+        
         /// <summary>
         /// 分（把元转换成分后赋值）
         /// </summary>
@@ -34,9 +34,9 @@ namespace BuyUnion.WeChatPay
         /// </summary>
         public WxPayData unifiedOrderResult { get; set; }
 
-        public HttpRequestBase Request { get; set; }
+        public HttpRequest Request { get; set; }
 
-        public HttpResponseBase Response { get; set; }
+        public HttpResponse Response { get; set; }
 
         public string Body { get; set; }
 

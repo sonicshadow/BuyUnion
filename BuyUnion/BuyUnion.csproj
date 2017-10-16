@@ -299,7 +299,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
-    <Compile Include="Controllers\OrderManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductManageController.cs" />
     <Compile Include="Controllers\ProductProxyController.cs" />
@@ -724,6 +723,7 @@
     <Content Include="Content\less\addressSelector.less" />
     <Content Include="Content\less\views\orderSubmit.less" />
     <Content Include="Content\less\views\homeIndexM.less" />
+    <Content Include="Content\less\views\productDetails.less" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\datetimepicker\css\bootstrap-datetimepicker.css" />
     <Content Include="Scripts\datetimepicker\js\bootstrap-datetimepicker.js" />
@@ -751,6 +751,7 @@
     <Content Include="Scripts\Swiper\js\swiper.jquery.umd.min.js" />
     <Content Include="Scripts\Swiper\js\swiper.js" />
     <Content Include="Scripts\Swiper\js\swiper.min.js" />
+    <Content Include="Scripts\Views\orderPayOnWeiXin.js" />
     <Content Include="Scripts\Views\orderSubmit.js" />
     <Content Include="Scripts\Views\homeIndex.js" />
     <Content Include="Scripts\Views\productDetail.js" />
@@ -814,10 +815,9 @@
     <Content Include="Views\ProductManage\Delete.cshtml" />
     <Content Include="Views\Order\Submit.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\Order\PayOnWeiXin.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
-    <Content Include="Views\OrderManage\Index.cshtml" />
-    <Content Include="Views\OrderManage\Details.cshtml" />
-    <Content Include="Views\OrderManage\Edit.cshtml" />
+    <Content Include="Views\Home\BackstageHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ProductProxy\" />

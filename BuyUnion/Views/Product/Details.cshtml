@@ -1,18 +1,25 @@
 ﻿@model BuyUnion.Models.Product
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Name;
     var detailImage = Model.DetailsImage.SplitToArray<string>();
 }
 
-<div>
+@Styles.Render("~/bundles/swiper/css")
+
+<div class="productDetails paddingT50 paddingB80 bg-color-grey minHight100vh">
     @using (Html.BeginForm())
     {
         @Html.Hidden("userId", Request["userId"])
-        <input type="hidden" value="" name="proxyID" id="proxyID"/>
+        <input type="hidden" value="" name="proxyID" id="proxyID" />
         <input type="hidden" name="childProxyID" id="childProxyID" />
         <input type="hidden" name="ids" id="ids" value="@Model.ID" />
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+        <div class="navigationBar">
+            <span class="glyphicon glyphicon-menu-left navigationBar-left" aria-hidden="true" id="btnBack"></span>
+            <div class="navigationBar-name">商品详情</div>
+        </div>
+        <div id="carousel-example-generic" class="carousel slide hidden" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
                 @foreach (var item in detailImage)
@@ -40,20 +47,75 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        <div class="fs24">
-            @Html.DisplayFor(model => model.Name)
+
+        <div class="productDetails-swiper">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    @foreach (var item in detailImage)
+                    {
+                        <div class="swiper-slide @(detailImage.IndexOf(item) == 0 ? "active" : "")">
+                            <img src="@Url.ResizeImage(item)">
+                        </div>
+                    }
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
         </div>
-        <div>
-            <span>原价：￥@Model.Price 券后价：￥@Model.OriginalPrice</span>
-            <span> 销量：@Model.Sales</span>
-            <span> 库存：@Model.Stock</span>
+
+        <div class="productDetails-baseInfo">
+            <div class="productDetails-name fs24">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <div class="productDetails-price"><span>￥</span>@Model.OriginalPrice</div>
+            <div class="clearfix fs14 color-grey">
+                <div class="fl"><span>原价：<del>￥@Model.Price</del></span></div>
+                <div class="fr">
+                    <span>销量：@Model.Sales</span>
+                </div>
+            </div>
         </div>
-        <div>
-            @Html.Raw(Model.Remark)
+
+        <div class="productDetails-specis marginT20">
+            <div class="item clearfix">
+                <em>规格</em>
+                <div class="speclist clearfix">
+                    <ul id="speclist">
+                        <li class="active">1磅</li>
+                        <li>2磅</li>
+                        <li>3磅</li>
+                        <li>5磅</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="item clearfix marginT10">
+                <em>数量</em>
+                <div class="buynum clearfix">
+                    <a id="minus" href="javascript:;" class="minus minus-disable fl"></a>
+                    <input type="text" name="buynum" class="fl" value="1">
+                    <a id="plus" href="javascript:;" class="plus fl"></a>
+                </div>
+                <div class="fl dw">件 （库存 @Model.Stock 件）</div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-default">立刻购买</button>
+
+        <div name="slide" class="productDetails-graphic marginT20 marginB5">
+            <div class="title clearfix">
+                图文详情
+                <span class="glyphicon glyphicon-menu-down fr" aria-hidden="true"></span>
+            </div>
+
+            <div class="detail" style="display:none">
+                @Html.Raw(Model.Remark)
+            </div>
+        </div>
+
+        <div class="productDetails-bugBtn">
+            <button type="submit" class="">立刻购买</button>
+        </div>
     }
 </div>
 @section Scripts{
+    @Scripts.Render("~/bundles/swiper/js")
     @Scripts.Render("~/Bundles/productDetail")
 }

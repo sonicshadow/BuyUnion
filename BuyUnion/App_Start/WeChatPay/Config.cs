@@ -20,22 +20,22 @@ namespace WxPayAPI
         /// <summary>
         /// 绑定支付的APPID wxea4edf995cf54a63
         /// </summary>
-        public static string APPID { get { return "wxea4edf995cf54a63"; } }
+        public static string APPID { get { return "wx3dfee3b9ae34d5ae"; } }
 
         /// <summary>
         /// 手机端APPID
         /// </summary>
-        public static string APPID_M { get { return "wxc36641238ec6db23"; } }
+        //public static string APPID_M { get { return "wxc36641238ec6db23"; } }
 
         /// <summary>
         /// 商户号 1316435601
         /// </summary>
-        public static string MCHID { get { return "1316435601"; } }
+        public static string MCHID { get { return "1279131801"; } }
 
         /// <summary>
         /// 手机端商户号
         /// </summary>
-        public static string MCHID_M { get { return "1328582701"; } }
+        //public static string MCHID_M { get { return "1328582701"; } }
 
         /// <summary>
         /// 商户支付密钥

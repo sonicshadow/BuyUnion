@@ -65,12 +65,13 @@ namespace BuyUnion
                 js = js.Select(s => s.Contains("~") ? s : $"~/Scripts/Views/{s}").ToArray();
                 bundles.Add(new ScriptBundle($"~/bundles/{name}").Include(js));
             };
-            
+
             addViewScripts("roleGroup", new string[] { "roleGroup.js" });
             addViewScripts("productManageCreate", new string[] { "productManageCreate.js" });
             addViewScripts("productManageIndex", new string[] { "productManageIndex.js" });
             addViewScripts("orderSubmit", new string[] { "orderSubmit.js" });
             addViewScripts("homeIndex", new string[] { "homeIndex.js" });
+            addViewScripts("orderPayOnWeiXin", new string[] { "orderPayOnWeiXin.js" });
             addViewScripts("productDetail", new string[] { "productDetail.js" });
         }
     }
