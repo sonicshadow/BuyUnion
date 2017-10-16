@@ -25,5 +25,10 @@ namespace BuyUnion
         public const string ProductManageDelete = "ProductManageDelete";
         public const string ProductManageOn = "ProductManageOn";
         public const string ProductManageOff = "ProductManageOff";
+
+        public const string OrderManageRead = "OrderManageRead";
+        public const string OrderManageCreate = "OrderManageCreate";
+        public const string OrderManageEdit = "OrderManageEdit";
+        public const string OrderManageDelete = "OrderManageDelete";
     }
 }

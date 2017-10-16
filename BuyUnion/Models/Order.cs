@@ -40,9 +40,11 @@ namespace BuyUnion.Models
 
 
         [Display(Name = "创建时间")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         public DateTime CreateDateTime { get; set; }
 
         [Display(Name = "更新时间")]
+        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd HH:mm}")]
         public DateTime UpdateDateTime { get; set; }
 
         [Display(Name = "支付类别")]

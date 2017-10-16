@@ -104,6 +104,11 @@ namespace BuyUnion.Bll
             addSystemRole(SysRole.ProductManageDelete, "商品管理", "商品管理删除");
             addSystemRole(SysRole.ProductManageOn, "商品管理", "商品管理上架");
             addSystemRole(SysRole.ProductManageOff, "商品管理", "商品管理下架");
+
+            addSystemRole(SysRole.OrderManageRead, "订单管理", "订单管理查看");
+            addSystemRole(SysRole.OrderManageCreate, "订单管理", "订单管理创建");
+            addSystemRole(SysRole.OrderManageEdit, "订单管理", "订单管理编辑");
+            addSystemRole(SysRole.OrderManageDelete, "订单管理", "订单管理删除");
             #endregion
 
             foreach (var item in roles)

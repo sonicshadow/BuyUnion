@@ -1,0 +1,140 @@
+﻿@model BuyUnion.Models.SubmitOrderViewModel
+
+@{
+    ViewBag.Title = "详情";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("用户管理", "Index")</li>
+    <li class="active">@ViewBag.Title</li>
+</ol>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Model.State.GetDisplayName()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdateDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Consignee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Consignee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Free)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Free)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaidAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaidAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayType)
+        </dt>
+
+        <dd>
+            @Model.PayType.GetDisplayName()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+
+        <dd>
+            <table class="table table-hover table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Details.FirstOrDefault().Count)</td>
+                        <td>@Html.DisplayNameFor(model => model.Details.FirstOrDefault().Image)</td>
+                        <td>@Html.DisplayNameFor(model => model.Details.FirstOrDefault().Name)</td>
+                        <td>@Html.DisplayNameFor(model => model.Details.FirstOrDefault().Price)</td>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.Details)
+                {
+                    <tr>
+                        <td>@item.Count</td>
+                        <td>@Html.TableImg(item.Image)</td>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                    </tr>
+                }
+
+            </table>
+        </dd>
+
+    </dl>
+</div>
+

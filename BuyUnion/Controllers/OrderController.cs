@@ -23,31 +23,9 @@ namespace BuyUnion.Controllers
             {
                 return this.ToError("错误", "订单已提交");
             }
-            var model = new SubmitOrderViewModel()
-            {
-                ID = order.ID,
-                Address = order.Address,
-                Amount = order.Amount,
-                State = order.State,
-                Consignee = order.Consignee,
-                Type = order.Type,
-                PayType = order.PayType,
-                PaidAmount = order.PaidAmount,
-                Free = order.Free,
-                Code = order.Code,
-                PhoneNumber = order.PhoneNumber,
-            };
             var pids = order.Details.Select(s => s.ProductID).Distinct();
-            var ps = db.Products.Where(s => pids.Contains(s.ID)).ToList();
-            model.Details = order.Details.Select(s => new OrderDetailViewModel()
-            {
-                Count = s.Count,
-                ID = s.ID,
-                Image = ps.FirstOrDefault(x => x.ID == s.ProductID).Image,
-                Name = s.Name,
-                Price = s.Price,
-                ProductID = s.ProductID
-            }).ToList();
+            var products = db.Products.Where(s => pids.Contains(s.ID)).ToList();
+            var model = new SubmitOrderViewModel(order, products);
             return View(model);
         }
 

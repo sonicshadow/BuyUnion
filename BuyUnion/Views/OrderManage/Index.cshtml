@@ -1,0 +1,119 @@
+﻿@model IEnumerable<BuyUnion.Models.Order>
+
+@{
+    ViewBag.Title = "订单管理";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+    var paged = (PagedList.IPagedList<BuyUnion.Models.Order>)Model;
+    string strState = "所有状态";
+    BuyUnion.Enums.OrderState? state = null;
+    if (!string.IsNullOrWhiteSpace(Request["state"]))
+    {
+        state = (BuyUnion.Enums.OrderState)Enum.Parse(typeof(BuyUnion.Enums.OrderState), Request["state"], false);
+        strState = state.GetDisplayName();
+    }
+}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        @strState<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("所有状态", "Index")</li>
+                        @foreach (BuyUnion.Enums.OrderState item in Enum.GetValues(typeof(BuyUnion.Enums.OrderState)))
+                        {
+                            <li>
+                                @Html.ActionLink(item.GetDisplayName(), "Index", new { state = item })
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<table class="table table-hover table-striped">
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Free)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaidAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Consignee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @item.State.GetDisplayName()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Free)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaidAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Consignee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @if (User.IsInRole(SysRole.OrderManageRead))
+                {
+                    @Html.ActionLink("详情", "Details", new { id = item.ID })
+                }
+                @if (User.IsInRole(SysRole.OrderManageEdit))
+                {
+                    @Html.Raw("|")
+                    @Html.ActionLink("编辑", "Edit", new { id = item.ID })
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.PageList(paged, Url.PageUrl())
+

@@ -139,7 +139,7 @@ namespace BuyUnion.Enums
         Cancel = 2,
         [Display(Name = "已发货")]
         Shipped = 3,
-        [Display(Name = "已取消")]
+        [Display(Name = "已完成")]
         Complete
     }
 
