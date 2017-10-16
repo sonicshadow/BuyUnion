@@ -5,7 +5,8 @@
 @import "less/imageResizeUploader";
 
 @import "less/views/orderSubmit";
-@import "Less/views/homeIndexM";
+@import "less/views/homeIndexM";
+@import "less/views/productDetails";
 
 body {
     color: @font-col-black01;
@@ -231,8 +232,8 @@ textarea {
     padding-bottom: 16rem*@resize;
 }
 
-.paddingT44 {
-    padding-top: 44rem*@resize;
+.paddingT50 {
+    padding-top: 50rem*@resize;
 }
 
 .paddingT88 {
@@ -251,12 +252,8 @@ textarea {
     padding-top: 128rem*@resize;
 }
 
-.paddingB58 {
-    padding-bottom: 58rem*@resize;
-}
-
-.paddingB50 {
-    padding-bottom: 50rem*@resize;
+.paddingB80 {
+    padding-bottom: 100rem*@resize;
 }
 
 .padding8 {
@@ -317,136 +314,6 @@ textarea {
 
 .minHight100vh {
     min-height: 100vh;
-}
-
-.navigationBar {
-    .clearfix();
-    background-color: @bg-color-white;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: @z-index-mid;
-    text-align: center;
-    .one-line-vertical-mid(44rem*@resize);
-    font-size: @font-size-4;
-    color: @font-col-black01;
-    border-bottom: @border;
-    display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
-    display: -moz-box; /* 老版本语法: Firefox (buggy) */
-    display: -ms-flexbox; /* 混合版本语法: IE 10 */
-    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
-    display: flex;
-
-    .navigationBar-tits {
-        -webkit-box-flex: 1;
-        -moz-box-flex: 1;
-        -webkit-flex: 1;
-        -ms-flex: 1;
-        flex: 1;
-
-        &.style02 {
-            .one-line-vertical-mid(44rem*@resize);
-            .block-horizontal-mid(50%);
-            display: inline-block;
-        }
-    }
-
-    .navigationBar-back {
-        background: url("../content/images/view/ic_navbar_back_black@2x.png") no-repeat center;
-        .square(44rem*@resize);
-        background-size: contain;
-
-        &.bgwhite {
-            background: url("../content/images/view/ic_navbar_back_white@2x.png") no-repeat center;
-            background-size: contain;
-        }
-    }
-
-    .navigationBar-search {
-        .clearfix();
-        height: 44rem*@resize;
-        position: relative;
-        -webkit-box-flex: 1;
-        -moz-box-flex: 1;
-        -webkit-flex: 1;
-        -ms-flex: 1;
-        flex: 1;
-
-        i {
-            .square(16rem*@resize);
-            background: url("../content/images/view/ic_navbar_search_black_m@2x.png") no-repeat center;
-            background-size: contain;
-            .block-vertical-mid(50%);
-            left: 12rem*@resize;
-            display: block;
-            z-index: 50;
-        }
-
-        input {
-            .block-vertical-mid(50%);
-            left: 0;
-            z-index: 10;
-            .clean-input();
-            max-width: none;
-            border: none;
-            width: 100%;
-            height: 30rem*@resize;
-            line-height: 1;
-            border-top-left-radius: 4rem*@resize;
-            border-bottom-left-radius: 4rem*@resize;
-            background-color: @bg-color-grey01;
-            padding-left: 35rem*@resize;
-            padding-right: 10rem*@resize;
-            font-size: @font-size-2;
-            float: left;
-            color: @font-col-black01;
-
-            &::-webkit-input-placeholder {
-                color: @font-col-grey02;
-            }
-        }
-
-        &.style02 {
-            margin-left: 16rem*@resize;
-            margin-right: 16rem*@resize;
-
-            i {
-                .block-mid(50%);
-                margin-left: -30rem*@resize;
-            }
-
-            input {
-                text-align: center;
-            }
-        }
-    }
-
-    .navigationBar-searchIcon {
-        background: url("../content/images/view/ic_navbar_search_white@2x.png") no-repeat center;
-        .square(44rem*@resize);
-        background-size: contain;
-        position: absolute;
-        top: 0;
-        right: 8rem*@resize;
-
-        &.bgblack {
-            background: url("../content/images/view/ic_navbar_search_black@2x.png");
-            background-size: contain;
-        }
-    }
-
-    .navigationBar-rightText {
-        .rectangle(65rem*@resize,30rem*@resize);
-        font-size: @font-size-2;
-        color: @font-col-main;
-        line-height: 30rem*@resize;
-        text-align: center;
-        margin-top: 7.5rem*@resize;
-    }
-
-    &.bgcolor-grey {
-        background: rgba(249,249,249,0.90);
-    }
 }
 
 .navigationSwiper {

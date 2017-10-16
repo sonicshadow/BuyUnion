@@ -723,6 +723,7 @@
     <Content Include="Content\less\addressSelector.less" />
     <Content Include="Content\less\views\orderSubmit.less" />
     <Content Include="Content\less\views\homeIndexM.less" />
+    <Content Include="Content\less\views\productDetails.less" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\datetimepicker\css\bootstrap-datetimepicker.css" />
     <Content Include="Scripts\datetimepicker\js\bootstrap-datetimepicker.js" />
