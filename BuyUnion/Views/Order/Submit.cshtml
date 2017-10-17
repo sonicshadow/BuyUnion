@@ -8,16 +8,16 @@
 <div class="orderSubmit minHight100vh bg-color-grey paddingT50">
     @Html.HiddenFor(model => model.ID)
     @*<div>
-        配送方式：
-        <div class="orderSubmit-type">
-            <input id="typeExpress" type="radio" @(Model.Type == BuyUnion.Enums.OrderType.Express ? "checked" : "") name="Type" value="@BuyUnion.Enums.OrderType.Express" />
-            <label for="typeExpress">快递配送</label>
-        </div>
-        <div class="orderSubmit-type">
-            <input id="typeOffine" type="radio" @(Model.Type == BuyUnion.Enums.OrderType.Offine ? "checked" : "") name="Type" value="@BuyUnion.Enums.OrderType.Offine" />
-            <label for="typeOffine">店面领取</label>
-        </div>
-    </div>*@
+            配送方式：
+            <div class="orderSubmit-type">
+                <input id="typeExpress" type="radio" @(Model.Type == BuyUnion.Enums.OrderType.Express ? "checked" : "") name="Type" value="@BuyUnion.Enums.OrderType.Express" />
+                <label for="typeExpress">快递配送</label>
+            </div>
+            <div class="orderSubmit-type">
+                <input id="typeOffine" type="radio" @(Model.Type == BuyUnion.Enums.OrderType.Offine ? "checked" : "") name="Type" value="@BuyUnion.Enums.OrderType.Offine" />
+                <label for="typeOffine">店面领取</label>
+            </div>
+        </div>*@
 
     <div class="navigationBar">
         <span class="glyphicon glyphicon-menu-left navigationBar-left" aria-hidden="true" id="btnBack"></span>
@@ -25,18 +25,28 @@
     </div>
 
     @*显示收货人信息*@
-    <div id="glyphicon-edit" class="consigneeDisplay orderSubmit-address clearfix">
-        <div class="fl marginR8"><span class="glyphicon glyphicon-map-marker"></span></div>
-        <div class="fl">
-            <div class="marginB5">
-                <span class="consignee marginR20">@Html.DisplayFor(model => model.Consignee)</span>
-                <span class="phoneNumber">@Html.DisplayFor(model => model.PhoneNumber)</span>
+    @if (Model.Address != "" && Model.Consignee != "" && Model.PhoneNumber != "")
+    {
+        <div id="glyphicon-edit" class="consigneeDisplay orderSubmit-address clearfix">
+            <div class="fl marginR8"><span class="glyphicon glyphicon-map-marker"></span></div>
+            <div class="fl">
+                <div class="marginB5">
+                    <span class="consignee marginR20">@Html.DisplayFor(model => model.Consignee)</span>
+                    <span class="phoneNumber">@Html.DisplayFor(model => model.PhoneNumber)</span>
+                </div>
+                <div class=""><span class="address"> @Html.DisplayFor(model => model.Address)</span></div>
             </div>
-            <div class=""><span class="address"> @Html.DisplayFor(model => model.Address)</span></div>
+
+            <span class="glyphicon glyphicon-menu-right orderSubmit-address-right"></span>
         </div>
-        
-        <span class="glyphicon glyphicon-menu-right orderSubmit-address-right"></span>
-    </div>
+    }
+    else
+    {
+        <div id="glyphicon-edit" class="consigneeDisplay orderSubmit-address clearfix text-center">
+            添加新地址
+        </div>
+    }
+    
 
     @*编辑收货人信息*@
     <div class="consigneeInfo hidden form-horizontal minHight100vh paddingT50 bg-color-grey">
