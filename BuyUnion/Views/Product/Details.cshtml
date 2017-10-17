@@ -75,37 +75,12 @@
                 </div>
             </div>
         </div>
-
-        <div class="productDetails-specis marginT20">
-            <div class="item clearfix">
-                <em>规格</em>
-                <div class="speclist clearfix">
-                    <ul id="speclist">
-                        <li class="active">1磅</li>
-                        <li>2磅</li>
-                        <li>3磅</li>
-                        <li>5磅</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="item clearfix marginT10">
-                <em>数量</em>
-                <div class="buynum clearfix">
-                    <a id="minus" href="javascript:;" class="minus minus-disable fl"></a>
-                    <input type="text" name="buynum" class="fl" value="1">
-                    <a id="plus" href="javascript:;" class="plus fl"></a>
-                </div>
-                <div class="fl dw">件 （库存 @Model.Stock 件）</div>
-            </div>
-        </div>
-
         <div name="slide" class="productDetails-graphic marginT20 marginB5">
             <div class="title clearfix">
                 图文详情
-                <span class="glyphicon glyphicon-menu-down fr" aria-hidden="true"></span>
             </div>
 
-            <div class="detail" style="display:none">
+            <div class="detail">
                 @Html.Raw(Model.Remark)
             </div>
         </div>
