@@ -5,7 +5,7 @@
     ViewBag.Title = "提交订单";
 }
 
-<div class="orderSubmit">
+<div class="orderSubmit minHight100vh bg-color-grey paddingT50">
     @Html.HiddenFor(model => model.ID)
     @*<div>
         配送方式：
@@ -19,44 +19,53 @@
         </div>
     </div>*@
 
+    <div class="navigationBar">
+        <span class="glyphicon glyphicon-menu-left navigationBar-left" aria-hidden="true" id="btnBack"></span>
+        <div class="navigationBar-name">确认订单</div>
+    </div>
+
     @*显示收货人信息*@
-    <div class="consigneeDisplay">
-        <span class="consignee">@Html.DisplayFor(model => model.Consignee)</span>
-        <span class="phoneNumber">@Html.DisplayFor(model => model.PhoneNumber)</span>
-        <span class="address"> @Html.DisplayFor(model => model.Address)</span>
-        <span class="glyphicon glyphicon-edit"></span>
+    <div id="glyphicon-edit" class="consigneeDisplay orderSubmit-address clearfix">
+        <div class="fl marginR8"><span class="glyphicon glyphicon-map-marker"></span></div>
+        <div class="fl">
+            <div class="marginB5">
+                <span class="consignee marginR20">@Html.DisplayFor(model => model.Consignee)</span>
+                <span class="phoneNumber">@Html.DisplayFor(model => model.PhoneNumber)</span>
+            </div>
+            <div class=""><span class="address"> @Html.DisplayFor(model => model.Address)</span></div>
+        </div>
+        
+        <span class="glyphicon glyphicon-menu-right orderSubmit-address-right"></span>
     </div>
 
     @*编辑收货人信息*@
-    <div class="consigneeInfo hidden form-horizontal">
-        <div>
-            <span class="glyphicon glyphicon-chevron-left"></span>
-            收货地址
+    <div class="consigneeInfo hidden form-horizontal minHight100vh paddingT50 bg-color-grey">
+        <div class="navigationBar">
+            <span class="glyphicon glyphicon-menu-left navigationBar-left" aria-hidden="true" id="editBack"></span>
+            <div class="navigationBar-name">收货地址</div>
         </div>
-        <div class="form-group">
-            <label>收货人</label>
-            @Html.EditorFor(model => model.Consignee)
+        <div class="orderSubmit-model style02 clearfix">
+            <div class="orderSubmit-model-name">收货人</div>
+            <div class="orderSubmit-model-info">@Html.EditorFor(model => model.Consignee)</div>
         </div>
-        <div class="form-group">
-            <label>联系电话</label>
-            @Html.EditorFor(model => model.PhoneNumber)
+        <div class="orderSubmit-model style02 clearfix">
+            <div class="orderSubmit-model-name">联系电话</div>
+            <div class="orderSubmit-model-info">@Html.EditorFor(model => model.PhoneNumber)</div>
         </div>
-        <div class="form-group">
-            <label>所在地区</label>
-            <div id="selectedAddress">
-                选择地区
-            </div>
+        <div class="orderSubmit-model style02 clearfix">
+            <div class="orderSubmit-model-name">所在地区</div>
+            <div class="orderSubmit-model-info"><div id="selectedAddress">选择地区</div></div>
         </div>
-        <div class="form-group">
-            <label>详细地址</label>
-            <input type="text" value="" id="Address" name="Address" />
+        <div class="orderSubmit-model style02 clearfix">
+            <div class="orderSubmit-model-name">详细地址</div>
+            <div class="orderSubmit-model-info"><input type="text" value="" id="Address" name="Address" /></div>
         </div>
-        <div class="form-group">
+        <div class="orderSubmit-title">
             <span class="text-danger">
-                该商品由于不适合长途运输，所以只支持广东省。
+                * 该商品由于不适合长途运输，所以只支持广东省。
             </span>
         </div>
-        <div class="form-group">
+        <div class="consigneeInfo-btns">
             <button type="button" disabled id="addressSure" class="btn btn-default">确认地址</button>
         </div>
     </div>
@@ -76,18 +85,21 @@
         <ul id="lstDistrict"></ul>
     </div>
 
+
+
     @*商品信息*@
-    <div class="orderSubmit-orderDetail">
+    <div class="orderSubmit-title">商品清单</div>
+    <div class="orderSubmit-baseInfo">
         @foreach (var item in Model.Details)
             {
             <div class="orderDetail-item" data-item="@( JsonConvert.SerializeObject(new { item.Count,item.Price,item.ID }))">
-                <div>
+                <div class="orderDetail-item-img">
                     <img src="@Url.ResizeImage(item.Image,120,120)" />
                 </div>
-                <div>
-                    <p>@item.Name</p>
-                    <p><span>￥</span><span class=""></span> @item.Price</p>
-                    <div>
+                <div class="orderDetail-item-info">
+                    <div class="orderDetail-item-info-name">@item.Name</div>
+                    <div class="orderDetail-item-info-price"><span class="fs16">￥</span><span class="">@item.Price</span></div>
+                    <div class="orderDetail-item-info-num">
                         <button type="button" class="minus btn btn-default">
                             <span class="glyphicon glyphicon-minus"></span>
                         </button>
@@ -102,13 +114,20 @@
     </div>
 
     @*价格信息*@
-    <div>
-        商品：<span id="Amount">@Model.Amount</span>
-        运费：<span id="Free">@Model.Free</span>
+    <div class="orderSubmit-title">费用详情</div>
+    <div class="orderSubmit-model clearfix">
+        <div class="fl">商品金额</div>
+        <div class="fr"><span id="Amount">@Model.Amount.ToString("C")</span></div>
     </div>
-    <div>
-        实付款：<span id="Sum">@(Model.Amount + Model.Free)</span>
-        <input type="button" class="btn btn-danger" value="微信付款" />
+    <div class="orderSubmit-model clearfix">
+        <div class="fl">运费</div>
+        <div class="fr"><span id="Free">@Model.Free.ToString("C")</span></div>
+    </div>
+    <div class="orderSubmit-pay clearfix">
+        <div class="fr">
+            实付款：<b id="Sum">￥@(Model.Amount + Model.Free)</b>
+            <input type="button" class="btn btn-danger" value="微信支付" />
+        </div>
     </div>
 </div>
 

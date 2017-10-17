@@ -118,11 +118,11 @@ var $colAddress = new colAddress({
 //});
 
 //编辑地址
-$(".glyphicon-edit").click(function (e) {
+$("#glyphicon-edit").click(function (e) {
     $(".consigneeInfo").removeClass("hidden");
 });
 //编辑地址返回
-$(".glyphicon-chevron-left").click(function (e) {
+$("#editBack").click(function (e) {
     $(".consigneeInfo").addClass("hidden");
 });
 

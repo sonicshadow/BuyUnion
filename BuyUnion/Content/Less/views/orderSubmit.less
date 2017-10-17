@@ -1,7 +1,175 @@
 ﻿@import "../base";
 
 .orderSubmit {
-    padding: 5rem*@resize;
+    color: rgba(84,58,46,0.8);
+
+    .orderSubmit-address {
+        position: relative;
+        background-color: @bg-color-white;
+        padding: 16rem*@resize;
+        margin-top: 5rem*@resize;
+        font-size:@font-size-2;
+
+        .orderSubmit-address-right {
+            color: #ddd;
+            .block-vertical-mid(50%);
+            right: 16rem*@resize;
+            font-size: @font-size-4;
+        }
+    }
+
+    .orderSubmit-title {
+        font-size: @font-size-2;
+        padding: 12rem*@resize 16rem*@resize;
+    }
+
+    .orderSubmit-baseInfo {
+        .orderDetail-item {
+            background-color: @font-col-white;
+            padding: 8rem*@resize 16rem*@resize;
+            display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box; /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox; /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;
+
+            .orderDetail-item-img {
+                .square(80rem*@resize);
+                margin-right: 10rem*@resize;
+                .img();
+            }
+
+            .orderDetail-item-info {
+                -webkit-box-flex: 1;
+                -moz-box-flex: 1;
+                -webkit-flex: 1;
+                -ms-flex: 1;
+                flex: 1;
+                position: relative;
+
+                .orderDetail-item-info-name {
+                    font-size: @font-size-3;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    line-height: 20rem*@resize;
+                }
+
+                .orderDetail-item-info-price {
+                    color: #f70;
+                    font-size: @font-size-5;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+
+                .orderDetail-item-info-num {
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    border: 1px solid #DDD;
+                    border-radius: 5rem*@resize;
+                    overflow:hidden;
+                    .clearfix();
+                    font-size:@font-size-2;
+
+                    input {
+                        .clean-input();
+                        border: 0;
+                        background-color: #FFF;
+                        width: 55rem*@resize;
+                        height: 32rem*@resize;
+                        line-height: 32rem*@resize;
+                        outline: none;
+                        text-align: center;
+                        max-width: none;
+                        float:left;
+                    }
+
+                    button{
+                        border:none;
+                        float:left;
+                        background-color:@bg-color-white;
+                        height:32rem*@resize;
+                        width:40rem*@resize;
+                        font-size:@font-size-2;
+
+                        &.minus{
+                            border-right:1rem*@resize solid #ddd;
+                        }
+
+                        &.plus{
+                            border-left:1rem*@resize solid #ddd;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .orderSubmit-model{
+        font-size:@font-size-3;
+        .one-line-vertical-mid(50rem*@resize);
+        border-bottom:1rem*@resize solid #eee;
+        background-color:@bg-color-white;
+        padding:0 16rem*@resize;
+
+        &.style02{
+            display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+            display: -moz-box; /* 老版本语法: Firefox (buggy) */
+            display: -ms-flexbox; /* 混合版本语法: IE 10 */
+            display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+            display: flex;
+
+            .orderSubmit-model-name{
+                width:100rem*@resize;
+            }
+
+            .orderSubmit-model-info{
+                 -webkit-box-flex: 1;
+                -moz-box-flex: 1;
+                -webkit-flex: 1;
+                -ms-flex: 1;
+                flex: 1;
+                position: relative;
+
+                input{
+                    .clean-input();
+                    max-width:none;
+                    width:100%;
+                    border:none;
+                    height:48rem*@resize;
+                }
+            }
+        }
+    }
+
+    .orderSubmit-pay{
+        position:fixed;
+        width:100%;
+        bottom:0;
+        z-index:@z-index-bottom;
+        border-top:1rem*@resize solid #ddd;
+        background-color:@bg-color-white;
+        font-size:@font-size-3;
+
+        #Sum{
+            color:#f70;
+            font-size:@font-size-5;
+            margin-right:10rem*@resize;
+        }
+
+        input{
+            background-color:rgba(84,58,46,1);
+            border-radius:0;
+            height:50rem*@resize;
+            border:none;
+            width:130rem*@resize;
+            font-size:@font-size-4;
+        }
+    }
 
     .orderSubmit-type {
         display: inline-block;
@@ -74,15 +242,20 @@
     .consigneeInfo {
         position: fixed;
         z-index: @z-index-mid;
-        left: 0;
         top: 0;
-        background: #fff;
         width: 100vw;
         height: 100vh;
-        padding-left: 20rem*@resize;
 
-        td {
-            padding: 3rem*@resize;
+        .consigneeInfo-btns{
+            padding:25rem*@resize 16rem*@resize 0 16rem*@resize;
+
+            button{
+                background-color:rgba(84,58,46,1);
+                color:@font-col-white;
+                width:100%;
+                height:45rem*@resize;
+                font-size:@font-size-4;
+            }
         }
     }
 }
