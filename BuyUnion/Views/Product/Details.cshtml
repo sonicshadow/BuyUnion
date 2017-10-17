@@ -67,9 +67,9 @@
             <div class="productDetails-name fs24">
                 @Html.DisplayFor(model => model.Name)
             </div>
-            <div class="productDetails-price"><span>￥</span>@Model.OriginalPrice</div>
+            <div class="productDetails-price"><span>￥</span>@Model.Price</div>
             <div class="clearfix fs14 color-grey">
-                <div class="fl"><span>原价：<del>￥@Model.Price</del></span></div>
+                <div class="fl"><span>原价：<del>￥</del>@Model.OriginalPrice</span></div>
                 <div class="fr">
                     <span>销量：@Model.Sales</span>
                 </div>
