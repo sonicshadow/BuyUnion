@@ -73,6 +73,7 @@ var colAddress = function (option) {
                     $lstDist.removeClass("hidden");
                     $lstDist.children().click(function () {
                         var dist = $(this).text();
+                        $lstDist.children().removeClass("active");
                         $(this).addClass("active");
                         $tabDist.text(dist);
                         _seleced("广东", city, dist);
