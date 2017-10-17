@@ -253,3 +253,6 @@ function changePrice(amount, free) {
     $("#Free").text(Free.toFixed(2));
     $("#Sum").text((Amount + Free).toFixed(2));
 }
+
+//返回
+$("#btnBack").goback(comm.action("Index", "Home"));
