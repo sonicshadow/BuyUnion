@@ -9,7 +9,7 @@
     <div>支付成功</div>
     <div>请耐心等待发货</div>
     <div>
-        <a href="@Url.Action("Details","Orders")">查看订单</a> | <a href="http://www.immlm.cn/Coupon/Index">返回买了么</a>
+        <a href="@Url.Action("Details","Orders",new { Code=Request["Code"]})">查看订单</a> | <a href="http://www.immlm.cn/Coupon/Index">返回买了么</a>
     </div>
 </div>
 

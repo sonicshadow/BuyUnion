@@ -261,6 +261,6 @@ $("#btnBack").goback(comm.action("Index", "Home"));
 
 $("#btnSubmit").click(function (e) {
     var code = $(this).data("code");
-    location = comm.action("PayOnWeiXinTemp", "Order", { orderCode: code });
+    location = comm.action("PayTemp", "WechatPay", { orderCode: code });
 
 });

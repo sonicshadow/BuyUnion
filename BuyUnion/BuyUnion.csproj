@@ -820,13 +820,13 @@
     <Content Include="Views\ProductManage\Delete.cshtml" />
     <Content Include="Views\Order\Submit.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
-    <Content Include="Views\Order\PayOnWeiXin.cshtml" />
+    <Content Include="Views\WechatPay\Pay.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Home\BackstageHome.cshtml" />
     <Content Include="Views\OrderManage\Details.cshtml" />
     <Content Include="Views\OrderManage\Edit.cshtml" />
     <Content Include="Views\OrderManage\Index.cshtml" />
-    <Content Include="Views\WechatPay\Result.cshtml" />
+    <Content Include="Views\Order\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ProductProxy\" />

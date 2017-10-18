@@ -7,6 +7,7 @@ using WxPayAPI;
 using BuyUnion.Models;
 using System.Text;
 using BuyUnion.Enums;
+using BuyUnion.WeChatPay;
 
 namespace BuyUnion.Controllers
 {
@@ -14,7 +15,51 @@ namespace BuyUnion.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
-        #region 微信
+
+
+
+        /// <summary>
+        /// 混蛋企鹅请求后返回用的Ajax导致微信不能识别页面地址,必须让做两个请求让支付页面分开
+        /// </summary>
+        /// <returns></returns>
+        [AllowCrossSiteJson]
+        public ActionResult PayTemp(string orderCode, string code)
+        {
+            var order = db.Orders.FirstOrDefault(s => s.Code == orderCode);
+
+            if (order == null)
+            {
+                return this.ToError("错误", "订单不存在");
+            }
+            WechatPay pay = new WechatPay();
+            pay.GetOpenidAndAccessToken();
+            return RedirectToAction("Pay", new { OrderCode = orderCode, OpenID = pay.OpenID });
+        }
+
+        [ActionName("temp")]
+        public ActionResult Pay(string orderCode, string openid)
+        {
+            var model = db.Orders.FirstOrDefault(s => s.Code == orderCode);
+            WechatPay pay = new WechatPay();
+            pay.OpenID = openid;
+            pay.GetOpenidAndAccessToken();
+            pay.OrderCode = model.Code;
+            pay.TotalFee = Convert.ToInt32(model.Amount * 100);
+            pay.Body = $"购物单";
+            pay.Attach = "";
+            ////pay.GoodsTag = string.Join(",", model.Details.Select(s => s.ModularProduct.Title));
+            WxPayData unifiedOrderResult = pay.GetUnifiedOrderResult();
+            string wxJsApiParam = pay.GetJsApiParameters();
+            WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
+            ViewBag.wxJsApiParam = wxJsApiParam;
+            return View(model);
+        }
+
+        public ActionResult Pay()
+        {
+            return View();
+        }
+
 
         public ActionResult NotifyUrl()
         {
@@ -74,7 +119,7 @@ namespace BuyUnion.Controllers
 
 
         }
-        
+
         /// <summary>
         /// 接收从微信支付后台发送过来的数据并验证签名
         /// </summary>
@@ -126,7 +171,7 @@ namespace BuyUnion.Controllers
         [Authorize]
         public ActionResult Result(string code, string message)
         {
-            
+
             return View();
         }
 
@@ -157,8 +202,8 @@ namespace BuyUnion.Controllers
                 return false;
             }
         }
-        
-        #endregion
+
+
 
 
         protected override void Dispose(bool disposing)
