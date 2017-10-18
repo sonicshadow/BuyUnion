@@ -31,7 +31,7 @@ namespace BuyUnion.Controllers
             {
                 return this.ToError("错误", "订单有误");
             }
-            if (order.State != Enums.OrderState.WaitPad)
+            if (order.State != Enums.OrderState.WaitPaid)
             {
                 return this.ToError("错误", "订单已提交");
             }
@@ -123,12 +123,11 @@ namespace BuyUnion.Controllers
             WechatPay pay = new WechatPay();
             pay.OpenID = openid;
             pay.GetOpenidAndAccessToken();
-            //pay.GetOpenidAndAccessToken();
             pay.OrderCode = model.Code;
             pay.TotalFee = Convert.ToInt32(model.Amount * 100);
             pay.Body = $"购物单";
             pay.Attach = "";
-            //pay.GoodsTag = string.Join(",", model.Details.Select(s => s.ModularProduct.Title));
+            ////pay.GoodsTag = string.Join(",", model.Details.Select(s => s.ModularProduct.Title));
             WxPayData unifiedOrderResult = pay.GetUnifiedOrderResult();
             string wxJsApiParam = pay.GetJsApiParameters();
             WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
@@ -136,10 +135,24 @@ namespace BuyUnion.Controllers
             return View(model);
         }
 
+        public ActionResult Check(string code)
+        {
+            var order = db.Orders.FirstOrDefault(s => s.Code == code);
+            if (order == null)
+            {
+                return Json(Comm.ToJsonResult("NoFound", "订单不存在"));
+            }
+            if (order.State!= Enums.OrderState.Paid)
+            {
+                return Json(Comm.ToJsonResult("Error", "订单已提交"));
+            }
+            return Json(Comm.ToJsonResult("Success", "检测成功"));
+        }
+
 
         public ActionResult Index()
         {
-            
+
             return View();
         }
 

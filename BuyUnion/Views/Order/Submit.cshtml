@@ -126,7 +126,7 @@
     <div class="orderSubmit-pay clearfix">
         <div class="fr">
             实付款：<b id="Sum">￥@(Model.Amount + Model.Free)</b>
-            <input type="button" class="btn btn-danger" value="微信支付" />
+            <input id="btnSubmit" data-code="@Model.Code" type="button" class="btn btn-danger" value="微信支付" />
         </div>
     </div>
 </div>

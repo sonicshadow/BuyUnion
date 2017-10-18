@@ -45,7 +45,7 @@ namespace BuyUnion.Controllers
             var order = new Order()
             {
                 UpdateDateTime = DateTime.Now,
-                State = Enums.OrderState.WaitPad,
+                State = Enums.OrderState.WaitPaid,
                 ChildProxyID = childProxyID,
                 Code = $"{DateTime.Now:yyyyMMddHHmmss}{Comm.Random.Next(1000, 9999)}",
                 CreateDateTime = DateTime.Now,

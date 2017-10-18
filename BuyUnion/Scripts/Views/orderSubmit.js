@@ -257,3 +257,10 @@ function changePrice(amount, free) {
 
 //返回
 $("#btnBack").goback(comm.action("Index", "Home"));
+
+
+$("#btnSubmit").click(function (e) {
+    var code = $(this).data("code");
+    location = comm.action("PayOnWeiXinTemp", "Order", { orderCode: code });
+
+});
