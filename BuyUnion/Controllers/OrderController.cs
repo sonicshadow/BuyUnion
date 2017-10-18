@@ -49,10 +49,12 @@ namespace BuyUnion.Controllers
             order.Type = model.Type;
             if (model.Type == Enums.OrderType.Express)
             {
+                //运费
+                decimal freight = 0;
                 order.Address = model.Address;
                 order.PhoneNumber = model.PhoneNumber;
                 order.Consignee = model.Consignee;
-                order.Free = order.Details.Sum(s => s.Count) * 20;
+                order.Free = order.Details.Sum(s => s.Count) * freight;
             }
             else
             {
@@ -79,7 +81,8 @@ namespace BuyUnion.Controllers
             order.Amount = order.Details.Sum(s => (s.Count * s.Price));
             if (order.Type == Enums.OrderType.Express)
             {
-                order.Free = order.Details.Sum(s => s.Count) * 20;
+                decimal freight = 0;
+                order.Free = order.Details.Sum(s => s.Count) * freight;
             }
             else
             {
@@ -142,13 +145,19 @@ namespace BuyUnion.Controllers
             {
                 return Json(Comm.ToJsonResult("NoFound", "订单不存在"));
             }
-            if (order.State!= Enums.OrderState.Paid)
+            if (order.State != Enums.OrderState.Paid)
             {
                 return Json(Comm.ToJsonResult("Error", "订单已提交"));
             }
             return Json(Comm.ToJsonResult("Success", "检测成功"));
         }
 
+
+        public ActionResult ReturnUrlWx(string code, Enums.PayType type)
+        {
+            
+            return View();
+        }
 
         public ActionResult Index()
         {

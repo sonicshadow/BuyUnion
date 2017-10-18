@@ -3,8 +3,8 @@
     ViewBag.Title = "微信支付";
 }
 
-<div class="">
-
+<div class="orderPay">
+    @Html.HiddenFor(model => model.Code)
     <div class="orderSubmitWaitpayM-counts">
         <div class="grey">应付金额</div>
         <div class="red s4">@Html.DisplayFor(model => model.Amount)元</div>
@@ -14,10 +14,12 @@
         <input type="hidden" name="name" value="@ViewBag.ReturnUrl" />
         <input id="wxJsApiParam" type="hidden" data-param="@ViewBag.wxJsApiParam" />
         <div class="buttonStyleM orderSubmitWaitpayM-btns">
-            <input id="btnSubmit" type="button" value="确定" />
+            <input id="btnSubmit" class="btn btn-default" type="button" value="确定" />
         </div>
     }
 </div>
+
 @section Scripts{
-    @Scripts.Render("~/Bundels/orderPayOnWeiXin")
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    @Scripts.Render("~/Bundles/orderPayOnWeiXin")
 }

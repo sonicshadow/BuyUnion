@@ -59,7 +59,7 @@ namespace WxPayAPI
         //=======【支付结果通知url】===================================== 
         /* 支付结果通知回调url，用于商户接收支付结果
         */
-        public static string NOTIFY_URL { get { return $"http://{HttpContext.Current.Request.Url.Host}/Pay/NotifyUrlWx"; } }
+        public static string NOTIFY_URL { get { return $"http://{HttpContext.Current.Request.Url.Host}/WechatPay/NotifyUrl"; } }
 
         //=======【商户系统后台机器IP】===================================== 
         /* 此参数可手动配置也可在程序中自动获取
