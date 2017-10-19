@@ -403,6 +403,7 @@
     <Content Include="Content\Images\home\home_slide_img03.jpg" />
     <Content Include="Content\Images\home\home_slide_img04.jpg" />
     <Content Include="Content\Images\home\home_slide_img05.jpg" />
+    <Content Include="Content\Images\view\wechatPay_icon.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
