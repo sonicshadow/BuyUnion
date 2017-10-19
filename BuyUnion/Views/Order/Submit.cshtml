@@ -28,22 +28,36 @@
     @if (!string.IsNullOrWhiteSpace(Model.Address))
     {
         <div id="glyphicon-edit" class="consigneeDisplay orderSubmit-address clearfix">
-            <div class="fl marginR8"><span class="glyphicon glyphicon-map-marker"></span></div>
-            <div class="fl">
-                <div class="marginB5">
-                    <span class="consignee marginR20">@Html.DisplayFor(model => model.Consignee)</span>
-                    <span class="phoneNumber">@Html.DisplayFor(model => model.PhoneNumber)</span>
+            <div id="info">
+                <div class="fl marginR8"><span class="glyphicon glyphicon-map-marker"></span></div>
+                <div class="fl">
+                    <div class="marginB5">
+                        <span class="consignee marginR20">@Html.DisplayFor(model => model.Consignee)</span>
+                        <span class="phoneNumber">@Html.DisplayFor(model => model.PhoneNumber)</span>
+                    </div>
+                    <div class=""><span class="address"> @Html.DisplayFor(model => model.Address)</span></div>
                 </div>
-                <div class=""><span class="address"> @Html.DisplayFor(model => model.Address)</span></div>
-            </div>
 
-            <span class="glyphicon glyphicon-menu-right orderSubmit-address-right"></span>
+                <span class="glyphicon glyphicon-menu-right orderSubmit-address-right"></span>
+            </div>
         </div>
     }
     else
     {
         <div id="glyphicon-edit" class="consigneeDisplay orderSubmit-address clearfix text-center">
-            添加新地址
+            <div id="name">添加新地址</div>
+            <div id="info" class="hidden">
+                <div class="fl marginR8"><span class="glyphicon glyphicon-map-marker"></span></div>
+                <div class="fl">
+                    <div class="marginB5">
+                        <span class="consignee marginR20">@Html.DisplayFor(model => model.Consignee)</span>
+                        <span class="phoneNumber">@Html.DisplayFor(model => model.PhoneNumber)</span>
+                    </div>
+                    <div class=""><span class="address"> @Html.DisplayFor(model => model.Address)</span></div>
+                </div>
+
+                <span class="glyphicon glyphicon-menu-right orderSubmit-address-right"></span>
+            </div>
         </div>
     }
     

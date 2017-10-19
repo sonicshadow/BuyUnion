@@ -161,6 +161,10 @@ $("#addressSure").click(function (e) {
                 $(".consignee").text(ajaxdata.Consignee);
                 $(".phoneNumber").text(ajaxdata.PhoneNumber);
                 $(".address").text(ajaxdata.Address);
+
+                $("#name").remove();
+                $("#info").removeClass("hidden");
+
                 changePrice(data.Result.Amount, data.Result.Free)
             } else {
                 comm.promptBox(data.Message);
