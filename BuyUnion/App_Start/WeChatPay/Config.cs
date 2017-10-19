@@ -40,13 +40,13 @@ namespace WxPayAPI
         /// <summary>
         /// 商户支付密钥
         /// </summary>
-        public static string KEY { get { return "6douyungou66lmcityliudouyungou66"; } }
+        public static string KEY { get { return "Immlm2017BuyUnionWeChatPayApiKey"; } }
 
 
         /// <summary>
         /// 公众帐号secert 26bd1106cf7da9c6df1c807322ad18e2
         /// </summary>
-        public static string APPSECRET { get { return "26bd1106cf7da9c6df1c807322ad18e2"; } }
+        public static string APPSECRET { get { return "0b204016cf40bfa2b5acc82a608712de"; } }
 
         //=======【证书路径设置】===================================== 
         /* 证书路径,注意应该填写绝对路径（仅退款、撤销订单时需要）
@@ -59,7 +59,7 @@ namespace WxPayAPI
         //=======【支付结果通知url】===================================== 
         /* 支付结果通知回调url，用于商户接收支付结果
         */
-        public static string NOTIFY_URL { get { return $"http://{HttpContext.Current.Request.Url.Host}/Pay/NotifyUrlWx"; } }
+        public static string NOTIFY_URL { get { return $"http://{HttpContext.Current.Request.Url.Host}/WechatPay/NotifyUrl"; } }
 
         //=======【商户系统后台机器IP】===================================== 
         /* 此参数可手动配置也可在程序中自动获取

@@ -132,7 +132,7 @@ namespace BuyUnion.Enums
     public enum OrderState
     {
         [Display(Name = "待支付")]
-        WaitPad = 0,
+        WaitPaid = 0,
         [Display(Name = "已支付")]
         Paid = 1,
         [Display(Name = "已取消")]

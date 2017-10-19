@@ -262,6 +262,7 @@
     <Compile Include="App_Start\ActionFilterAttributes.cs" />
     <Compile Include="App_Start\AddressList.cs" />
     <Compile Include="App_Start\Api.cs" />
+    <Compile Include="App_Start\Bll\Orders.cs" />
     <Compile Include="App_Start\Bll\Roles.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\Comm.cs" />
@@ -296,7 +297,6 @@
     <Compile Include="App_Start\WeChatPay\WxPayApi.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressSelectorController.cs" />
-    <Compile Include="Controllers\CommissionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -307,6 +307,7 @@
     <Compile Include="Controllers\RoleManageController.cs" />
     <Compile Include="Controllers\UploaderController.cs" />
     <Compile Include="Controllers\UserManageController.cs" />
+    <Compile Include="Controllers\WechatPayController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -369,7 +370,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmountLog.cs" />
-    <Compile Include="Models\CommissionViewModel.cs" />
     <Compile Include="Models\FileUpload.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageResizer.cs" />
@@ -403,7 +403,7 @@
     <Content Include="Content\Images\home\home_slide_img03.jpg" />
     <Content Include="Content\Images\home\home_slide_img04.jpg" />
     <Content Include="Content\Images\home\home_slide_img05.jpg" />
-    <Content Include="Content\Images\view\loadingGif.gif" />
+    <Content Include="Content\Images\view\wechatPay_icon.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
@@ -728,6 +728,8 @@
     <Content Include="Content\less\views\orderSubmit.less" />
     <Content Include="Content\less\views\homeIndexM.less" />
     <Content Include="Content\less\views\productDetails.less" />
+    <Content Include="Content\less\views\orderPage.less" />
+    <None Include="Properties\PublishProfiles\BuyUnionPubish.pubxml" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\datetimepicker\css\bootstrap-datetimepicker.css" />
     <Content Include="Scripts\datetimepicker\js\bootstrap-datetimepicker.js" />
@@ -819,14 +821,13 @@
     <Content Include="Views\ProductManage\Delete.cshtml" />
     <Content Include="Views\Order\Submit.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
-    <Content Include="Views\Order\PayOnWeiXin.cshtml" />
+    <Content Include="Views\WechatPay\Pay.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Home\BackstageHome.cshtml" />
     <Content Include="Views\OrderManage\Details.cshtml" />
     <Content Include="Views\OrderManage\Edit.cshtml" />
     <Content Include="Views\OrderManage\Index.cshtml" />
-    <Content Include="Views\Commission\Index.cshtml" />
-    <Content Include="Views\Commission\Details.cshtml" />
+    <Content Include="Views\Order\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ProductProxy\" />

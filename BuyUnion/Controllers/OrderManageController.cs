@@ -70,7 +70,7 @@ namespace BuyUnion.Controllers
             {
                 case Enums.OrderState.Paid:
                     {
-                        if (order.State != Enums.OrderState.WaitPad)
+                        if (order.State != Enums.OrderState.WaitPaid)
                         {
                             ModelState.AddModelError("", "订单已完成付款");
                             return View(GetModel(order));

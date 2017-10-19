@@ -73,6 +73,7 @@ var colAddress = function (option) {
                     $lstDist.removeClass("hidden");
                     $lstDist.children().click(function () {
                         var dist = $(this).text();
+                        $lstDist.children().removeClass("active");
                         $(this).addClass("active");
                         $tabDist.text(dist);
                         _seleced("广东", city, dist);
@@ -265,3 +266,10 @@ function changePrice(amount, free) {
 
 //返回
 $("#btnBack").goback(comm.action("Index", "Home"));
+
+
+$("#btnSubmit").click(function (e) {
+    var code = $(this).data("code");
+    location = comm.action("PayTemp", "WechatPay", { orderCode: code });
+
+});

@@ -31,7 +31,7 @@ namespace BuyUnion.Controllers
             {
                 return this.ToError("错误", "订单有误");
             }
-            if (order.State != Enums.OrderState.WaitPad)
+            if (order.State != Enums.OrderState.WaitPaid)
             {
                 return this.ToError("错误", "订单已提交");
             }
@@ -49,10 +49,12 @@ namespace BuyUnion.Controllers
             order.Type = model.Type;
             if (model.Type == Enums.OrderType.Express)
             {
+                //运费
+                decimal freight = 0;
                 order.Address = model.Address;
                 order.PhoneNumber = model.PhoneNumber;
                 order.Consignee = model.Consignee;
-                order.Free = order.Details.Sum(s => s.Count) * 20;
+                order.Free = order.Details.Sum(s => s.Count) * freight;
             }
             else
             {
@@ -79,7 +81,8 @@ namespace BuyUnion.Controllers
             order.Amount = order.Details.Sum(s => (s.Count * s.Price));
             if (order.Type == Enums.OrderType.Express)
             {
-                order.Free = order.Details.Sum(s => s.Count) * 20;
+                decimal freight = 0;
+                order.Free = order.Details.Sum(s => s.Count) * freight;
             }
             else
             {
@@ -97,49 +100,30 @@ namespace BuyUnion.Controllers
 
 
 
-
-        /// <summary>
-        /// 混蛋企鹅请求后返回用的Ajax导致微信不能识别页面地址,必须让做两个请求让支付页面分开
-        /// </summary>
-        /// <returns></returns>
-        [AllowCrossSiteJson]
-        public ActionResult PayOnWeiXinTemp(string orderCode, string code)
+        public ActionResult Check(string code)
         {
-            var order = db.Orders.FirstOrDefault(s => s.Code == orderCode);
-
+            var order = db.Orders.FirstOrDefault(s => s.Code == code);
             if (order == null)
             {
-                return this.ToError("错误", "订单不存在");
+                return Json(Comm.ToJsonResult("NoFound", "订单不存在"));
             }
-            WechatPay pay = new WechatPay();
-            pay.GetOpenidAndAccessToken();
-            return RedirectToAction("PayOnWeiXin", new { OrderCode = orderCode, OpenID = pay.OpenID });
+            if (order.State != Enums.OrderState.Paid)
+            {
+                return Json(Comm.ToJsonResult("Error", "订单已提交"));
+            }
+            return Json(Comm.ToJsonResult("Success", "检测成功"));
         }
 
-
-        public ActionResult PayOnWeiXin(string orderCode, string openid)
+        public ActionResult Result()
         {
-            var model = db.Orders.FirstOrDefault(s => s.Code == orderCode);
-            WechatPay pay = new WechatPay();
-            pay.OpenID = openid;
-            pay.GetOpenidAndAccessToken();
-            //pay.GetOpenidAndAccessToken();
-            pay.OrderCode = model.Code;
-            pay.TotalFee = Convert.ToInt32(model.Amount * 100);
-            pay.Body = $"购物单";
-            pay.Attach = "";
-            //pay.GoodsTag = string.Join(",", model.Details.Select(s => s.ModularProduct.Title));
-            WxPayData unifiedOrderResult = pay.GetUnifiedOrderResult();
-            string wxJsApiParam = pay.GetJsApiParameters();
-            WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
-            ViewBag.wxJsApiParam = wxJsApiParam;
-            return View(model);
+            return View();
         }
+
 
 
         public ActionResult Index()
         {
-            
+
             return View();
         }
 

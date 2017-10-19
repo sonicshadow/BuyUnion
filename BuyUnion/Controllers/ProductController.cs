@@ -19,10 +19,10 @@ namespace BuyUnion.Controllers
 
         public ActionResult Details(string userId, int? id)
         {
-            if (string.IsNullOrWhiteSpace(userId) || !id.HasValue)
-            {
-                return this.ToError("错误", "传参有误");
-            }
+            //if (string.IsNullOrWhiteSpace(userId) || !id.HasValue)
+            //{
+            //    return this.ToError("错误", "传参有误");
+            //}
             var product = db.Products.FirstOrDefault(s => s.ID == id.Value);
             if (product == null)
             {
@@ -38,14 +38,14 @@ namespace BuyUnion.Controllers
         [HttpPost]
         public ActionResult Details(string userId, string proxyID, string childProxyID, string ids)
         {
-            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(proxyID))
-            {
-                return this.ToError("错误", "传参有误");
-            }
+            //if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(proxyID))
+            //{
+            //    return this.ToError("错误", "传参有误");
+            //}
             var order = new Order()
             {
                 UpdateDateTime = DateTime.Now,
-                State = Enums.OrderState.WaitPad,
+                State = Enums.OrderState.WaitPaid,
                 ChildProxyID = childProxyID,
                 Code = $"{DateTime.Now:yyyyMMddHHmmss}{Comm.Random.Next(1000, 9999)}",
                 CreateDateTime = DateTime.Now,

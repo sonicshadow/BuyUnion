@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "支付成功";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="orderPayState minHight100vh">
+    <div class="orderPayState-info fs16">
+        <div class="orderPayState-info-icon ok"><span class="glyphicon glyphicon-ok"></span></div>
+        @*<div class="orderPayState-info-icon fail"><span class="glyphicon glyphicon-remove"></span></div>*@
+        <div class="fs18 marginT10">支付成功</div>
+        <div class="marginT10">请耐心等待发货</div>
+        <div class="marginT5">
+            <a href="@Url.Action("Details","Orders",new { Code=Request["Code"]})">查看订单</a> | <a href="http://www.immlm.cn/Coupon/Index">返回买了么</a>
+        </div>
+    </div>
+</div>
+
