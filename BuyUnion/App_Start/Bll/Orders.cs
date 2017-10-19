@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using BuyUnion.Models;
+using Newtonsoft.Json;
+
 namespace BuyUnion.Bll
 {
     public static class Orders
@@ -35,7 +37,44 @@ namespace BuyUnion.Bll
                     order.UpdateDateTime = DateTime.Now;
                     order.PaidAmount = amount;
                     db.SaveChanges();
+                    //分成
+                    var pids = order.Details.Select(s => s.ProductID).Distinct();
+                    var pList = (from productProxy in db.ProductProxys
+                                 from product in db.Products
+                                 from detail in order.Details
+                                 where productProxy.ProxyUserID == order.ProxyID
+                                     && productProxy.ProductID == product.ID
+                                     && detail.ProductID == product.ID
+                                 select new { productProxy, product, detail }).ToList();
+                    string exData = null;
+                    if (pList.Count > 0)
+                    {
+                        var proxyAmount = pList.Select(s =>
+                        {
+                            var commission = s.productProxy.Max - s.productProxy.Count > 0 ?
+                                1 :
+                                decimal.Multiply(s.product.Commission, (decimal)0.7);
+                            return decimal.Multiply((s.detail.Count * s.detail.Price), commission);
+                        }).Sum();
 
+                        decimal childProxyAmount = 0;
+                        if (!string.IsNullOrWhiteSpace(order.ChildProxyID))
+                        {
+                            childProxyAmount = pList.Select(s =>
+                             {
+                                 var commission = decimal.Multiply(s.product.Commission, (decimal)0.3);
+                                 return decimal.Multiply((s.detail.Count * s.detail.Price), commission);
+                             }).Sum();
+                        }
+
+                        exData = JsonConvert.SerializeObject(new
+                        {
+                            order.ProxyID,
+                            ProxyAmount = proxyAmount,
+                            order.ChildProxyID,
+                            ChildProxyAmount = childProxyAmount,
+                        });
+                    }
                     var his = new OrderLog
                     {
                         CreateDateTime = DateTime.Now,
@@ -43,11 +82,13 @@ namespace BuyUnion.Bll
                         Reamrk = $"使用{type.GetDisplayName()}支付了{amount}元",
                         Type = Enums.OrderLogType.Pay,
                         UserID = order.UserID,
+                        ExData = exData,
                     };
+
                     db.OrderLogs.Add(his);
                     db.SaveChanges();
                 }
-                
+
             }
 
         }
