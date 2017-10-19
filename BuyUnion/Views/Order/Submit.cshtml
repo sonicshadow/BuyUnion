@@ -3,21 +3,22 @@
 @model BuyUnion.Models.SubmitOrderViewModel
 @{
     ViewBag.Title = "提交订单";
+    Model.Address = null;
 }
 
 <div class="orderSubmit minHight100vh bg-color-grey paddingT50">
     @Html.HiddenFor(model => model.ID)
     @*<div>
-        配送方式：
-        <div class="orderSubmit-type">
-            <input id="typeExpress" type="radio" @(Model.Type == BuyUnion.Enums.OrderType.Express ? "checked" : "") name="Type" value="@BuyUnion.Enums.OrderType.Express" />
-            <label for="typeExpress">快递配送</label>
-        </div>
-        <div class="orderSubmit-type">
-            <input id="typeOffine" type="radio" @(Model.Type == BuyUnion.Enums.OrderType.Offine ? "checked" : "") name="Type" value="@BuyUnion.Enums.OrderType.Offine" />
-            <label for="typeOffine">店面领取</label>
-        </div>
-    </div>*@
+            配送方式：
+            <div class="orderSubmit-type">
+                <input id="typeExpress" type="radio" @(Model.Type == BuyUnion.Enums.OrderType.Express ? "checked" : "") name="Type" value="@BuyUnion.Enums.OrderType.Express" />
+                <label for="typeExpress">快递配送</label>
+            </div>
+            <div class="orderSubmit-type">
+                <input id="typeOffine" type="radio" @(Model.Type == BuyUnion.Enums.OrderType.Offine ? "checked" : "") name="Type" value="@BuyUnion.Enums.OrderType.Offine" />
+                <label for="typeOffine">店面领取</label>
+            </div>
+        </div>*@
 
     <div class="navigationBar">
         <span class="glyphicon glyphicon-menu-left navigationBar-left" aria-hidden="true" id="btnBack"></span>
@@ -34,7 +35,6 @@
             </div>
             <div class=""><span class="address"> @Html.DisplayFor(model => model.Address)</span></div>
         </div>
-        
         <span class="glyphicon glyphicon-menu-right orderSubmit-address-right"></span>
     </div>
 
@@ -79,7 +79,7 @@
         <ul id="lstCity">
             @foreach (var item in BuyUnion.Address.AddressList.Provinces.FirstOrDefault(s => s.Name == "广东").Citys)
             {
-                <li>@item.Name</li>
+            <li>@item.Name</li>
             }
         </ul>
         <ul id="lstDistrict"></ul>
@@ -92,24 +92,24 @@
     <div class="orderSubmit-baseInfo">
         @foreach (var item in Model.Details)
             {
-            <div class="orderDetail-item" data-item="@( JsonConvert.SerializeObject(new { item.Count,item.Price,item.ID }))">
-                <div class="orderDetail-item-img">
-                    <img src="@Url.ResizeImage(item.Image,120,120)" />
-                </div>
-                <div class="orderDetail-item-info">
-                    <div class="orderDetail-item-info-name">@item.Name</div>
-                    <div class="orderDetail-item-info-price"><span class="fs16">￥</span><span class="">@item.Price</span></div>
-                    <div class="orderDetail-item-info-num">
-                        <button type="button" class="minus btn btn-default">
-                            <span class="glyphicon glyphicon-minus"></span>
-                        </button>
-                        <input type="number" name="Count" value="@item.Count" />
-                        <button type="button" class="plus btn btn-default">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </div>
+        <div class="orderDetail-item" data-item="@( JsonConvert.SerializeObject(new { item.Count,item.Price,item.ID }))">
+            <div class="orderDetail-item-img">
+                <img src="@Url.ResizeImage(item.Image,120,120)" />
+            </div>
+            <div class="orderDetail-item-info">
+                <div class="orderDetail-item-info-name">@item.Name</div>
+                <div class="orderDetail-item-info-price"><span class="fs16">￥</span><span class="">@item.Price</span></div>
+                <div class="orderDetail-item-info-num">
+                    <button type="button" class="minus btn btn-default">
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                    <input type="number" name="Count" value="@item.Count" />
+                    <button type="button" class="plus btn btn-default">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
                 </div>
             </div>
+        </div>
         }
     </div>
 
@@ -128,6 +128,11 @@
             实付款：<b id="Sum">￥@(Model.Amount + Model.Free)</b>
             <input type="button" class="btn btn-danger" value="微信支付" />
         </div>
+    </div>
+
+    @*数量增加加载*@
+    <div class="orderSubmit-load hidden" >
+        <img src="~/Content/images/view/loadingGif.gif" />
     </div>
 </div>
 

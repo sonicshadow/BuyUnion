@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BuyUnion.Models.CommissionViewModel>
+
+@{
+    ViewBag.Title = "详情";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+    var paged = (PagedList.IPagedList<BuyUnion.Models.Order>)ViewBag.Paged;
+}
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("佣金管理", "Index")</li>
+    <li class="active">详情</li>
+</ol>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProxyUserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProxyUserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProxyUserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProxyUserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.PageList(paged, Url.PageUrl())

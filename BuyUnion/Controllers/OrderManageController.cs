@@ -64,6 +64,7 @@ namespace BuyUnion.Controllers
         [Authorize(Roles = SysRole.OrderManageEdit)]
         public ActionResult EditConfrim(int id,Enums.OrderState state)
         {
+            Sidebar();
             var order = db.Orders.Include(s => s.Details).FirstOrDefault(s => s.ID == id);
             switch (state)
             {

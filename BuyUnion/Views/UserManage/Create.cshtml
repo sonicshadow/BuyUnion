@@ -36,6 +36,10 @@
                 </div>
             </div>
         }
+        else
+        {
+            @Html.HiddenFor(model => model.RoleGroupID)
+        }
 
         <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })

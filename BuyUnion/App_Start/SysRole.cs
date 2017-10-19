@@ -30,5 +30,7 @@ namespace BuyUnion
         public const string OrderManageCreate = "OrderManageCreate";
         public const string OrderManageEdit = "OrderManageEdit";
         public const string OrderManageDelete = "OrderManageDelete";
+
+        public const string CommissionManageRead = "CommissionManageRead";
     }
 }

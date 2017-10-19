@@ -44,14 +44,13 @@ namespace BuyUnion.Controllers
 
         // GET: UserManage
         [Authorize(Roles = SysRole.UserManageRead)]
-        public ActionResult Index(Enums.UserType type = Enums.UserType.System, int page = 1)
+        public ActionResult Index(Enums.UserType? type, int page = 1)
         {
             Sidebar();
-            var model =
+            var users =
                 (from u in db.Users
                  join rg in db.RoleGroups on u.RoleGroupID equals rg.ID into rr
                  from r in rr.DefaultIfEmpty()
-                 where u.UserType == type
                  select new UserViewModels
                  {
                      Id = u.Id,
@@ -59,8 +58,12 @@ namespace BuyUnion.Controllers
                      RegisterDateTime = u.RegisterDateTime,
                      UserType = u.UserType,
                      RoleName = r.Name
-                 }).OrderBy(s => s.RegisterDateTime)
-                .ToPagedList(page);
+                 });
+            if (type.HasValue)
+            {
+                users = users.Where(s => s.UserType == type.Value);
+            }
+            var model = users.OrderBy(s => s.RegisterDateTime).ToPagedList(page);
             return View(model);
         }
 
@@ -68,12 +71,26 @@ namespace BuyUnion.Controllers
         public ActionResult Create(Enums.UserType type = Enums.UserType.System)
         {
             Sidebar();
-            if (type == Enums.UserType.System)
+            var model = new UserMangeCreateUserViewModel() { UserType = type };
+            switch (type)
             {
-                var roles = db.RoleGroups.ToList();
-                ViewBag.SelRole = new SelectList(roles, "ID", "Name");
+                case Enums.UserType.System:
+                    {
+                        var roles = db.RoleGroups.ToList();
+                        ViewBag.SelRole = new SelectList(roles, "ID", "Name");
+                    }
+                    break;
+                case Enums.UserType.Shop:
+                    {
+                        model.RoleGroupID = 2;
+                    }
+                    break;
+                case Enums.UserType.Normal:
+                    break;
+                default:
+                    break;
             }
-            return View(new UserMangeCreateUserViewModel() { UserType = type });
+            return View(model);
         }
 
         [HttpPost]
@@ -106,6 +123,10 @@ namespace BuyUnion.Controllers
                 var result = UserManager.CreateAsync(user, model.Password);
                 if (result.Result.Succeeded)
                 {
+                    if (model.UserType != Enums.UserType.Normal)
+                    {
+                        _roles.EditUserRoleByGroupID(user.Id, model.RoleGroupID.Value);
+                    }
                     return RedirectToAction("Index");
                 }
                 else
@@ -166,7 +187,7 @@ namespace BuyUnion.Controllers
             }
             user.UserName = model.UserName;
             user.PhoneNumber = model.PhoneNumber;
-            if (user.UserType == Enums.UserType.System)
+            if (user.UserType != Enums.UserType.Normal)
             {
                 user.RoleGroupID = model.RoleGroupID;
                 _roles.EditUserRoleByGroupID(user.Id, model.RoleGroupID.Value);
