@@ -297,6 +297,7 @@
     <Compile Include="App_Start\WeChatPay\WxPayApi.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressSelectorController.cs" />
+    <Compile Include="Controllers\CommissionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -374,6 +375,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmountLog.cs" />
+    <Compile Include="Models\CommissionViewModel.cs" />
     <Compile Include="Models\FileUpload.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageResizer.cs" />
@@ -407,6 +409,7 @@
     <Content Include="Content\Images\home\home_slide_img03.jpg" />
     <Content Include="Content\Images\home\home_slide_img04.jpg" />
     <Content Include="Content\Images\home\home_slide_img05.jpg" />
+    <Content Include="Content\Images\view\wechatPay_icon.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
@@ -831,6 +834,8 @@
     <Content Include="Views\OrderManage\Edit.cshtml" />
     <Content Include="Views\OrderManage\Index.cshtml" />
     <Content Include="Views\Order\Result.cshtml" />
+    <Content Include="Views\Commission\Details.cshtml" />
+    <Content Include="Views\Commission\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ProductProxy\" />

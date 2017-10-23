@@ -28,7 +28,7 @@ namespace BuyUnion.Controllers
         }
 
         // GET: OrderManage
-        [Authorize(Roles =SysRole.OrderManageRead)]
+        [Authorize(Roles = SysRole.OrderManageRead)]
         public ActionResult Index(Enums.OrderState? state, int page = 1)
         {
             Sidebar();
@@ -60,10 +60,11 @@ namespace BuyUnion.Controllers
         }
 
         // POST: OrderManage/Edit/5
-        [HttpPost,ActionName("Edit")]
+        [HttpPost, ActionName("Edit")]
         [Authorize(Roles = SysRole.OrderManageEdit)]
-        public ActionResult EditConfrim(int id,Enums.OrderState state)
+        public ActionResult EditConfrim(int id, Enums.OrderState state)
         {
+            Sidebar();
             var order = db.Orders.Include(s => s.Details).FirstOrDefault(s => s.ID == id);
             switch (state)
             {
@@ -72,17 +73,38 @@ namespace BuyUnion.Controllers
                         if (order.State != Enums.OrderState.WaitPaid)
                         {
                             ModelState.AddModelError("", "订单已完成付款");
-                            return View(GetModel(order));
                         }
                     }
                     break;
                 case Enums.OrderState.Cancel:
                     {
-                        if (order.State == Enums.OrderState.Complete)
+                        switch (order.State)
                         {
-                            ModelState.AddModelError("", "订单已完成不能取消");
-                            return View(GetModel(order));
+                            case Enums.OrderState.WaitPaid:
+                                { }
+                                break;
+                            case Enums.OrderState.Paid:
+                                {
+                                    var log = db.OrderLogs.FirstOrDefault(s => s.OrderID == order.ID &&
+                                        s.Type == Enums.OrderLogType.Pay);
+                                    log.ExData = null;
+                                }
+                                break;
+                            default:
+                                {
+                                    ModelState.AddModelError("", "订单不能取消");
+                                }
+                                break;
                         }
+                        var his = new OrderLog
+                        {
+                            CreateDateTime = DateTime.Now,
+                            OrderID = order.ID,
+                            Reamrk = $"取消订单",
+                            Type = Enums.OrderLogType.SubmitCancel,
+                            UserID = UserID,
+                        };
+                        db.OrderLogs.Add(his);
                     }
                     break;
                 case Enums.OrderState.Shipped:
@@ -90,20 +112,50 @@ namespace BuyUnion.Controllers
                         if (order.State != Enums.OrderState.Paid)
                         {
                             ModelState.AddModelError("", "订单未付款不能发货");
-                            return View(GetModel(order));
+                        }
+                        var his = new OrderLog
+                        {
+                            CreateDateTime = DateTime.Now,
+                            OrderID = order.ID,
+                            Reamrk = $"发货",
+                            Type = Enums.OrderLogType.Ship,
+                            UserID = UserID,
+                        };
+                        db.OrderLogs.Add(his);
+                        var pids = order.Details.Select(s => s.ProductID).Distinct();
+                        var products = db.Products.Where(s => pids.Contains(s.ID)).ToList();
+                        foreach (var item in order.Details)
+                        {
+                            var product = products.FirstOrDefault(s => s.ID == item.ProductID);
+                            product.Stock = product.Stock - item.Count;
                         }
                     }
                     break;
                 case Enums.OrderState.Complete:
+                    {
+                        var his = new OrderLog
+                        {
+                            CreateDateTime = DateTime.Now,
+                            OrderID = order.ID,
+                            Reamrk = $"完成订单",
+                            Type = Enums.OrderLogType.Complete,
+                            UserID = UserID
+                        };
+                        db.OrderLogs.Add(his);
+                    }
                     break;
                 default:
                     break;
             }
-
-            order.State = state;
-            order.UpdateDateTime = DateTime.Now;
-            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                order.State = state;
+                order.UpdateDateTime = DateTime.Now;
+                db.SaveChanges();
+                return View(GetModel(order));
+            }
             return View(GetModel(order));
+
         }
 
         public SubmitOrderViewModel GetModel(Order order)

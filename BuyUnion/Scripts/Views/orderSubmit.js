@@ -161,6 +161,10 @@ $("#addressSure").click(function (e) {
                 $(".consignee").text(ajaxdata.Consignee);
                 $(".phoneNumber").text(ajaxdata.PhoneNumber);
                 $(".address").text(ajaxdata.Address);
+
+                $("#name").remove();
+                $("#info").removeClass("hidden");
+
                 changePrice(data.Result.Amount, data.Result.Free)
             } else {
                 comm.promptBox(data.Message);
@@ -183,6 +187,7 @@ $(".consigneeInfo input").keyup(function (e) {
     }
 });
 
+var canEdit = true;
 //编辑详情
 var editDetails = function (target) {
     var $target = $(target);
@@ -192,9 +197,11 @@ var editDetails = function (target) {
     var $count = $item.find("[name=Count]");
 
     $minus.click(function (e) {
-        $count.val(Number($count.val()) - 1);
-        detailsEdit();
-        disable();
+        if (canEdit) {
+            $count.val(Number($count.val()) - 1);
+            detailsEdit();
+            disable();
+        }
     });
     disable();
     function disable() {
@@ -205,9 +212,11 @@ var editDetails = function (target) {
         }
     }
     $plus.click(function (e) {
-        $count.val(Number($count.val()) + 1);
-        detailsEdit();
-        disable();
+        if (canEdit) {
+            $count.val(Number($count.val()) + 1);
+            detailsEdit();
+            disable();
+        }
     });
 
     $count.keyup(function (e) {
@@ -220,6 +229,7 @@ var editDetails = function (target) {
     });
 
     function detailsEdit() {
+        canEdit = false;
         var itemInfo = $item.data("item");
         var data = {
             ID: itemInfo.ID,
@@ -233,13 +243,16 @@ var editDetails = function (target) {
             success: function (data) {
                 if (data.State == "Success") {
                     changePrice(data.Result.Amount, data.Result.Free);
+                    canEdit = true;
                 }
             },
             beforeSend: function () {
                 //开始加载
+                $(".orderSubmit-load").removeClass("hidden");
             },
             complete: function () {
                 //完成加载
+                $(".orderSubmit-load").addClass("hidden");
             }
         });
     }
@@ -250,9 +263,9 @@ new editDetails($(".plus"));
 function changePrice(amount, free) {
     var Amount = Number(amount);
     var Free = Number(free);
-    $("#Amount").text(Amount.toFixed(2));
-    $("#Free").text(Free.toFixed(2));
-    $("#Sum").text((Amount + Free).toFixed(2));
+    $("#Amount").text("￥" + Amount.toFixed(2));
+    $("#Free").text("￥" + Free.toFixed(2));
+    $("#Sum").text("￥" + (Amount + Free).toFixed(2));
 }
 
 //返回
