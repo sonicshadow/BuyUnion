@@ -367,6 +367,10 @@
     <Compile Include="Migrations\201710130223534_OrderDetailAddName.Designer.cs">
       <DependentUpon>201710130223534_OrderDetailAddName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710230233444_AddAmountLog.cs" />
+    <Compile Include="Migrations\201710230233444_AddAmountLog.Designer.cs">
+      <DependentUpon>201710230233444_AddAmountLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmountLog.cs" />
@@ -877,6 +881,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710130223534_OrderDetailAddName.resx">
       <DependentUpon>201710130223534_OrderDetailAddName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710230233444_AddAmountLog.resx">
+      <DependentUpon>201710230233444_AddAmountLog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

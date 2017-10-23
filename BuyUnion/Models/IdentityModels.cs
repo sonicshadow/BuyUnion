@@ -68,6 +68,10 @@ namespace BuyUnion.Models
 
         public virtual DbSet<WithdrawLog> WithdrawLogs { get; set; }
 
+        public virtual DbSet<ProxyAmountLog> ProxyAmountLogs { get; set; }
+
+        public virtual DbSet<ShopAmountLog> ShopAmountLogs { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
