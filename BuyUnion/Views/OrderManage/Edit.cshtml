@@ -137,7 +137,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10 form-control-static">
-            @if (Model.State != BuyUnion.Enums.OrderState.Cancel)
+            @if (Model.State != BuyUnion.Enums.OrderState.Cancel && Model.State != BuyUnion.Enums.OrderState.Complete)
             {
                 if (Model.State == BuyUnion.Enums.OrderState.Paid)
                 {
@@ -148,6 +148,24 @@
                         <input type="submit" value="发货" class="btn btn-default" />
                     }
                 }
+                using (Html.BeginForm())
+                {
+                    @Html.HiddenFor(model => model.ID)
+                    <input name="State" value="@BuyUnion.Enums.OrderState.Complete" type="hidden" />
+                    <input type="submit" value="完成" class="btn btn-default" />
+                }
+                @*if (Model.State == BuyUnion.Enums.OrderState.WaitPaid)
+                    {
+                        using (Html.BeginForm())
+                        {
+                            @Html.HiddenFor(model => model.ID)
+                            <input name="State" value="@BuyUnion.Enums.OrderState.Paid" type="hidden" />
+                            <input type="submit" value="付款" class="btn btn-default" />
+                        }
+                    }*@
+            }
+            @if (Model.State != BuyUnion.Enums.OrderState.Cancel)
+            {
                 using (Html.BeginForm())
                 {
                     @Html.HiddenFor(model => model.ID)

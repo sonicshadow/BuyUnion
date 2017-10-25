@@ -309,6 +309,7 @@
     <Compile Include="Controllers\UploaderController.cs" />
     <Compile Include="Controllers\UserManageController.cs" />
     <Compile Include="Controllers\WechatPayController.cs" />
+    <Compile Include="Controllers\WithdrawController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -375,7 +376,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmountLog.cs" />
-    <Compile Include="Models\CommissionViewModel.cs" />
     <Compile Include="Models\FileUpload.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageResizer.cs" />
@@ -836,6 +836,9 @@
     <Content Include="Views\Order\Result.cshtml" />
     <Content Include="Views\Commission\Details.cshtml" />
     <Content Include="Views\Commission\Index.cshtml" />
+    <Content Include="Views\Withdraw\Index.cshtml" />
+    <Content Include="Views\Withdraw\ApplicationIndex.cshtml" />
+    <Content Include="Views\Withdraw\Application.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ProductProxy\" />

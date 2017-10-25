@@ -111,6 +111,12 @@ namespace BuyUnion.Bll
             addSystemRole(SysRole.OrderManageDelete, "订单管理", "订单管理删除");
 
             addSystemRole(SysRole.CommissionManageRead, "佣金管理", "佣金管理查看");
+
+            addSystemRole(SysRole.WithdrawCreate, "提现管理", "提现管理查看");
+            addSystemRole(SysRole.WithdrawRead, "提现管理", "提现管理申请");
+
+            addSystemRole(SysRole.WithdrawManageCheck, "提现管理", "提现管理查看");
+            addSystemRole(SysRole.WithdrawManageRead, "提现管理", "提现管理申请");
             #endregion
 
             foreach (var item in roles)

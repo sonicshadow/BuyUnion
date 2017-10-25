@@ -31,74 +31,38 @@ namespace BuyUnion.Controllers
 
         // GET: Commission
         [Authorize(Roles = SysRole.CommissionManageRead)]
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
             Sidebar();
-            var orderLogs = db.OrderLogs.Where(s => s.Type == Enums.OrderLogType.Pay);
-            var list = new List<CommissionViewModel>();
-            foreach (var item in orderLogs)
-            {
-                if (!string.IsNullOrWhiteSpace(item.ExData))
+            var proxyAmountLogs = db.ProxyAmountLogs.Where(s => s.Type != Enums.AmountLogType.Withdraw).ToList()
+                .GroupBy(s => s.ProxyID)
+                .Select(s =>
                 {
-                    var obj = (JObject)JsonConvert.DeserializeObject(item.ExData);
-                    list.Add(new CommissionViewModel()
+                    var amount = s.Select(x =>
+                      {
+                          var a = x.Type == Enums.AmountLogType.Income ? x.Amount : -x.Amount;
+                          return a;
+                      });
+                    var proxyAmountLog = new ProxyAmountLog()
                     {
-                        Amount = decimal.Parse(obj["ProxyAmount"].ToString()),
-                        ProxyUserID = obj["ProxyID"].ToString(),
-                        Time = item.CreateDateTime
-                    });
-                    if (!string.IsNullOrWhiteSpace(obj["ProxyID"].ToString()))
-                    {
-                        list.Add(new CommissionViewModel()
-                        {
-                            Amount = decimal.Parse(obj["ChildProxyAmount"].ToString()),
-                            ProxyUserID = obj["ChildProxyID"].ToString(),
-                            Time = item.CreateDateTime
-                        });
-                    }
-                }
-            }
-            var model = list.GroupBy(s => s.ProxyUserID).Select(s => new CommissionViewModel()
-            {
-                ProxyUserID = s.Key,
-                Amount = s.Sum(x => x.Amount),
-            });
-            return View(model);
+                        Amount = amount.Sum(),
+                        ProxyID = s.Key,
+                        Type = Enums.AmountLogType.Income
+                    };
+                    return proxyAmountLog;
+                }).AsQueryable().OrderBy(s => s.ProxyID).ToPagedList(page);
+            return View(proxyAmountLogs);
         }
 
         [Authorize(Roles = SysRole.CommissionManageRead)]
-        public ActionResult Details(string proxyUserID, int page = 1)
+        public ActionResult Details(string ProxyID, int page = 1)
         {
             Sidebar();
-            var orders = db.Orders.Include(s => s.Details)
-                .Where(s => s.ProxyID == proxyUserID || s.ChildProxyID == proxyUserID);
-            var orderIds = orders.Select(s => s.ID);
-            var orderLogs = db.OrderLogs.Where(s => s.Type == Enums.OrderLogType.Pay
-                && orderIds.Contains(s.OrderID));
-            var list = new List<CommissionViewModel>();
-            foreach (var item in orderLogs)
-            {
-                if (!string.IsNullOrWhiteSpace(item.ExData))
-                {
-                    var obj = (JObject)JsonConvert.DeserializeObject(item.ExData);
-                    list.Add(new CommissionViewModel()
-                    {
-                        Amount = decimal.Parse(obj["ProxyAmount"].ToString()),
-                        ProxyUserID = obj["ProxyID"].ToString(),
-                        Time = item.CreateDateTime
-                    });
-                    if (!string.IsNullOrWhiteSpace(obj["ProxyID"].ToString()))
-                    {
-                        list.Add(new CommissionViewModel()
-                        {
-                            Amount = decimal.Parse(obj["ChildProxyAmount"].ToString()),
-                            ProxyUserID = obj["ChildProxyID"].ToString(),
-                            Time = item.CreateDateTime
-                        });
-                    }
-                }
-            }
-            return View(list.AsQueryable().OrderBy(s => s.Time).ToPagedList(page));
+            var proxyAmountLogs = db.ProxyAmountLogs
+                .Where(s => s.Type != Enums.AmountLogType.Withdraw && s.ProxyID == ProxyID)
+                .OrderByDescending(s => s.CreateDateTime)
+                .ToPagedList(page);
+            return View(proxyAmountLogs);
         }
     }
 }

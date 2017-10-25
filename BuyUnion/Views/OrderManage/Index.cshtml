@@ -65,6 +65,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Address)
             </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.ProxyID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChildProxyID)
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -99,6 +105,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.ProxyID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChildProxyID)
+            </td>*@
             <td>
                 @if (User.IsInRole(SysRole.OrderManageRead))
                 {

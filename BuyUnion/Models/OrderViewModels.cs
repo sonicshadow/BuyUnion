@@ -23,6 +23,7 @@ namespace BuyUnion.Models
             Type = order.Type;
             PayType = order.PayType;
             PaidAmount = order.PaidAmount;
+            PayCode = order.PayCode;
             Free = order.Free;
             Code = order.Code;
             PhoneNumber = order.PhoneNumber;

@@ -37,7 +37,7 @@ namespace BuyUnion.Controllers
             {
                 order = order.Where(s => s.State == state);
             }
-            var model = order.OrderBy(s => s.UpdateDateTime).ToPagedList(page);
+            var model = order.OrderByDescending(s => s.UpdateDateTime).ToPagedList(page);
             return View(model);
         }
 
@@ -74,37 +74,24 @@ namespace BuyUnion.Controllers
                         {
                             ModelState.AddModelError("", "订单已完成付款");
                         }
+                        //else
+                        //{
+                        //    //测试佣金和提现
+                        //    Bll.Orders.Pay(order.Code, "123456789", Enums.PayType.WeChat, order.Amount + order.Free);
+                        //    //测试佣金和提现
+                        //}
                     }
                     break;
                 case Enums.OrderState.Cancel:
                     {
-                        switch (order.State)
+                        try
                         {
-                            case Enums.OrderState.WaitPaid:
-                                { }
-                                break;
-                            case Enums.OrderState.Paid:
-                                {
-                                    var log = db.OrderLogs.FirstOrDefault(s => s.OrderID == order.ID &&
-                                        s.Type == Enums.OrderLogType.Pay);
-                                    log.ExData = null;
-                                }
-                                break;
-                            default:
-                                {
-                                    ModelState.AddModelError("", "订单不能取消");
-                                }
-                                break;
+                            Bll.Orders.Cancle(order.Code, UserID);
                         }
-                        var his = new OrderLog
+                        catch (Exception ex)
                         {
-                            CreateDateTime = DateTime.Now,
-                            OrderID = order.ID,
-                            Reamrk = $"取消订单",
-                            Type = Enums.OrderLogType.SubmitCancel,
-                            UserID = UserID,
-                        };
-                        db.OrderLogs.Add(his);
+                            ModelState.AddModelError("", ex.Message);
+                        }
                     }
                     break;
                 case Enums.OrderState.Shipped:
@@ -112,6 +99,10 @@ namespace BuyUnion.Controllers
                         if (order.State != Enums.OrderState.Paid)
                         {
                             ModelState.AddModelError("", "订单未付款不能发货");
+                        }
+                        if (order.State == Enums.OrderState.Shipped)
+                        {
+                            ModelState.AddModelError("", "订单未发货不能发货");
                         }
                         var his = new OrderLog
                         {
@@ -133,15 +124,29 @@ namespace BuyUnion.Controllers
                     break;
                 case Enums.OrderState.Complete:
                     {
-                        var his = new OrderLog
+                        if (order.State != Enums.OrderState.Complete && order.State != Enums.OrderState.Complete)
                         {
-                            CreateDateTime = DateTime.Now,
-                            OrderID = order.ID,
-                            Reamrk = $"完成订单",
-                            Type = Enums.OrderLogType.Complete,
-                            UserID = UserID
-                        };
-                        db.OrderLogs.Add(his);
+                            var his = new OrderLog
+                            {
+                                CreateDateTime = DateTime.Now,
+                                OrderID = order.ID,
+                                Reamrk = $"完成订单",
+                                Type = Enums.OrderLogType.Complete,
+                                UserID = UserID
+                            };
+                            db.OrderLogs.Add(his);
+                            var shopAmountLog = new ShopAmountLog()
+                            {
+                                Amount = order.PaidAmount,
+                                CreateDateTime = DateTime.Now,
+                                Type = Enums.AmountLogType.Income
+                            };
+                            db.ShopAmountLogs.Add(shopAmountLog);
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "订单已经完成了");
+                        }
                     }
                     break;
                 default:
@@ -155,7 +160,6 @@ namespace BuyUnion.Controllers
                 return View(GetModel(order));
             }
             return View(GetModel(order));
-
         }
 
         public SubmitOrderViewModel GetModel(Order order)

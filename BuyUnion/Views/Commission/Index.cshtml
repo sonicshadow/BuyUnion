@@ -1,18 +1,16 @@
-﻿@model IEnumerable<BuyUnion.Models.CommissionViewModel>
+﻿@model IEnumerable<BuyUnion.Models.ProxyAmountLog>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "佣金管理";
     Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+    var paged = (PagedList.IPagedList<BuyUnion.Models.ProxyAmountLog>)Model;
 }
 
 <table class="table table-hover table-striped">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProxyUserID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProxyUserName)
+                @Html.DisplayNameFor(model => model.ProxyID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Amount)
@@ -24,20 +22,18 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ProxyUserID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProxyUserName)
+                @Html.DisplayFor(modelItem => item.ProxyID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
             <td>
-                @Html.ActionLink("详情", "Details", new { proxyUserID = item.ProxyUserID }) 
+                @Html.ActionLink("详情", "Details", new { ProxyID = item.ProxyID })
             </td>
         </tr>
     }
 
 </table>
 
+@Html.PageList(paged, Url.PageUrl())
 

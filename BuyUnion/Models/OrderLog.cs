@@ -23,6 +23,7 @@ namespace BuyUnion.Models
         public string Reamrk { get; set; }
 
         [Display(Name = "时间")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime CreateDateTime { get; set; }
 
         /// <summary>
