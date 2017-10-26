@@ -168,7 +168,9 @@ namespace BuyUnion.Enums
         [Display(Name = "收入")]
         Income,
         [Display(Name = "提现")]
-        Withdraw
+        Withdraw,
+        [Display(Name = "退款")]
+        Refund
     }
 
     public enum WithdrawState

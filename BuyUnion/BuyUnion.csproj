@@ -309,6 +309,7 @@
     <Compile Include="Controllers\UploaderController.cs" />
     <Compile Include="Controllers\UserManageController.cs" />
     <Compile Include="Controllers\WechatPayController.cs" />
+    <Compile Include="Controllers\WithdrawController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -375,7 +376,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmountLog.cs" />
-    <Compile Include="Models\CommissionViewModel.cs" />
     <Compile Include="Models\FileUpload.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageResizer.cs" />
@@ -404,11 +404,10 @@
     <Content Include="Content\Images\404\avatar.png" />
     <Content Include="Content\Images\404\default.jpg" />
     <Content Include="Content\Images\home\arrow_up.png" />
-    <Content Include="Content\Images\home\home_slide_img01.jpg" />
-    <Content Include="Content\Images\home\home_slide_img02.jpg" />
-    <Content Include="Content\Images\home\home_slide_img03.jpg" />
-    <Content Include="Content\Images\home\home_slide_img04.jpg" />
-    <Content Include="Content\Images\home\home_slide_img05.jpg" />
+    <Content Include="Content\Images\home\home_slide_02_btns.png" />
+    <Content Include="Content\Images\home\home_slide_img01.png" />
+    <Content Include="Content\Images\home\home_slide_img02.png" />
+    <Content Include="Content\Images\home\home_slide_img03.png" />
     <Content Include="Content\Images\view\wechatPay_icon.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css">
@@ -837,6 +836,9 @@
     <Content Include="Views\Order\Result.cshtml" />
     <Content Include="Views\Commission\Details.cshtml" />
     <Content Include="Views\Commission\Index.cshtml" />
+    <Content Include="Views\Withdraw\Index.cshtml" />
+    <Content Include="Views\Withdraw\ApplicationIndex.cshtml" />
+    <Content Include="Views\Withdraw\Application.cshtml" />
     <Content Include="Views\OrderManage\Refund.cshtml" />
   </ItemGroup>
   <ItemGroup>
