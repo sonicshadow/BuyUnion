@@ -4,7 +4,7 @@ using System.Web;
 using System.Net;
 using System.IO;
 using System.Text;
-using System.Net.Security;    
+using System.Net.Security;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 
@@ -64,8 +64,9 @@ namespace WxPayAPI
                 //是否使用证书
                 if (isUseCert)
                 {
-                    string path = HttpContext.Current.Request.PhysicalApplicationPath;
-                    X509Certificate2 cert = new X509Certificate2(path + WxPayConfig.SSLCERT_PATH, WxPayConfig.SSLCERT_PASSWORD);
+                    string path = HttpContext.Current.Request.MapPath(WxPayConfig.SSLCERT_PATH);
+                   
+                    X509Certificate2 cert = new X509Certificate2(path, WxPayConfig.SSLCERT_PASSWORD, X509KeyStorageFlags.PersistKeySet | X509KeyStorageFlags.MachineKeySet);
                     request.ClientCertificates.Add(cert);
                     Log.Debug("WxPayApi", "PostXml used cert");
                 }
@@ -111,7 +112,7 @@ namespace WxPayAPI
                 {
                     response.Close();
                 }
-                if(request != null)
+                if (request != null)
                 {
                     request.Abort();
                 }
@@ -166,7 +167,7 @@ namespace WxPayAPI
             }
             catch (System.Threading.ThreadAbortException e)
             {
-                Log.Error("HttpService","Thread - caught ThreadAbortException - resetting.");
+                Log.Error("HttpService", "Thread - caught ThreadAbortException - resetting.");
                 Log.Error("Exception message: {0}", e.Message);
                 System.Threading.Thread.ResetAbort();
             }

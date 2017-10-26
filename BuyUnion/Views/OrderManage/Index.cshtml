@@ -109,6 +109,11 @@
                     @Html.Raw("|")
                     @Html.ActionLink("编辑", "Edit", new { id = item.ID })
                 }
+                @if (true && item.State == BuyUnion.Enums.OrderState.Paid)
+                {
+                    @Html.Raw("|")
+                    @Html.ActionLink("退款", "Refund", new { id = item.ID })
+                }
             </td>
         </tr>
     }

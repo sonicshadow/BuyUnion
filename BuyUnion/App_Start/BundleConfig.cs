@@ -73,6 +73,7 @@ namespace BuyUnion
             addViewScripts("homeIndex", new string[] { "homeIndex.js" });
             addViewScripts("orderPayOnWeiXin", new string[] { "orderPayOnWeiXin.js" });
             addViewScripts("productDetail", new string[] { "productDetail.js" });
+            addViewScripts("orderMangeRefund", new string[] { "orderMangeRefund.js" });
         }
     }
 }
