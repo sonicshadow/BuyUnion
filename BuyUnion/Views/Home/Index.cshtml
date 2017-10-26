@@ -12,36 +12,36 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide swiper-img">
-                    <h4 class="demo">DEMO</h4>
-                    <img src="~/Content/Images/home/home_slide_img04.jpg" />
+                    <img src="~/Content/Images/home/home_slide_img01.png" />
                     <div class="arrow-up"></div>
                 </div>
                 @foreach (var item in products)
                 {
                     <div class="swiper-slide swiper-product">
-                        <div>
+                        <div class="swiper-slide-info">
                             <div class="swiper-product-img">
                                 <img src="@Url.ResizeImage(item.Image, 500, 500, mode: BuyUnion.Enums.ResizerMode.Crop)" />
                             </div>
-                            <div class="swiper-product-price">
-                                <div>
-                                    @item.Price.ToString("C")
+                            @*<div class="swiper-product-price">
+                                    <div>
+                                        @item.Price.ToString("C")
+                                    </div>
+                                    原价：<del>@item.OriginalPrice.ToString("C")</del>
                                 </div>
-                                原价：<del>@item.OriginalPrice.ToString("C")</del>
-                            </div>
 
-                            <div class="swiper-product-name">@item.Name</div>
-                            <a class="btn btn-default" href="@Url.Action("Details", "Product", new { id=item.ID })">
-                                <div>马上购买</div>
+                                <div class="swiper-product-name">@item.Name</div>*@
+
+                            <a class="swiper-product-btns" href="@Url.Action("Details", "Product", new { id=item.ID })">
+                                <img src="~/Content/Images/home/home_slide_02_btns.png"/>
                             </a>
                         </div>
+
                         <div class="arrow-up"></div>
                     </div>
                 }
 
                 <div class="swiper-slide swiper-img">
-                    <h4 class="demo">DEMO</h4>
-                    <img src="~/Content/Images/home/home_slide_img02.jpg" />
+                    <img src="~/Content/Images/home/home_slide_img03.png" />
                     <div class="foot">
                         ©@DateTime.Now.Year 驭网科技有限公司 <br /> immlm.net 粤ICP备14071240号-3
                     </div>

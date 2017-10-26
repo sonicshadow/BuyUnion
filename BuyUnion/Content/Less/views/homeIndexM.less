@@ -17,6 +17,7 @@
         .block-mid-2();
         text-align: center;
         background-color: rgba(0, 0, 0, 0.5);
+        padding:5rem*@resize;
     }
 
     .homeIndexM-swiper {
@@ -42,28 +43,44 @@
                     }
 
                     &.swiper-product {
-                        background-color: #ffffff;
-                        padding: 20rem*@resize;
+                        height: 100vh;
+                        background: url("../../Images/home/home_slide_img02.png") no-repeat center;
+                        background-size: cover;
                         text-align: center;
+
+                        .swiper-slide-info {
+                            .block-mid(50%);
+                            width: 80%;
+                        }
 
                         .swiper-product-img {
                             text-align: center;
-                            /*border: 3rem*@resize solid #f68811;*/
-                            border-radius: 10rem*@resize;
                             overflow: hidden;
                             position: relative;
+                            background-color: @bg-color-white;
+                            padding: 10rem*@resize;
 
                             img {
                                 width: 100%;
                                 margin: 0 auto;
-                                background-color: #fff;
+                                border-radius: 10rem*@resize;
                             }
                         }
 
+                        .swiper-product-btns {
+                            .rectangle(213rem*@resize,98rem*@resize);
+                            border: none;
+                            background-color: rgba(0,0,0,0);
+                            padding: 0;
+                            margin-top: 10rem*@resize;
+                            display:inline-block;
+                            .img();
+                        }
+
                         .swiper-product-name {
-                            margin-top: 50rem*@resize;
                             font-size: @font-size-24;
-                            margin-bottom: 10rem*@resize;
+                            color: #562908;
+                            padding: 10rem*@resize;
                         }
 
                         .swiper-product-price {

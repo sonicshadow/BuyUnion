@@ -404,11 +404,10 @@
     <Content Include="Content\Images\404\avatar.png" />
     <Content Include="Content\Images\404\default.jpg" />
     <Content Include="Content\Images\home\arrow_up.png" />
-    <Content Include="Content\Images\home\home_slide_img01.jpg" />
-    <Content Include="Content\Images\home\home_slide_img02.jpg" />
-    <Content Include="Content\Images\home\home_slide_img03.jpg" />
-    <Content Include="Content\Images\home\home_slide_img04.jpg" />
-    <Content Include="Content\Images\home\home_slide_img05.jpg" />
+    <Content Include="Content\Images\home\home_slide_02_btns.png" />
+    <Content Include="Content\Images\home\home_slide_img01.png" />
+    <Content Include="Content\Images\home\home_slide_img02.png" />
+    <Content Include="Content\Images\home\home_slide_img03.png" />
     <Content Include="Content\Images\view\wechatPay_icon.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css">
