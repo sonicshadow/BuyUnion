@@ -1,7 +1,7 @@
 ﻿@model BuyUnion.Models.SubmitOrderViewModel
 
 @{
-    ViewBag.Title = "详情";
+    ViewBag.Title = "退款";
     Layout = "~/Views/Shared/_LayoutBackground.cshtml";
 }
 
@@ -134,7 +134,11 @@
 
             </table>
         </dd>
-
+        <dt></dt>
+        <dd><input type="button" class="btn btn-danger" data-id="@Model.ID" name="name" value="退款" id="btnRefund" /></dd>
     </dl>
 </div>
+@section Scripts{
+    @Scripts.Render("~/Bundles/orderMangeRefund")
+}
 
