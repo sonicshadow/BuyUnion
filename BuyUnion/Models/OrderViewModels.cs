@@ -65,5 +65,6 @@ namespace BuyUnion.Models
         public string Image { get; set; }
 
     }
+    
 
 }

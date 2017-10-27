@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "支付成功";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    string code = Request["Code"];
 }
 
 <div class="orderPayState minHight100vh">
@@ -12,7 +12,7 @@
         <div class="fs18 marginT10">支付成功</div>
         <div class="marginT10">请耐心等待发货</div>
         <div class="marginT5">
-            <a href="@Url.Action("Details","Orders",new { Code=Request["Code"]})">查看订单</a> | <a href="http://www.immlm.cn/Coupon/Index">返回买了么</a>
+            <a href="@Url.Action("Details","Orders",new { Code= code })">查看订单</a> | <a href="http://www.immlm.cn/Find">返回买了么</a>
         </div>
     </div>
 </div>

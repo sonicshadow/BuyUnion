@@ -10,7 +10,7 @@ function jsApiCall() {
         if (res.err_msg == "get_brand_wcpay_request:ok") {
             location = comm.action("Result", "Order", { code: code, type: 0 });
         } else {
-            alert(res.err_code + res.err_desc + res.err_msg);
+            //alert(res.err_code + res.err_desc + res.err_msg);
         }
     }
     );

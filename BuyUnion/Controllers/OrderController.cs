@@ -121,12 +121,36 @@ namespace BuyUnion.Controllers
             return Json(Comm.ToJsonResult("Success", "检测通过"));
         }
 
+        [HttpGet]
+        public ActionResult GetOrderState(string code)
+        {
+            var order = db.Orders.FirstOrDefault(s => s.Code == code);
+            if (order == null)
+            {
+                return Json(Comm.ToJsonResult("NoFound", "订单不存在"));
+            }
+            return Json(Comm.ToJsonResult("Success", "成功", new { order.State }));
+
+        }
+
         public ActionResult Result()
         {
             return View();
         }
 
-
+        [HttpGet]
+        public ActionResult Details(string code)
+        {
+            var order = db.Orders.Include(s => s.Details).FirstOrDefault(s => s.Code == code);
+            if (order.State == Enums.OrderState.WaitPaid)
+            {
+                return RedirectToAction("Submit", new { Code = code });
+            }
+            var productIds = order.Details.Select(s => s.ProductID).ToList();
+            var products = db.Products.Where(s => productIds.Contains(s.ID)).ToList();
+            var model = new SubmitOrderViewModel(order, products);
+            return View(model);
+        }
 
         public ActionResult Index()
         {

@@ -36,7 +36,7 @@ namespace BuyUnion.Controllers
             return RedirectToAction("Pay", new { OrderCode = orderCode, OpenID = pay.OpenID });
         }
 
-        [ActionName("temp")]
+        
         public ActionResult Pay(string orderCode, string openid)
         {
             var model = db.Orders.FirstOrDefault(s => s.Code == orderCode);
@@ -55,10 +55,6 @@ namespace BuyUnion.Controllers
             return View(model);
         }
 
-        public ActionResult Pay()
-        {
-            return View();
-        }
 
 
         public ActionResult NotifyUrl()
