@@ -33,10 +33,10 @@ namespace BuyUnion
             };
             encode();
 
-            Image image = new Bitmap(temp.Width - 1, temp.Height - 1);
+            Image image = new Bitmap(temp.Width + 10, temp.Height + 10);
             Graphics gra = Graphics.FromImage(image);
-
-            gra.DrawImage(temp, new Rectangle { Width = temp.Width, Height = temp.Height },
+            gra.Clear(Color.White);
+            gra.DrawImage(temp, new Rectangle { Width = temp.Width, Height = temp.Height, X = 10, Y = 10 },
                 new Rectangle { Width = image.Width, Height = image.Width }, GraphicsUnit.Pixel);
             gra.Dispose();
             return image;
