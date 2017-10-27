@@ -12,7 +12,7 @@ var isAndroid = !!window.jsCallNative;
 var isApp = isAndroid || isIosWebkit;
 
 $("#btns").click(function () {
-    if (isWX || !isiOS) {
+    if (!new check().isWeiXin() && !new check().isMoblieDevice()) {
         $(".linkToMobile-tip").removeClass("hidden");
         return false;
     }
