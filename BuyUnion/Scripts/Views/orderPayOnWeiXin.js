@@ -8,7 +8,8 @@ function jsApiCall() {
     function (res) {
         WeixinJSBridge.log(res.err_msg);
         if (res.err_msg == "get_brand_wcpay_request:ok") {
-            location = comm.action("Result", "Order", { code: code, type: 0 });
+            //location = comm.action("Result", "Order", { code: code, type: 0 });
+            $("#orderPayState").fadeIn();
         } else {
             //alert(res.err_code + res.err_desc + res.err_msg);
         }
