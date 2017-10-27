@@ -14,6 +14,7 @@ var isApp = isAndroid || isIosWebkit;
 $("#btns").click(function () {
     if (isWX || !isiOS) {
         $(".linkToMobile-tip").removeClass("hidden");
+        return false;
     }
 });
 
