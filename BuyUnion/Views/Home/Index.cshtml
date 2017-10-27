@@ -7,12 +7,11 @@
 
 @Styles.Render("~/bundles/swiper/css")
 
-<div class="homeIndexM hidden">
+<div class="homeIndexM">
     <div class="homeIndexM-swiper">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide swiper-img">
-                    <img src="~/Content/Images/home/home_slide_img01.png" />
+                <div class="swiper-slide swiper-img swiper-img-01">
                     <div class="arrow-up"></div>
                 </div>
                 @foreach (var item in products)
@@ -22,43 +21,28 @@
                             <div class="swiper-product-img">
                                 <img src="@Url.ResizeImage(item.Image, 500, 500, mode: BuyUnion.Enums.ResizerMode.Crop)" />
                             </div>
-                            @*<div class="swiper-product-price">
-                                    <div>
-                                        @item.Price.ToString("C")
-                                    </div>
-                                    原价：<del>@item.OriginalPrice.ToString("C")</del>
-                                </div>
-
-                                <div class="swiper-product-name">@item.Name</div>*@
-
-                            <a class="swiper-product-btns" href="@Url.Action("Details", "Product", new { id=item.ID })">
-                                <img src="~/Content/Images/home/home_slide_02_btns.png" />
+                            <a id="btns" class="swiper-product-btns" href="@Url.Action("Details", "Product", new { id=item.ID })">
+                                <img src="~/Content/Images/home/home_slide_02_btns.png"/>
                             </a>
                         </div>
 
                         <div class="arrow-up"></div>
+                        <div class="linkToMobile-tip hidden">
+                            <div class="linkToMobile-tip-wrapper">
+                                <img class="" crossorigin="anonymous" src="@Url.Action("Index", "QrCode", new { data =Url.ContentFull( Url.Action("Details", "Product", new { id = item.ID }) )})" />
+                                <div class="linkToMobile-tip-name">请用手机扫描二维码，浏览详情页面</div>
+                                <span id="closed" class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </div>
                     </div>
                 }
 
-                <div class="swiper-slide swiper-img">
-                    <img src="~/Content/Images/home/home_slide_img03.png" />
-                    @*<div class="foot">
-                            ©@DateTime.Now.Year 驭网科技有限公司 <br /> immlm.net 粤ICP备14071240号-3
-                        </div>*@
-                </div>
+                <div class="swiper-slide swiper-img swiper-img-02"></div>
             </div>
         </div>
     </div>
-
 </div>
-<div class="homeIndexM-pc hidden">
-    <h4>请在微信内浏览</h4>
-    <a href="http://www.immlm.net/">
-        <img class="qrcode" src="~/qrcode?data=http://www.immlm.net/" alt="" />
-    </a>
- 
 
-</div>
 
 
 @section Scripts{

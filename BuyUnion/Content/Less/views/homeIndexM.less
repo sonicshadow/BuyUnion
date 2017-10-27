@@ -30,15 +30,21 @@
 
             .swiper-wrapper {
 
-
-
-
                 .swiper-slide {
+                    position:relative;
                     overflow: hidden;
 
                     &.swiper-img {
-                        img {
+                        &.swiper-img-01 {
                             height: 100vh;
+                            background: url("../../Images/home/home_slide_img01.png") no-repeat center;
+                            background-size: cover;
+                        }
+
+                        &.swiper-img-02 {
+                            height: 100vh;
+                            background: url("../../Images/home/home_slide_img03.png") no-repeat center;
+                            background-size: cover;
                         }
                     }
 
@@ -181,6 +187,34 @@
                             opacity: 0;
                         }
                     }
+
+                    @media (min-width: @screen-sm) {
+                        &.swiper-img {
+                            &.swiper-img-01 {
+                                background-size: contain;
+                            }
+
+                            &.swiper-img-02 {
+                                background-size: contain;
+                            }
+                        }
+
+                        &.swiper-product {
+                            background-size: contain;
+
+                            .swiper-slide-info {
+                                width: 400px;
+                            }
+
+                            .swiper-product-btns {
+                                .rectangle(213*1.2px,98*1.2px);
+                            }
+                        }
+
+                        .arrow-up {
+                            .rectangle(62px,34px);
+                        }
+                    }
                 }
             }
         }
@@ -210,15 +244,42 @@
     }
 }
 
-.homeIndexM-pc {
-    text-align: center;
-    padding:0 20rem*@resize;
+.linkToMobile-tip {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    background:rgba(0,0,0,0.7);
+    z-index: @z-index-top+1000;
 
-    h4 {
-        margin-top: 20vh;
+    .linkToMobile-tip-wrapper {
+        .block-mid(50%);
+        .rectangle(400px,500px);
+        background-color: @bg-color-white;
+        padding: 20px;
+        text-align: center;
+
+        >span{
+            position:absolute;
+            top:-20px;
+            right:-17px;
+            font-size:30px;
+            border:1px solid #808080;
+            border-radius:50%;
+            padding:8px;
+            background-color:@bg-color-white;
+            cursor:pointer;
+        }
     }
 
-    .qrcode {
-        max-width: 50%;
+    img {
+        width: 360px;
+        height: 360px;
+        background-color: @bg-color-black;
+    }
+
+    .linkToMobile-tip-name {
+        font-size: 20px;
+        padding: 20px;
     }
 }
