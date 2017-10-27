@@ -35,3 +35,8 @@ function callpay() {
 $("#btnSubmit").click(function () {
     callpay();
 })
+
+
+$("#closed").click(function () {
+    comm.action("Submit", "Orders", { code: $("#Code").val() });
+});

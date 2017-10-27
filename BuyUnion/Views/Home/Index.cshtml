@@ -7,7 +7,7 @@
 
 @Styles.Render("~/bundles/swiper/css")
 
-<div class="homeIndexM">
+<div class="homeIndexM hidden">
     <div class="homeIndexM-swiper">
         <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -32,7 +32,7 @@
                                 <div class="swiper-product-name">@item.Name</div>*@
 
                             <a class="swiper-product-btns" href="@Url.Action("Details", "Product", new { id=item.ID })">
-                                <img src="~/Content/Images/home/home_slide_02_btns.png"/>
+                                <img src="~/Content/Images/home/home_slide_02_btns.png" />
                             </a>
                         </div>
 
@@ -43,15 +43,22 @@
                 <div class="swiper-slide swiper-img">
                     <img src="~/Content/Images/home/home_slide_img03.png" />
                     @*<div class="foot">
-                        ©@DateTime.Now.Year 驭网科技有限公司 <br /> immlm.net 粤ICP备14071240号-3
-                    </div>*@
+                            ©@DateTime.Now.Year 驭网科技有限公司 <br /> immlm.net 粤ICP备14071240号-3
+                        </div>*@
                 </div>
             </div>
         </div>
     </div>
 
 </div>
+<div class="homeIndexM-pc hidden">
+    <h4>请在微信内浏览</h4>
+    <a href="http://www.immlm.net/">
+        <img class="qrcode" src="http://www.immlm.cn/qrcode?data=http://www.immlm.net/" alt="" />
+    </a>
+ 
 
+</div>
 
 
 @section Scripts{

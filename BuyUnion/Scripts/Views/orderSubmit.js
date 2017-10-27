@@ -274,6 +274,20 @@ $("#btnBack").goback(comm.action("Index", "Home"));
 
 $("#btnSubmit").click(function (e) {
     var code = $(this).data("code");
-    location = comm.action("PayTemp", "WechatPay", { orderCode: code });
+    $.ajax({
+        type: "POST",
+        url: comm.action("Check", "Order"),
+        data: { code: code },
+        dataType: "json",
+        success: function (data) {
+            if (data.State == "Success") {
+                location = comm.action("PayTemp", "WechatPay", { orderCode: code });
+            }
+            else {
+                comm.promptBox(data.Message);
+            }
+        }
+    });
+
 
 });

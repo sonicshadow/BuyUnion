@@ -100,18 +100,25 @@ namespace BuyUnion.Controllers
 
 
 
+        [HttpPost]
         public ActionResult Check(string code)
         {
+
             var order = db.Orders.FirstOrDefault(s => s.Code == code);
             if (order == null)
             {
                 return Json(Comm.ToJsonResult("NoFound", "订单不存在"));
             }
-            if (order.State != Enums.OrderState.Paid)
+            if (string.IsNullOrWhiteSpace(order.Address))
+            {
+                return Json(Comm.ToJsonResult("Address", "未填写送货地址"));
+            }
+            if (order.State != Enums.OrderState.WaitPaid)
             {
                 return Json(Comm.ToJsonResult("Error", "订单已提交"));
             }
-            return Json(Comm.ToJsonResult("Success", "检测成功"));
+
+            return Json(Comm.ToJsonResult("Success", "检测通过"));
         }
 
         public ActionResult Result()

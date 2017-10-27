@@ -18,7 +18,7 @@
             </div>
         }
     </div>*@
-
+@Html.HiddenFor(model => model.Code)
 <div class="orderPay minHight100vh">
     <div class="orderPay-info">
         <div class="orderPay-info-tits">
@@ -31,7 +31,7 @@
         </div>
         <div class="orderPay-info-model clearfix">
             <div class="fl">应付金额</div>
-            <div class="fr">500元</div>
+            <div class="fr">@Html.DisplayFor(model => model.Amount)元</div>
         </div>
         <div class="orderPay-info-btns">
             <input id="btnSubmit" class="btn btn-default" type="button" value="确认付款" />
