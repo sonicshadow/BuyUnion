@@ -34,10 +34,18 @@ function callpay() {
 }
 
 $("#btnSubmit").click(function () {
-    callpay();
+    console.log(wxJsApiParam);
+    if (new check().isWeiXin()) {
+        callpay();
+    }
+    else {
+        location = encodeURI(wxJsApiParam.mweb_url);
+    }
 })
 
 
 $("#closed").click(function () {
     comm.action("Submit", "Orders", { code: $("#Code").val() });
 });
+
+

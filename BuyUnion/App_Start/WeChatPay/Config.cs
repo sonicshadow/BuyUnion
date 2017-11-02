@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Web;
 using BuyUnion.Models;
+using System.Text.RegularExpressions;
+
 namespace WxPayAPI
 {
     /**
@@ -62,10 +64,9 @@ namespace WxPayAPI
         public static string NOTIFY_URL { get { return $"http://{HttpContext.Current.Request.Url.Host}/WechatPay/NotifyUrl"; } }
 
         //=======【商户系统后台机器IP】===================================== 
-        /* 此参数可手动配置也可在程序中自动获取
+        /* 此参数可手动配置也可在程序中自动获取 通過http://ip.qq.com获取
         */
-        public static string IP { get { return "121.40.252.187"; } }
-
+        public static string IP { get { return "14.220.103.173"; } }
 
         //=======【代理服务器设置】===================================
         /* 默认IP和端口号分别为0.0.0.0和0，此时不开启代理（如有需要才设置）

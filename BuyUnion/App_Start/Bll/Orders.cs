@@ -127,7 +127,7 @@ namespace BuyUnion.Bll
                 }
             }
         }
-        
+
         public static void Cancle(string code, string userId)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -223,6 +223,7 @@ namespace BuyUnion.Bll
                     UserID = userId,
                 };
                 db.OrderLogs.Add(his);
+                order.State = Enums.OrderState.Cancel;
                 db.SaveChanges();
             }
         }

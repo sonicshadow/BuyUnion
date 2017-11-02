@@ -16,7 +16,7 @@ namespace BuyUnion.WeChatPay
             Request = HttpContext.Current.Request;
             Response = HttpContext.Current.Response;
         }
-        
+
         /// <summary>
         /// 分（把元转换成分后赋值）
         /// </summary>
@@ -154,11 +154,24 @@ namespace BuyUnion.WeChatPay
          */
         public WxPayData GetUnifiedOrderResult()
         {
+            //区分h5支付
+            var trade_type = "JSAPI";
+            if (!Comm.IsWeChat)
+            {
+                trade_type = "MWEB";
+            }
             //统一下单
             WxPayData data = new WxPayData();
             //必填字段
-            data.SetValue("trade_type", "JSAPI");
-            data.SetValue("openid", OpenID);
+            data.SetValue("trade_type", trade_type);
+            if (Comm.IsWeChat)
+            {
+                data.SetValue("openid", OpenID);
+            }
+            else
+            {
+                data.SetValue("spbill_create_ip", "");
+            }
             data.SetValue("body", Body);
             data.SetValue("out_trade_no", OrderCode);
             data.SetValue("total_fee", TotalFee);
@@ -167,8 +180,7 @@ namespace BuyUnion.WeChatPay
             data.SetValue("time_start", DateTime.Now.ToString("yyyyMMddHHmmss"));
             data.SetValue("time_expire", DateTime.Now.AddMinutes(10).ToString("yyyyMMddHHmmss"));
             //data.SetValue("goods_tag", GoodsTag);//标签，如优惠券、降价
-
-
+            //data.SetValue("mweb_url", "");
             WxPayData result = WxPayApi.UnifiedOrder(data);
             if (!result.IsSet("appid") || !result.IsSet("prepay_id") || result.GetValue("prepay_id").ToString() == "")
             {
@@ -207,6 +219,8 @@ namespace BuyUnion.WeChatPay
             jsApiParam.SetValue("package", "prepay_id=" + unifiedOrderResult.GetValue("prepay_id"));
             jsApiParam.SetValue("signType", "MD5");
             jsApiParam.SetValue("paySign", jsApiParam.MakeSign());
+
+            jsApiParam.SetValue("mweb_url", unifiedOrderResult.GetValue("mweb_url"));
 
             string parameters = jsApiParam.ToJson();
 

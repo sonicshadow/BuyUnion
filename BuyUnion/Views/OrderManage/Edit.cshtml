@@ -154,17 +154,8 @@
                     <input name="State" value="@BuyUnion.Enums.OrderState.Complete" type="hidden" />
                     <input type="submit" value="完成" class="btn btn-default" />
                 }
-                @*if (Model.State == BuyUnion.Enums.OrderState.WaitPaid)
-                    {
-                        using (Html.BeginForm())
-                        {
-                            @Html.HiddenFor(model => model.ID)
-                            <input name="State" value="@BuyUnion.Enums.OrderState.Paid" type="hidden" />
-                            <input type="submit" value="付款" class="btn btn-default" />
-                        }
-                    }*@
             }
-            @if (Model.State != BuyUnion.Enums.OrderState.Cancel)
+            @if (Model.State == BuyUnion.Enums.OrderState.Shipped && Model.State == BuyUnion.Enums.OrderState.Complete)
             {
                 using (Html.BeginForm())
                 {

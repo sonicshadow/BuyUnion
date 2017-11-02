@@ -214,6 +214,7 @@ namespace BuyUnion.Controllers
                 TranscationID = result.GetValue("transaction_id"),
             }), Enums.DebugLogLevel.Normal);
 
+            Bll.Orders.Cancle(order.Code, UserID);
             return Json(Comm.ToJsonResult("Success", "退款成功"));
         }
 

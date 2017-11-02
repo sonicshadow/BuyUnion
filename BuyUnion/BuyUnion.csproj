@@ -409,6 +409,7 @@
     <Content Include="Content\Images\home\home_slide_img01.png" />
     <Content Include="Content\Images\home\home_slide_img02.png" />
     <Content Include="Content\Images\home\home_slide_img03.png" />
+    <Content Include="Content\Images\view\loadingGif.gif" />
     <Content Include="Content\Images\view\wechatPay_icon.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css">
@@ -895,6 +896,9 @@
     <EmbeddedResource Include="Migrations\201710230233444_AddAmountLog.resx">
       <DependentUpon>201710230233444_AddAmountLog.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

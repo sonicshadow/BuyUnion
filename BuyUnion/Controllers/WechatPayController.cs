@@ -31,31 +31,39 @@ namespace BuyUnion.Controllers
             {
                 return this.ToError("错误", "订单不存在");
             }
-            WechatPay pay = new WechatPay();
-            pay.GetOpenidAndAccessToken();
-            return RedirectToAction("Pay", new { OrderCode = orderCode, OpenID = pay.OpenID });
+            if (Comm.IsWeChat)
+            {
+                WechatPay pay = new WechatPay();
+                pay.GetOpenidAndAccessToken();
+                return RedirectToAction("Pay", new { OrderCode = orderCode, OpenID = pay.OpenID });
+            }
+            return RedirectToAction("Pay", new { OrderCode = orderCode, OpenID = "" });
         }
 
-        
+
         public ActionResult Pay(string orderCode, string openid)
         {
             var model = db.Orders.FirstOrDefault(s => s.Code == orderCode);
-            WechatPay pay = new WechatPay();
-            pay.OpenID = openid;
-            pay.GetOpenidAndAccessToken();
-            pay.OrderCode = model.Code;
-            pay.TotalFee = Convert.ToInt32(model.Amount * 100);
-            pay.Body = $"购物单";
-            pay.Attach = "";
-            ////pay.GoodsTag = string.Join(",", model.Details.Select(s => s.ModularProduct.Title));
-            WxPayData unifiedOrderResult = pay.GetUnifiedOrderResult();
-            string wxJsApiParam = pay.GetJsApiParameters();
-            WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
-            ViewBag.wxJsApiParam = wxJsApiParam;
+            if (string.IsNullOrWhiteSpace(model.PayCode))
+            {
+                WechatPay pay = new WechatPay();
+                if (Comm.IsWeChat)
+                {
+                    pay.OpenID = openid;
+                    pay.GetOpenidAndAccessToken();
+                }
+                pay.OrderCode = model.Code;
+                pay.TotalFee = Convert.ToInt32(model.Amount * 100);
+                pay.Body = $"购物单";
+                pay.Attach = "";
+                ////pay.GoodsTag = string.Join(",", model.Details.Select(s => s.ModularProduct.Title));
+                WxPayData unifiedOrderResult = pay.GetUnifiedOrderResult();
+                string wxJsApiParam = pay.GetJsApiParameters();
+                WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
+                ViewBag.wxJsApiParam = wxJsApiParam;
+            }
             return View(model);
         }
-
-
 
         public ActionResult NotifyUrl()
         {
@@ -111,9 +119,6 @@ namespace BuyUnion.Controllers
                 WxPayAPI.Log.Info(this.GetType().ToString(), $"order state change success : OrderCode={orderCode}");
                 return Content(res.ToXml());
             }
-
-
-
         }
 
         /// <summary>
