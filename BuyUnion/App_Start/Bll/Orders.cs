@@ -38,93 +38,73 @@ namespace BuyUnion.Bll
                     order.PaidAmount = amount;
                     db.SaveChanges();
                     //分成
-                    //var pList = (from productProxy in db.ProductProxys
-                    //             from product in db.Products
-                    //             from detail in order.Details
-                    //             where productProxy.ProxyUserID == order.ProxyID &&
-                    //                   productProxy.ProductID == product.ID &&
-                    //                    productProxy.ProductID == detail.ProductID
-                    //             select new { productProxy, product, detail }).ToList();
                     var pid = order.Details.Select(s => s.ProductID).Distinct();
-                    var pList = (from productProxy in db.ProductProxys
-                                 from product in db.Products
-                                 where productProxy.ProxyUserID == order.ProxyID &&
-                                       productProxy.ProductID == product.ID &&
-                                       pid.Contains(productProxy.ProductID)
-                                 select new { productProxy, product }).ToList();
-
-                    if (pList.Count > 0)
+                    var pList = (from product in db.Products
+                                 join pp in db.ProductProxys.Where(s => s.ProxyUserID == order.ProxyID) on product.ID equals pp.ProductID into productProxy
+                                 from p in productProxy.DefaultIfEmpty()
+                                 where pid.Contains(product.ID)
+                                 select new { productProxy = p, product }).ToList();
+                    //代理佣金
+                    decimal proxyAmount = order.Details.Select(s =>
                     {
-                        //代理佣金
-                        decimal proxyAmount = 0;
-                        foreach (var item in order.Details)
+                        var list = pList.FirstOrDefault(x => x.product.ID == s.ProductID);
+                        var commission = string.IsNullOrWhiteSpace(order.ChildProxyID) ? list.product.Commission : decimal.Multiply(list.product.Commission, (decimal)0.7);
+                        var amountItem = decimal.Multiply((s.Count * s.Price), commission);
+                        if (list.productProxy != null)
                         {
-                            var list = pList.FirstOrDefault(x => x.product.ID == item.ProductID);
-                            if (list != null)
+                            var cha = list.productProxy.Max - list.productProxy.Count;//剩余的全额佣金
+                            if (cha - s.Count >= 0)
                             {
-                                var cha = list.productProxy.Max - list.productProxy.Count;//剩余的全额佣金
-                                var commission = decimal.Multiply(list.product.Commission, (decimal)0.7);
-                                var amountItem = decimal.Multiply((item.Count * item.Price), commission);
-                                if (cha > 0)
-                                {
-                                    if (cha - item.Count >= 0)
-                                    {
-                                        commission = 1;
-                                        amountItem = decimal.Multiply((item.Count * item.Price), commission);
-                                    }
-                                    else
-                                    {
-                                        amountItem = decimal.Multiply(((item.Count - cha) * item.Price), commission);
-                                        commission = 1;
-                                        amountItem = amountItem + decimal.Multiply((cha * item.Price), commission);
-                                    }
-                                }
-                                proxyAmount = proxyAmount + amountItem;
+                                commission = 1;
+                                amountItem = decimal.Multiply((s.Count * s.Price), commission);
+                            }
+                            else
+                            {
+                                amountItem = decimal.Multiply(((s.Count - cha) * s.Price), commission);//没有的全额佣金那部分
+                                amountItem = amountItem + decimal.Multiply((cha * s.Price), 1);//全额佣金那部分
                             }
                         }
-                        var proxyAmountLog = new ProxyAmountLog()
+                        return amountItem;
+                    }).Sum();
+                    var proxyAmountLog = new ProxyAmountLog()
+                    {
+                        Amount = proxyAmount,
+                        CreateDateTime = DateTime.Now,
+                        ProxyID = order.ProxyID,
+                        Type = Enums.AmountLogType.Income,
+                    };
+                    db.ProxyAmountLogs.Add(proxyAmountLog);
+                    //二级代理佣金
+                    if (!string.IsNullOrWhiteSpace(order.ChildProxyID))
+                    {
+                        var childProxyAmount = order.Details.Select(s =>
                         {
-                            Amount = proxyAmount,
+                            var list = pList.FirstOrDefault(x => x.product.ID == s.ProductID);
+                            var commission = decimal.Multiply(list.product.Commission, (decimal)0.3);
+                            var amountItem = decimal.Multiply((s.Count * s.Price), commission);
+                            return decimal.Multiply((s.Count * s.Price), commission);
+                        }).Sum();
+                        var childProxyAmountLog = new ProxyAmountLog()
+                        {
+                            Amount = childProxyAmount,
                             CreateDateTime = DateTime.Now,
-                            ProxyID = order.ProxyID,
+                            ProxyID = order.ChildProxyID,
                             Type = Enums.AmountLogType.Income,
                         };
-                        db.ProxyAmountLogs.Add(proxyAmountLog);
-                        //二级代理佣金
-                        if (!string.IsNullOrWhiteSpace(order.ChildProxyID))
-                        {
-                            var childProxyAmount = order.Details.Select(s =>
-                            {
-                                var list = pList.FirstOrDefault(x => x.product.ID == s.ProductID);
-                                if (list == null)
-                                {
-                                    return 0;
-                                }
-                                var commission = decimal.Multiply(list.product.Commission, (decimal)0.3);
-                                return decimal.Multiply((s.Count * s.Price), commission);
-                            }).Sum();
-                            var childProxyAmountLog = new ProxyAmountLog()
-                            {
-                                Amount = childProxyAmount,
-                                CreateDateTime = DateTime.Now,
-                                ProxyID = order.ChildProxyID,
-                                Type = Enums.AmountLogType.Income,
-                            };
-                            db.ProxyAmountLogs.Add(childProxyAmountLog);
-                        }
+                        db.ProxyAmountLogs.Add(childProxyAmountLog);
                     }
-                    //订单记录
-                    var his = new OrderLog
-                    {
-                        CreateDateTime = DateTime.Now,
-                        OrderID = order.ID,
-                        Reamrk = $"使用{type.GetDisplayName()}支付了{amount}元",
-                        Type = Enums.OrderLogType.Pay,
-                        UserID = order.UserID,
-                    };
-                    db.OrderLogs.Add(his);
-                    db.SaveChanges();
                 }
+                //订单记录
+                var his = new OrderLog
+                {
+                    CreateDateTime = DateTime.Now,
+                    OrderID = order.ID,
+                    Reamrk = $"使用{type.GetDisplayName()}支付了{amount}元",
+                    Type = Enums.OrderLogType.Pay,
+                    UserID = order.UserID,
+                };
+                db.OrderLogs.Add(his);
+                db.SaveChanges();
             }
         }
 

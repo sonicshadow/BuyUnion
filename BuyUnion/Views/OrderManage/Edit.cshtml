@@ -164,6 +164,12 @@
                     <input type="submit" value="取消订单" class="btn btn-default" />
                 }
             }
+            @using (Html.BeginForm())
+            {
+                @Html.HiddenFor(model => model.ID)
+                <input name="State" value="@BuyUnion.Enums.OrderState.Paid" type="hidden" />
+                        <input type="submit" value="付款" class="btn btn-default" />
+            }
         </div>
     </div>
 </div>

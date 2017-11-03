@@ -84,22 +84,22 @@
                 @Html.ActionLink("查看", "Details", new { id = item.ID })
                 @if (User.IsInRole(SysRole.ProductManageEdit))
                 {
-                   @Html.Raw("|") @Html.ActionLink("编辑", "Edit", new { id = item.ID }) 
+                    @Html.Raw("| ")@Html.ActionLink("编辑", "Edit", new { id = item.ID })
                 }
 
-               
+
                 @if (User.IsInRole(SysRole.ProductManageDelete))
                 {
-                    @Html.Raw("|") @Html.ActionLink("删除", "Delete", new { id = item.ID })
+                    @Html.Raw("| ")@Html.ActionLink("删除", "Delete", new { id = item.ID })
                 }
 
                 @if (item.State == BuyUnion.Enums.ProductState.On && User.IsInRole(SysRole.ProductManageOn))
                 {
-                    @Html.Raw("|") <a href="#" data-id="@item.ID" data-state="@(BuyUnion.Enums.ProductState.Off)">下架</a>
+                    @Html.Raw("| ")<a href="#" data-id="@item.ID" data-state="@(BuyUnion.Enums.ProductState.Off)">下架</a>
                 }
                 else if (User.IsInRole(SysRole.ProductManageOff))
                 {
-                    <a href="#" data-id="@item.ID" data-state="@(BuyUnion.Enums.ProductState.On)">上架</a>
+                    @Html.Raw("| ")<a href="#" data-id="@item.ID" data-state="@(BuyUnion.Enums.ProductState.On)">上架</a>
                 }
             </td>
         </tr>

@@ -79,7 +79,7 @@ namespace BuyUnion.Controllers
                         //else
                         //{
                         //    //测试佣金和提现
-                        //    Bll.Orders.Pay(order.Code, "123456789", Enums.PayType.WeChat, order.Amount + order.Free);
+                        //    Bll.Orders.Pay(order.Code, "123456789", Enums.PayType.WeChat, order.PaidAmount);
                         //    //测试佣金和提现
                         //}
                     }

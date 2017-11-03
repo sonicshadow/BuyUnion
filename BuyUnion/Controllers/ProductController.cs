@@ -17,13 +17,13 @@ namespace BuyUnion.Controllers
             return View();
         }
 
-        public ActionResult Details(string userId, int? id)
+        public ActionResult Details(string userId, int? id, string name)
         {
             //if (string.IsNullOrWhiteSpace(userId) || !id.HasValue)
             //{
             //    return this.ToError("错误", "传参有误");
             //}
-            var product = db.Products.FirstOrDefault(s => s.ID == id.Value);
+            var product = db.Products.FirstOrDefault(s => s.ID == id.Value || s.Name == name);
             if (product == null)
             {
                 return this.ToError("错误", "没有这个商品");
