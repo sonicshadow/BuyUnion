@@ -1,5 +1,5 @@
 ﻿
-var buyUrl = "http://localhost:62209/";
+var buyUrl = "http://www.immlm.cn/";
 function GetParent() {
     $.ajax({
         type: "GET",
