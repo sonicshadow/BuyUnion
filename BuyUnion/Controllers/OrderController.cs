@@ -154,7 +154,7 @@ namespace BuyUnion.Controllers
 
         public ActionResult Index()
         {
-            var userId = Request.Cookies["UserId"].Value;
+            var userId = Request.Cookies["UserId"] != null ? Request.Cookies["UserId"].Value : null;
             var orders = db.Orders.Include(s => s.Details).Where(s => s.UserID == userId).ToList();
             var productIds = new List<int>();
             foreach (var item in orders)
