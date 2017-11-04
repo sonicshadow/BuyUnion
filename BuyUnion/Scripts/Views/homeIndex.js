@@ -13,14 +13,14 @@ var isApp = isAndroid || isIosWebkit;
 
 var check = new check();
 $("#btns").click(function () {
-    if (!check.isWeiXin() && !check.isMoblieDevice()) {
-        $(".linkToMobile-tip").removeClass("hidden");
-        return false;
-    }
-    else if (check.isMoblieDevice()) {
-        comm.promptBox("请在微信里打开");
-        return false;
-    }
+    //if (!check.isWeiXin() && !check.isMoblieDevice()) {
+    //    $(".linkToMobile-tip").removeClass("hidden");
+    //    return false;
+    //}
+    //else if (check.isMoblieDevice()) {
+    //    comm.promptBox("请在微信里打开");
+    //    return false;
+    //}
 });
 
 $("#closed").click(function () {
