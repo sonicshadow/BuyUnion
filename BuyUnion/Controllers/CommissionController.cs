@@ -31,22 +31,13 @@ namespace BuyUnion.Controllers
         public ActionResult Index(int page = 1)
         {
             Sidebar();
-            var proxyAmountLogs = db.ProxyAmountLogs.Where(s => s.Type != Enums.AmountLogType.Withdraw && s.ProxyID!="" ).ToList()
+            var proxyAmountLogs = db.ProxyAmountLogs.Where(s => s.Type != Enums.AmountLogType.Withdraw && s.ProxyID != "").ToList()
                 .GroupBy(s => s.ProxyID)
-                .Select(s =>
+                .Select(s => new ProxyAmountLog()
                 {
-                    var amount = s.Select(x =>
-                      {
-                          var a = x.Type == Enums.AmountLogType.Income ? x.Amount : -x.Amount;
-                          return a;
-                      });
-                    var proxyAmountLog = new ProxyAmountLog()
-                    {
-                        Amount = amount.Sum(),
-                        ProxyID = s.Key,
-                        Type = Enums.AmountLogType.Income
-                    };
-                    return proxyAmountLog;
+                    Amount = s.Sum(x => x.Amount),
+                    ProxyID = s.Key,
+                    Type = Enums.AmountLogType.Income
                 }).AsQueryable().OrderBy(s => s.ProxyID).ToPagedList(page);
             return View(proxyAmountLogs);
         }

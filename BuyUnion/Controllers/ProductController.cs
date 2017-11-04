@@ -27,7 +27,7 @@ namespace BuyUnion.Controllers
 
             if (cok != null)
             {
-                cok.Values["UserId"] = userId;
+                cok.Value = userId;
             }
             else
             {

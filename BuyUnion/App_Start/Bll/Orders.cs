@@ -162,7 +162,7 @@ namespace BuyUnion.Bll
                                 }).Sum();
                                 var proxyAmountLog = new ProxyAmountLog()
                                 {
-                                    Amount = proxyAmount,
+                                    Amount = -proxyAmount,
                                     CreateDateTime = DateTime.Now,
                                     ProxyID = order.ProxyID,
                                     Type = Enums.AmountLogType.Refund,
@@ -181,7 +181,7 @@ namespace BuyUnion.Bll
                                 }).Sum();
                                 var childProxyAmountLog = new ProxyAmountLog()
                                 {
-                                    Amount = childProxyAmount,
+                                    Amount = -childProxyAmount,
                                     CreateDateTime = DateTime.Now,
                                     ProxyID = order.ChildProxyID,
                                     Type = Enums.AmountLogType.Refund,
@@ -191,7 +191,7 @@ namespace BuyUnion.Bll
                             //商家退款
                             var shopAmountLog = new ShopAmountLog()
                             {
-                                Amount = order.PaidAmount,
+                                Amount = -order.PaidAmount,
                                 CreateDateTime = DateTime.Now,
                                 Type = Enums.AmountLogType.Refund
                             };
