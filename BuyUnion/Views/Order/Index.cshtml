@@ -1,0 +1,85 @@
+﻿@model IEnumerable<BuyUnion.Models.SubmitOrderViewModel>
+
+@{
+    ViewBag.Title = "订单管理";
+}
+
+
+<div class="orderIndex minHight100vh bg-color-grey paddingT50">
+    <div class="navigationBar">
+        <span class="glyphicon glyphicon-menu-left navigationBar-left" aria-hidden="true" id="btnBack"></span>
+        <div class="navigationBar-name">订单管理</div>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        string state = "待支付";
+        switch (item.State)
+        {
+            case BuyUnion.Enums.OrderState.WaitPaid:
+                state = "待支付";
+                break;
+            case BuyUnion.Enums.OrderState.Paid:
+                state = "待发货";
+                break;
+            case BuyUnion.Enums.OrderState.Cancel:
+                state = "交易关闭";
+                break;
+            case BuyUnion.Enums.OrderState.Shipped:
+                state = "卖家已发货";
+                break;
+            case BuyUnion.Enums.OrderState.Complete:
+                state = "交易完成";
+                break;
+            default:
+                break;
+        }
+        <div class="orderIndex-item">
+            <div class="orderIndex-item-state">
+                <img src="~/Content/Images/view/shop.png" />
+                <span>@state</span>
+            </div>
+            <a href="@Url.Action("Details","Order",new { code=item.Code})">
+                @foreach (var detailItem in item.Details)
+                {
+                    <div class="orderIndex-item-details">
+                        <div class="orderIndex-item-img">
+
+                            <img src="@Url.ResizeImage(detailItem.Image,120,120)" />
+                        </div>
+                        <div class="orderIndex-item-info">
+                            <div class="orderIndex-item-info-name">
+                                @detailItem.Name
+                            </div>
+                            <div class="orderIndex-item-info-pay">
+                                <p class="price"><b class="fs16">￥</b><b class="">@detailItem.Price</b></p>
+                                <p class="count">x<span>@detailItem.Count</span></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </a>
+            <div class="orderIndex-item-info">
+                共<b>@(item.Details.Select(s => s.Count).Sum())</b>件商品
+                合计:<b>@(item.PaidAmount.ToString("C"))</b>
+                （含运费:<b>@(item.Free.ToString("C"))</b>）
+            </div>
+            @if (item.State == BuyUnion.Enums.OrderState.WaitPaid)
+            {
+                <div class="orderIndex-item-link">
+
+                    <a href="@Url.Action("Submit", "Order", new { code = item.Code })">
+                        支付
+                    </a>
+                </div>
+            }
+        </div>
+    }
+
+</div>
+@section Scripts {
+    <script>
+        //返回
+        $("#btnBack").goback("http://www.immlm.cn");
+    </script>
+}

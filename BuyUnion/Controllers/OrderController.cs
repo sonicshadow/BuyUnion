@@ -154,8 +154,23 @@ namespace BuyUnion.Controllers
 
         public ActionResult Index()
         {
-
-            return View();
+            var userId = Request.Cookies["UserId"].Value;
+            var orders = db.Orders.Include(s => s.Details).Where(s => s.UserID == userId).ToList();
+            var productIds = new List<int>();
+            foreach (var item in orders)
+            {
+                productIds.AddRange(item.Details.Select(s => s.ProductID).ToList());
+            }
+            productIds.Distinct();
+            var products = db.Products.Where(s => productIds.Contains(s.ID)).ToList();
+            var model = orders.Select(s =>
+            {
+                var pids = s.Details.Select(x => x.ProductID);
+                var ps = products.Where(x => pids.Contains(x.ID));
+                var item = new SubmitOrderViewModel(s, ps.ToList());
+                return item;
+            });
+            return View(model);
         }
 
         protected override void Dispose(bool disposing)

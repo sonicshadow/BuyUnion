@@ -1,0 +1,76 @@
+﻿@model BuyUnion.Models.SubmitOrderViewModel
+
+@{
+    ViewBag.Title = "订单详情";
+}
+
+<div class="orderDetails minHight100vh bg-color-grey paddingT50">
+    @Html.HiddenFor(model => model.ID)
+    <div class="navigationBar">
+        <span class="glyphicon glyphicon-menu-left navigationBar-left" aria-hidden="true" id="btnBack"></span>
+        <div class="navigationBar-name">订单详情</div>
+        <div class="navigationBar-right"><a href="@Url.Action("Index","Order")">订单管理</a></div>
+    </div>
+
+    <div class="consigneeDisplay orderDetails-address clearfix">
+        <div id="info">
+            <div class="fl marginR8"><span class="glyphicon glyphicon-map-marker"></span></div>
+            <div class="fl">
+                <div class="marginB5">
+                    <span class="consignee marginR20">
+                        @Html.DisplayFor(model => model.Consignee)
+                    </span>
+                    <span class="phoneNumber">
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </span>
+                </div>
+                <div class="">
+                    <span class="address">
+                        @Html.DisplayFor(model => model.Address)
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="orderDetails-title">商品清单</div>
+    <div class="orderDetails-baseInfo">
+        @foreach (var item in Model.Details)
+            {
+            <div class="orderDetail-item">
+                <div class="orderDetail-item-img">
+                    <img src="@Url.ResizeImage(item.Image,120,120)" />
+                </div>
+                <div class="orderDetail-item-info">
+                    <div class="orderDetail-item-info-name">@item.Name</div>
+                    <div class="orderDetail-item-info-pay">
+                        <p class="price"><b class="fs16">￥</b><b class="">@item.Price</b></p>
+                        <p class="count">x<span>@item.Count</span></p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @*价格信息*@
+    <div class="orderDetails-title">费用详情</div>
+    <div class="orderDetails-model clearfix">
+        <div class="fl">商品金额</div>
+        <div class="fr"><span id="Amount">@Model.Amount.ToString("C")</span></div>
+    </div>
+    <div class="orderDetails-model clearfix">
+        <div class="fl">运费</div>
+        <div class="fr"><span id="Free">@Model.Free.ToString("C")</span></div>
+    </div>
+    <div class="orderDetails-model clearfix">
+        <div class="fl"> 实付款</div>
+        <div class="fr"><b id="Sum">￥@(Model.PaidAmount)</b></div>
+    </div>
+
+</div>
+@section Scripts {
+<script>
+    //返回
+    $("#btnBack").goback("http://www.immlm.cn");
+</script>
+}

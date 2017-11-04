@@ -23,6 +23,9 @@ namespace BuyUnion.Controllers
             //{
             //    return this.ToError("错误", "传参有误");
             //}
+            HttpCookie cookie = new HttpCookie("UserId");
+            cookie.Value = userId;
+            Response.Cookies.Add(cookie);
             var product = db.Products.FirstOrDefault(s => s.ID == id.Value || s.Name == name);
             if (product == null)
             {

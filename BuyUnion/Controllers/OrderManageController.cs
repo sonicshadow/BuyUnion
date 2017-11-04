@@ -137,13 +137,6 @@ namespace BuyUnion.Controllers
                                 UserID = UserID
                             };
                             db.OrderLogs.Add(his);
-                            var shopAmountLog = new ShopAmountLog()
-                            {
-                                Amount = order.PaidAmount,
-                                CreateDateTime = DateTime.Now,
-                                Type = Enums.AmountLogType.Income
-                            };
-                            db.ShopAmountLogs.Add(shopAmountLog);
                         }
                         else
                         {

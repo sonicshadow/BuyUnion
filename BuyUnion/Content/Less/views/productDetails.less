@@ -15,12 +15,12 @@
                 }
             }
 
-            .swiper-pagination{
-                .swiper-pagination-bullet{
+            .swiper-pagination {
+                .swiper-pagination-bullet {
                     .square(10rem*@resize);
 
-                    &.swiper-pagination-bullet-active{
-                        background-color:#543a2e;
+                    &.swiper-pagination-bullet-active {
+                        background-color: #543a2e;
                     }
                 }
             }
@@ -242,5 +242,16 @@
         top: 0;
         .block-horizontal-mid(50%);
         font-size: @font-size-4;
+    }
+
+    .navigationBar-right {
+        top: 0;
+        right: 0;
+        position: absolute;
+        margin-right: 10rem*@resize;
+        color:#f70;
+        a {
+            .clean-a();
+        }
     }
 }

@@ -410,6 +410,7 @@
     <Content Include="Content\Images\home\home_slide_img02.png" />
     <Content Include="Content\Images\home\home_slide_img03.png" />
     <Content Include="Content\Images\view\loadingGif.gif" />
+    <Content Include="Content\Images\view\shop.png" />
     <Content Include="Content\Images\view\wechatPay_icon.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css">
@@ -736,6 +737,8 @@
     <Content Include="Content\less\views\homeIndexM.less" />
     <Content Include="Content\less\views\productDetails.less" />
     <Content Include="Content\less\views\orderPage.less" />
+    <Content Include="Content\less\views\orderDetails.less" />
+    <Content Include="Content\less\views\orderIndex.less" />
     <None Include="Properties\PublishProfiles\BuyUnionPubish.pubxml" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\datetimepicker\css\bootstrap-datetimepicker.css" />
@@ -842,6 +845,8 @@
     <Content Include="Views\Withdraw\ApplicationIndex.cshtml" />
     <Content Include="Views\Withdraw\Application.cshtml" />
     <Content Include="Views\OrderManage\Refund.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ProductProxy\" />

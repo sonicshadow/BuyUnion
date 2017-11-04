@@ -5,9 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Data.Entity;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace BuyUnion.Controllers
 {
@@ -34,7 +31,7 @@ namespace BuyUnion.Controllers
         public ActionResult Index(int page = 1)
         {
             Sidebar();
-            var proxyAmountLogs = db.ProxyAmountLogs.Where(s => s.Type != Enums.AmountLogType.Withdraw).ToList()
+            var proxyAmountLogs = db.ProxyAmountLogs.Where(s => s.Type != Enums.AmountLogType.Withdraw && s.ProxyID!="" ).ToList()
                 .GroupBy(s => s.ProxyID)
                 .Select(s =>
                 {
