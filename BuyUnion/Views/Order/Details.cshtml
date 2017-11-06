@@ -2,6 +2,12 @@
 
 @{
     ViewBag.Title = "订单详情";
+    bool layout = true, bLayout;
+    if (bool.TryParse(Request["layout"], out bLayout))
+    {
+        layout = bLayout;
+    }
+    string style = layout ? "paddingT50" : "";
 }
 
 <div class="orderDetails minHight100vh bg-color-grey paddingT50">
@@ -9,7 +15,7 @@
     <div class="navigationBar">
         <span class="glyphicon glyphicon-menu-left navigationBar-left" aria-hidden="true" id="btnBack"></span>
         <div class="navigationBar-name">订单详情</div>
-        <div class="navigationBar-right"><a href="@Url.Action("Index","Order")">订单管理</a></div>
+        <div class="navigationBar-right"><a href="@Url.Action("Index", "Order")">订单管理</a></div>
     </div>
 
     <div class="consigneeDisplay orderDetails-address clearfix">
@@ -69,8 +75,8 @@
 
 </div>
 @section Scripts {
-<script>
-    //返回
-    $("#btnBack").goback("http://www.immlm.cn");
-</script>
+    <script>
+        //返回
+        $("#btnBack").goback("http://www.immlm.cn");
+    </script>
 }

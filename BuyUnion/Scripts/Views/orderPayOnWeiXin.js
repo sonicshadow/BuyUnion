@@ -34,7 +34,8 @@ function callpay() {
 }
 
 $("#btnSubmit").click(function () {
-    console.log(wxJsApiParam);
+    $(this).attr("disabled", 'true');
+    $(this).val("支付中...")
     if (new check().isWeiXin()) {
         callpay();
     }
@@ -43,9 +44,31 @@ $("#btnSubmit").click(function () {
     }
 })
 
-
 $("#closed").click(function () {
     comm.action("Submit", "Orders", { code: $("#Code").val() });
 });
 
+PsySuccess();
+function PsySuccess() {
+    var paySuccess = setInterval(clock, 1500);
+    function clock() {
+        $.ajax({
+            type: "GET",
+            url: comm.action("Get", "Order"),
+            data: { code: $("#Code").val() },
+            dataType: "json",
+            success: function (data) {
+                if (data.State == "Success") {
+                    if (data.Result.PayCode != null) {
+                        clearInterval(paySuccess);
+                        $("#orderPay").addClass("hidden");
+                        $("#orderPayState").removeClass("hidden");
+                    }
+                }
+            }
+        });
+    }
+
+
+}
 

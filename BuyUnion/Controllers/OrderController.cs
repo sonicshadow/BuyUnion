@@ -31,6 +31,17 @@ namespace BuyUnion.Controllers
             {
                 return this.ToError("错误", "订单有误");
             }
+            HttpCookie cok = Request.Cookies["UserId"];
+            if (cok != null)
+            {
+                cok.Value = order.UserID;
+            }
+            else
+            {
+                HttpCookie cookie = new HttpCookie("UserId");
+                cookie.Value = order.UserID;
+                Response.Cookies.Add(cookie);
+            }
             if (order.State != Enums.OrderState.WaitPaid)
             {
                 return this.ToError("错误", "订单已提交");
@@ -98,8 +109,6 @@ namespace BuyUnion.Controllers
             }));
         }
 
-
-
         [HttpPost]
         public ActionResult Check(string code)
         {
@@ -142,6 +151,17 @@ namespace BuyUnion.Controllers
         public ActionResult Details(string code)
         {
             var order = db.Orders.Include(s => s.Details).FirstOrDefault(s => s.Code == code);
+            HttpCookie cok = Request.Cookies["UserId"];
+            if (cok != null)
+            {
+                cok.Value = order.UserID;
+            }
+            else
+            {
+                HttpCookie cookie = new HttpCookie("UserId");
+                cookie.Value = order.UserID;
+                Response.Cookies.Add(cookie);
+            }
             if (order.State == Enums.OrderState.WaitPaid)
             {
                 return RedirectToAction("Submit", new { Code = code });
@@ -171,6 +191,28 @@ namespace BuyUnion.Controllers
                 return item;
             });
             return View(model);
+        }
+
+        [AllowAnonymous]
+        [AllowCrossSiteJson]
+        [HttpGet]
+        public ActionResult Get(string code)
+        {
+            var order = db.Orders.FirstOrDefault(s => s.Code == code);
+            if (order == null)
+            {
+                return Json(Comm.ToJsonResult("Error", "订单有误"), JsonRequestBehavior.AllowGet);
+            }
+            return Json(Comm.ToJsonResult("Success", "成功", new
+            {
+                order.ID,
+                order.Code,
+                order.PayCode,
+                order.Address,
+                order.Amount,
+                order.ChildProxyID,
+                order.Consignee
+            }), JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

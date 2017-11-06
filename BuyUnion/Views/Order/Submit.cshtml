@@ -1,8 +1,13 @@
 ﻿@using Newtonsoft.Json
-@using Newtonsoft.Json.Linq
 @model BuyUnion.Models.SubmitOrderViewModel
 @{
     ViewBag.Title = "提交订单";
+    bool layout = true, bLayout;
+    if (bool.TryParse(Request["layout"], out bLayout))
+    {
+        layout = bLayout;
+    }
+    string style = layout ? "paddingT50" : "";
 }
 
 <div class="orderSubmit minHight100vh bg-color-grey paddingT50">

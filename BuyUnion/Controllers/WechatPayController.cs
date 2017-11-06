@@ -44,6 +44,17 @@ namespace BuyUnion.Controllers
         public ActionResult Pay(string orderCode, string openid)
         {
             var model = db.Orders.FirstOrDefault(s => s.Code == orderCode);
+            HttpCookie cok = Request.Cookies["UserId"];
+            if (cok != null)
+            {
+                cok.Value = model.UserID;
+            }
+            else
+            {
+                HttpCookie cookie = new HttpCookie("UserId");
+                cookie.Value = model.UserID;
+                Response.Cookies.Add(cookie);
+            }
             if (string.IsNullOrWhiteSpace(model.PayCode))
             {
                 WechatPay pay = new WechatPay();
@@ -56,7 +67,7 @@ namespace BuyUnion.Controllers
                 pay.TotalFee = Convert.ToInt32(model.Amount * 100);
                 pay.Body = $"购物单";
                 pay.Attach = "";
-                ////pay.GoodsTag = string.Join(",", model.Details.Select(s => s.ModularProduct.Title));
+                //pay.GoodsTag = string.Join(",", model.Details.Select(s => s.ModularProduct.Title));
                 WxPayData unifiedOrderResult = pay.GetUnifiedOrderResult();
                 string wxJsApiParam = pay.GetJsApiParameters();
                 WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
@@ -183,7 +194,6 @@ namespace BuyUnion.Controllers
         /// <returns></returns>
         public ActionResult CheckWxOrderState(string transaction_id)
         {
-
             return Json(new { result = QueryOrder(transaction_id) }, JsonRequestBehavior.AllowGet);
         }
 

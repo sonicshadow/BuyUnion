@@ -2,6 +2,12 @@
 
 @{
     ViewBag.Title = "订单管理";
+    bool layout = true, bLayout;
+    if (bool.TryParse(Request["layout"], out bLayout))
+    {
+        layout = bLayout;
+    }
+    string style = layout ? "paddingT50" : "";
 }
 
 

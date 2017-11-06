@@ -168,6 +168,7 @@ namespace BuyUnion.Controllers
         [HttpGet]
         public ActionResult Refund(int id)
         {
+            Sidebar();
             var order = db.Orders.Include(s => s.Details).FirstOrDefault(s => s.ID == id);
             if (order == null)
             {
