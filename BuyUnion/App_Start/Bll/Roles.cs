@@ -87,12 +87,12 @@ namespace BuyUnion.Bll
             //addUserRole(SysRole.TicketUse, "用户权限", "卡券使用");
             #endregion
             #region 后台权限
-            
+
             addSystemRole(SysRole.UserManageRead, "用户管理", "用户管理查看");
             addSystemRole(SysRole.UserManageCreate, "用户管理", "用户管理添加");
             addSystemRole(SysRole.UserManageDelete, "用户管理", "用户管理删除");
             addSystemRole(SysRole.UserManageEdit, "用户管理", "用户管理编辑");
-           
+
             addSystemRole(SysRole.RoleManageRead, "权限管理", "权限管理查看");
             addSystemRole(SysRole.RoleManageCreate, "权限管理", "权限管理创建");
             addSystemRole(SysRole.RoleManageEdit, "权限管理", "权限管理编辑");
@@ -112,11 +112,11 @@ namespace BuyUnion.Bll
 
             addSystemRole(SysRole.CommissionManageRead, "佣金管理", "佣金管理查看");
 
-            addSystemRole(SysRole.WithdrawCreate, "提现管理", "提现管理查看");
-            addSystemRole(SysRole.WithdrawRead, "提现管理", "提现管理申请");
+            addSystemRole(SysRole.WithdrawCreate, "提现管理", "提现管理申请");
+            addSystemRole(SysRole.WithdrawRead, "提现管理", "提现管理查看");
 
-            addSystemRole(SysRole.WithdrawManageCheck, "提现管理", "提现管理查看");
-            addSystemRole(SysRole.WithdrawManageRead, "提现管理", "提现管理申请");
+            addSystemRole(SysRole.WithdrawManageCheck, "提现审核管理", "提现审核");
+            addSystemRole(SysRole.WithdrawManageRead, "提现审核管理", "提现审核查看");
             #endregion
 
             foreach (var item in roles)

@@ -33,7 +33,7 @@ namespace BuyUnion
 
         public const string CommissionManageRead = "CommissionManageRead";
 
-        public const string WithdrawRead = "WithdrawManageRead";
+        public const string WithdrawRead = "WithdrawRead";
         public const string WithdrawCreate = "WithdrawCreate";
 
         public const string WithdrawManageRead = "WithdrawManageRead";

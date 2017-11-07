@@ -155,7 +155,7 @@
                     <input type="submit" value="完成" class="btn btn-default" />
                 }
             }
-            @if (Model.State == BuyUnion.Enums.OrderState.Shipped && Model.State == BuyUnion.Enums.OrderState.Complete)
+            @*@if (Model.State == BuyUnion.Enums.OrderState.Shipped && Model.State == BuyUnion.Enums.OrderState.Complete)
             {
                 using (Html.BeginForm())
                 {
@@ -163,7 +163,7 @@
                     <input name="State" value="@BuyUnion.Enums.OrderState.Cancel" type="hidden" />
                     <input type="submit" value="取消订单" class="btn btn-default" />
                 }
-            }
+            }*@
             @*@using (Html.BeginForm())
             {
                 @Html.HiddenFor(model => model.ID)

@@ -12,17 +12,21 @@
         strState = state.GetDisplayName();
     }
 }
-
-<ol class="breadcrumb">
-    <li>@Html.ActionLink("提现管理", "Index")</li>
-    <li class="active">申请提现列表</li>
-</ol>
-
+@if (!User.IsInRole(SysRole.WithdrawManageCheck))
+{
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("提现管理", "Index")</li>
+        <li class="active">申请提现列表</li>
+    </ol>
+}
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("申请提现", "Application")</li>
+                @if (!User.IsInRole(SysRole.WithdrawManageCheck))
+                {
+                    <li>@Html.ActionLink("申请提现", "Application")</li>
+                }
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         @strState<span class="caret"></span>
@@ -31,9 +35,9 @@
                         <li>@Html.ActionLink("所有状态", "ApplicationIndex")</li>
                         @foreach (BuyUnion.Enums.WithdrawState item in Enum.GetValues(typeof(BuyUnion.Enums.WithdrawState)))
                         {
-                        <li>
-                            @Html.ActionLink(item.GetDisplayName(), "ApplicationIndex", new { state = item })
-                        </li>
+                            <li>
+                                @Html.ActionLink(item.GetDisplayName(), "ApplicationIndex", new { state = item })
+                            </li>
                         }
                     </ul>
                 </li>
@@ -57,6 +61,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.PayNumber)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -75,9 +82,26 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PayNumber)
             </td>
+            <td>
+                @item.State.GetDisplayName()
+            </td>
+            <td>
+                @if (User.IsInRole(SysRole.WithdrawManageCheck))
+                {
+                    if (item.State == BuyUnion.Enums.WithdrawState.NoCheck)
+                    {
+                        <input type="button" value="同意" data-result="true" data-id="@item.ID" class="btn btn-default btn-check" />
+                        <input type="button" value="不同意" data-result="false" data-id="@item.ID" class="btn btn-default btn-check" />
+                    }
+                }
+            </td>
         </tr>
     }
 
 </table>
 
 @Html.PageList(paged, Url.PageUrl())
+
+@section Scripts{
+    @Scripts.Render("~/Bundles/applicationIndex")
+}

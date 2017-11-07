@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav">
                 @if (User.IsInRole(SysRole.UserManageCreate))
                 {
-                    <li>@Html.ActionLink("添加用户", "Create", new { type = BuyUnion.Enums.UserType.Normal })</li>
+                    @*<li>@Html.ActionLink("添加用户", "Create", new { type = BuyUnion.Enums.UserType.Normal })</li>*@
                     <li>@Html.ActionLink("添加管理员", "Create", new { type = BuyUnion.Enums.UserType.System })</li>
                     <li>@Html.ActionLink("添加商家", "Create", new { type = BuyUnion.Enums.UserType.Shop })</li>
                 }

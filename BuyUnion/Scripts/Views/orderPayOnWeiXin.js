@@ -1,5 +1,8 @@
 ﻿var wxJsApiParam = $("#wxJsApiParam").data("param");
 var code = $("#Code").val();
+if (!new check().isWeiXin()) {
+    $("#mweb_url").val(encodeURI(wxJsApiParam.mweb_url));
+}
 
 function jsApiCall() {
     WeixinJSBridge.invoke(

@@ -2,91 +2,91 @@
 @import "../base";
 
 .orderPay {
-    position:fixed;
-    width:100%;
-    background:rgba(0,0,0,0.6);
-    z-index:@z-index-top+1000;
+    position: fixed;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: @z-index-top+1000;
 
-    .orderPay-info{
-        position:absolute;
-        width:100%;
-        bottom:0;
-        height:330rem*@resize;
-        background-color:@bg-color-white;
+    .orderPay-info {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        height: 330rem*@resize;
+        background-color: @bg-color-white;
 
-        .orderPay-info-tits{
-            position:relative;
-            font-size:@font-size-4;
-            text-align:center;
+        .orderPay-info-tits {
+            position: relative;
+            font-size: @font-size-4;
+            text-align: center;
             .one-line-vertical-mid(50rem*@resize);
-            border-bottom:1rem*@resize solid #ddd;
+            border-bottom: 1rem*@resize solid #ddd;
 
-            .orderPay-info-tits-remove{
+            .orderPay-info-tits-remove {
                 .block-vertical-mid(50%);
-                right:16rem*@resize;
-                z-index:@z-index-bottom;
+                right: 16rem*@resize;
+                z-index: @z-index-bottom;
             }
         }
 
-        .orderPay-info-model{
-            padding:0 16rem*@resize;
+        .orderPay-info-model {
+            padding: 0 16rem*@resize;
             .one-line-vertical-mid(50rem*@resize);
-            border-bottom:1rem*@resize solid #ddd;
-            font-size:@font-size-3;
+            border-bottom: 1rem*@resize solid #ddd;
+            font-size: @font-size-3;
 
-            img{
-                width:24rem*@resize;
-                margin-right:5rem*@resize;
+            img {
+                width: 24rem*@resize;
+                margin-right: 5rem*@resize;
             }
         }
 
-        .orderPay-info-btns{
+        .orderPay-info-btns {
             padding: 40rem*@resize 16rem*@resize 0 16rem*@resize;
 
-            input{
+            a, input {
                 .clean-input();
-                max-width:none;
+                max-width: none;
                 .rectangle(100%,44rem*@resize);
-                color:@font-col-white;
-                font-size:@font-size-4;
-                text-align:center;
-                background-color:#139a29;
-                border-radius:5rem*@resize;
+                color: @font-col-white;
+                font-size: @font-size-4;
+                text-align: center;
+                background-color: #139a29;
+                border-radius: 5rem*@resize;
             }
         }
     }
 }
 
-.orderPayState{
-    position:fixed;
-    width:100%;
-    background-color:@bg-color-white;
-    z-index:@z-index-top+2000;
+.orderPayState {
+    position: fixed;
+    width: 100%;
+    background-color: @bg-color-white;
+    z-index: @z-index-top+2000;
 
-    .orderPayState-info{
+    .orderPayState-info {
         .block-vertical-mid(50%);
-        text-align:center;
-        width:100%;
-        margin-top:-50rem*@resize;
-        padding:0 16rem*@resize;
+        text-align: center;
+        width: 100%;
+        margin-top: -50rem*@resize;
+        padding: 0 16rem*@resize;
 
-        .orderPayState-info-icon{
-            position:relative;
+        .orderPayState-info-icon {
+            position: relative;
             .square(70rem*@resize);
-            border-radius:50%;
-            margin:0 auto;
+            border-radius: 50%;
+            margin: 0 auto;
 
-            &.ok{
-                background-color:#5cb85c;
+            &.ok {
+                background-color: #5cb85c;
             }
 
-            &.fail{
-                background-color:#d9534f;
+            &.fail {
+                background-color: #d9534f;
             }
 
-            >span{
-                font-size:30rem*@resize;
-                color:@bg-color-white;
+            > span {
+                font-size: 30rem*@resize;
+                color: @bg-color-white;
                 .block-mid(50%);
             }
         }

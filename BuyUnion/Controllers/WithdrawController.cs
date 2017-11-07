@@ -90,25 +90,33 @@ namespace BuyUnion.Controllers
             var dateTime = DateTime.Now;
             var shopAmountLogs = db.ShopAmountLogs.Where(s => s.CreateDateTime.Month < dateTime.Month).ToList();
             var income = shopAmountLogs.Where(s => s.Type == Enums.AmountLogType.Income).Sum(s => s.Amount);
+            var refund = shopAmountLogs.Where(s => s.Type == Enums.AmountLogType.Refund).Sum(s => s.Amount);
             var withdraw = shopAmountLogs.Where(s => s.Type == Enums.AmountLogType.Withdraw).Sum(s => s.Amount);
-            return (income - withdraw);
-        }
-
-        public ActionResult Check(int id)
-        {
-            Sidebar();
-            var withdrawLog = db.WithdrawLogs.FirstOrDefault(s => s.ID == id);
-            return View(withdrawLog);
+            return (income - refund - withdraw);
         }
 
         [HttpPost]
-        public ActionResult Check(int id,bool result)
+        [AllowCrossSiteJson]
+        public ActionResult Check(int id, bool result)
         {
-            Sidebar();
             var withdrawLog = db.WithdrawLogs.FirstOrDefault(s => s.ID == id);
+            if (withdrawLog.State != Enums.WithdrawState.NoCheck)
+            {
+                return Json(Comm.ToJsonResult("Error", "已经审核过了"));
+            }
             withdrawLog.State = result ? Enums.WithdrawState.Pass : Enums.WithdrawState.NoPass;
+            if (result)
+            {
+                var shop = new ShopAmountLog()
+                {
+                    Amount = withdrawLog.Amount,
+                    CreateDateTime = DateTime.Now,
+                    Type = Enums.AmountLogType.Withdraw
+                };
+                db.ShopAmountLogs.Add(shop);
+            }
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Json(Comm.ToJsonResult("Success", "审核完成"));
         }
     }
 }
